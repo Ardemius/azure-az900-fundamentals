@@ -35,8 +35,7 @@ Parcours de révision Microsoft :
     * Examiner la sécurité, la confidentialité, la conformité et la confiance Microsoft Azure (AZ-900)
     * Découvrir les tarifs, les contrats de niveau de service et les cycles de vie Microsoft Azure (AZ-900)
 
-
-== Explorer les concepts cloud de Microsoft Azure (AZ-900)
+== Explore Microsoft Azure cloud concepts (AZ-900)
 
 https://docs.microsoft.com/fr-fr/learn/paths/explore-microsoft-azure-cloud-concepts/
 
@@ -115,6 +114,65 @@ The *shared responsibility model* ensures *cloud workloads* are *run securely* a
 ____
 
 image::azure-az900_02.png[]
+
+.IaaS, PaaS and SaaS
+image::azure-az900_03.png[]
+
+Common examples of SaaS apps and software: email, calendars, office tools (such as Office 365)
+
+[quote, 'https://docs.microsoft.com/fr-fr/learn/modules/explore-types-cloud-services/6-compare-cloud-services']
+____
+IaaS, PaaS, and SaaS each contain different levels of managed services. You may easily use a combination of these types of infrastructure. You could use Microsoft 365 on your company’s computers (*SaaS*), and in Azure you could host your VMs (*IaaS*) and use Azure SQL Database (*PaaS*) to store your data. With the cloud’s flexibility, you can use any combination that provides you with the maximum result.
+____
+
+== Distinguish Microsoft Azure Core Services (AZ-900)
+
+=== Discuss core Azure architectural components
+
+In this module, you will:
+
+* Explore the physical structure of Azure infrastructure
+* Understand the service level agreements provided by Azure
+* Learn how to provide your own service level agreements for your apps
+
+*2 Data Centers en France* pour Azure, Paris et Marseille (correspond à 2 "regions", France Central and France South) +
+https://azure.microsoft.com/fr-fr/global-infrastructure/geographies/
+
+A few examples of *regions* are West US, Canada Central, West Europe, Australia East, and Japan West. At the time of writing this, Azure is generally available in *60 regions* and available in *140 countries*.
+
+image::azure-az900_04.svg[]
+
+Cf site de Microsoft, _"Azure has more global regions than any other cloud provider"_
+
+Pour info, voici https://azure.microsoft.com/en-us/global-infrastructure/services/?regions=france-south,france-central,europe-north,europe-west&products=all[le lien vers la liste des produits Azure disponibles pour les régions North Europe (Dublin), West Europe (Amsterdam), France Central (Paris), France South (Marseille)].
+
+Each *Azure region* is paired with another region within the same geography (such as US, Europe, or Asia) at least 300 miles away, which together make a *region pair*.
+
+image::azure-az900_05.png[]
+
+Azure divides the world into *geographies* that are defined by geopolitical boundaries or country borders. An Azure geography is a discrete market typically *containing two or more regions* that preserves data residency and compliance boundaries.
+
+.Data residency
+[IMPORTANT]
+====
+Data residency refers to the physical or geographic location of an organization's data or information. *It defines the legal or regulatory requirements imposed on data* based on the country or region in which it resides and is an important consideration when planning out your application data storage.
+====
+
+.Availability Options
+image::azure-az900_06.png[]
+
+.Availability Sets
+image::azure-az900_07.png[]
+
+Availability sets are made up of *Update domains* (UD) and *Fault domains* (FD):
+
+    * *Update domains*. When a maintenance event occurs (such as a performance update or critical security patch applied to the host), the update is sequenced through update domains. Sequencing updates using update domains ensures that the entire datacenter isn't unavailable during platform updates and patching. Update domains are a logical section of the datacenter, and *they are implemented with software and logic*.
+
+    * *Fault domains*. Fault domains *provide for the physical separation of your workload* across different hardware in the datacenter. This includes power, cooling, and network hardware that supports the physical servers located in server racks. In the event the hardware that supports a server rack becomes unavailable, only that rack of servers would be affected by the outage.
+
+== Examine Microsoft Azure security, privacy, compliance, and trust (AZ-900)
+
+== Review Microsoft Azure pricing, service level agreements, and lifecycles (AZ-900)
 
 == Lexique
 
