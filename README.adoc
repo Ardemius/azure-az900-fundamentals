@@ -1,0 +1,133 @@
+= Microsoft Azure fundamentals AZ-900
+Thomas SCHWENDER <https://github.com/ardemius[@ardemius]>
+// Handling GitHub admonition blocks icons
+ifndef::env-github[:icons: font]
+ifdef::env-github[]
+:status:
+:outfilesuffix: .adoc
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+:imagesdir: ./images
+:source-highlighter: highlightjs
+// Next 2 ones are to handle line breaks in some particular elements (list, footnotes, etc.)
+:lb: pass:[<br> +]
+:sb: pass:[<br>]
+// check https://github.com/Ardemius/personal-wiki/wiki/AsciiDoctor-tips for tips on table of content in GitHub
+:toc: macro
+:toclevels: 2
+// To turn off figure caption labels and numbers
+:figure-caption!:
+
+toc::[]
+
+== Examen et ressources de préparation
+
+Microsoft AZ-900 examen : https://docs.microsoft.com/fr-fr/learn/certifications/exams/az-900
+
+Parcours de révision Microsoft :
+
+    * Explorer les concepts cloud de Microsoft Azure (AZ-900)
+    * Identifier les principaux services de Microsoft Azure (AZ-900)
+    * Examiner la sécurité, la confidentialité, la conformité et la confiance Microsoft Azure (AZ-900)
+    * Découvrir les tarifs, les contrats de niveau de service et les cycles de vie Microsoft Azure (AZ-900)
+
+
+== Explorer les concepts cloud de Microsoft Azure (AZ-900)
+
+https://docs.microsoft.com/fr-fr/learn/paths/explore-microsoft-azure-cloud-concepts/
+
+* "The exam is intended for candidates with non-technical backgrounds, such as candidates involved in selling or purchasing cloud-based solutions and services."
+    ** TODO : réfléchir si on ne peut pas intégrer cet examen dans les 1eres étapes du parcours, et être également adressé aux NON-IT, commes les commerciaux
+
+* 4 modules dans ce cours (et pour l'exam AZ-900)
+    ** Explore Microsoft Azure cloud concepts
+    ** Distinguish Microsoft Azure core services
+    ** Examine Microsoft Azure security, privacy, compliance, and trust
+    ** Review Microsoft Azure pricing, Service Level Agreements, and lifecycles
+
+=== Discuss why cloud services
+
+.Cloud Computing
+----
+Cloud Computing  is the delivery of computing services—servers, storage, databases, networking, software, analytics, intelligence and more—over the internet (the cloud), enabling faster innovation, flexible resources, and economies of scale. You typically pay only for cloud services you use, helping lower your operating costs, run your infrastructure more efficiently, and scale as your business needs change.
+----
+
+Cloud providers offer a wide range of services, including:
+
+    * *Compute power* - such as Linux servers or web applications.
+    * *Storage* - such as files and databases.
+    * *Networking* - such as secure connections between the cloud provider and your company.
+    * *Analytics* - such as visualizing telemetry and performance data.
+
+.Computing choices for Cloud: VMs, containers or serverless
+image::azure-az900_01.jpg[]
+
+Key Cloud Concepts :
+
+    * *High availability*. The ability to keep services up and running for long periods of time, with very little downtime, depending on the service in question.
+
+    * *Scalability*. The ability to increase or decrease resources for any given workload. You can add additional resources to service a workload (known as scaling out), or add additional capabilities to manage an increase in demand to the existing resource (known as scaling up). Scalability doesn't have to be done automatically.
+
+    * *Elasticity*. The ability to automatically or dynamically increase or decrease resources as needed. Elastic resources match the current needs, and resources are added or removed automatically to meet future needs when it’s needed (and from the most advantageous geographic location). A distinction between scalability and elasticity is that elasticity is done automatically.
+
+    * *Agility*. The ability to react quickly. Cloud services can allocate and deallocate resources quickly. They are provided on-demand via self-service, so vast amounts of computing resources can be provisioned in minutes. There is no manual intervention in provisioning or deprovisioning services. +
+    Cloud agility is the ability to rapidly change an IT infrastructure to adapt to the evolving needs of the business.
+
+    * *Fault tolerance*. The ability to remain up and running even in the event of a component (or service) no longer functioning. Typically, redundancy is built into cloud services architecture, so if one component fails, a backup component takes its place. This type of service is said to be tolerant of faults.
+
+    * *Disaster recovery*. The ability to recover from an event which has taken down a cloud service. Cloud services disaster recovery can happen very quickly, with automation and services being readily available to use.
+
+    * *Global reach*. The ability to reach audiences around the globe. Cloud services can have a presence in various regions across the globe, which you and your customer can access, giving you a presence in those regions even though you may not have any infrastructure in that region.
+
+    * *Customer latency capabilities*. If customers are experiencing slowness with a particular cloud service, they are said to be experiencing some latency. Even though modern fiber optics are fast, it can still take time for services to react to customer actions if the service is not local to the customer. Cloud services have the ability to deploy resources in datacenters around the globe, which addresses any customer latency issues.
+
+    * *Predictive cost considerations*. The ability for users to predict the costs they will incur for a particular cloud service. Costs for individual services are made available, and tools are provided to allow you to predict the costs a service will incur. You can also perform analysis based on planned growth.
+
+    * *Technical skill requirements and considerations*. Cloud services can provide and manage hardware and software for workloads. Getting a workload up and running with cloud services demands less technical resources than having IT teams build and maintain a physical infrastructure for handling the same workload. A user can be an expert in the application they want to run without requiring skills to build and maintain the underlying hardware and software infrastructure.
+
+    * *Increased productivity*. On-site datacenters typically require a lot of hardware setup (otherwise known as racking and stacking), software patching, and other time-consuming IT management chores. Cloud computing eliminates the need for many of these tasks. This allows IT teams to spend time focusing on achieving more important business goals.
+
+    * *Security*. Cloud providers offer a broad set of policies, technologies, controls, and expert technology skills that can provide better security than most organizations can otherwise achieve. The result is strengthened security, which helps to protect data, apps, and infrastructure from potential threats.
+
+=== Distinguish types of cloud models
+
+3 different cloud deployment models: *Public Cloud*, *Private Cloud*, and *Hybrid Cloud*.
+
+An example of a *hybrid cloud* usage scenario would be hosting a website in the public cloud and *linking it to a highly secure database hosted in a private cloud*. +
+Hybrid cloud scenarios can be useful when organizations have some things that cannot be put in a public cloud, possibly for legal reasons. For example, you may have medical data that cannot be exposed publicly. +
+Another example is one or more applications that run on old hardware that can’t be updated. In this case, you can keep the old system running locally in your private cloud and connect it to the public cloud for authorization or storage.
+
+* *Private cloud* can be hosted on premise, *OR* managed by a Cloud provider.
+    ** le fait qu'un private Cloud puisse être hébergé chez un Cloud provider est expliqué dans la vidéo, mais les explications texte qui suivent semblent dire le contraire... (?)
+        *** je confirme que la vidéo dit bien "on premise OR managed by a Cloud provider"
+
+Remember, the *cloud deployment model* you choose will depend on your *budget*, *security*, *scalability*, and *maintenance needs*. Azure provides all of the flexibility and capabilities to meet your specific needs.
+
+=== Explore types of cloud services
+
+.Shared responsibility model
+____
+The *shared responsibility model* ensures *cloud workloads* are *run securely* and in a well-managed way. Depending on the service you are using, the cloud provider is responsible for some aspects of the workload management, and the customer or end user is responsible for other aspects of the workload management, and in some cases, both share a responsibility.
+____
+
+image::azure-az900_02.png[]
+
+== Lexique
+
+[glossary]
+IOPS:: I/O operations per second
+CapEx:: Capital Expenditure. This is the up front spending of money on physical infrastructure, and then deducting that up front expense over time. The up front cost from CapEx has a value that reduces over time.
+OpEx:: This is spending money on services or products now and being billed for them now. You can deduct this expense in the same year you spend it. There is no up front cost, as you pay for a service or product as you use it.
+Hosting provider:: un synonyme pour "cloud services provider"
+
+
+
+
+
+
+
+
