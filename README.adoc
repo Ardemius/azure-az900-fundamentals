@@ -18,7 +18,7 @@ endif::[]
 :sb: pass:[<br>]
 // check https://github.com/Ardemius/personal-wiki/wiki/AsciiDoctor-tips for tips on table of content in GitHub
 :toc: macro
-:toclevels: 2
+:toclevels: 3
 // To turn off figure caption labels and numbers
 :figure-caption!:
 
@@ -135,6 +135,8 @@ In this module, you will:
 * Understand the service level agreements provided by Azure
 * Learn how to provide your own service level agreements for your apps
 
+==== Azure Regions
+
 *2 Data Centers en France* pour Azure, Paris et Marseille (correspond à 2 "regions", France Central and France South) +
 https://azure.microsoft.com/fr-fr/global-infrastructure/geographies/
 
@@ -159,16 +161,63 @@ Data residency refers to the physical or geographic location of an organization'
 ====
 
 .Availability Options
-image::azure-az900_06.png[]
+image:azure-az900_06.png[]
 
-.Availability Sets
+==== Availability Sets
+
+.Availability Sets, Update domains and Fault domains
 image::azure-az900_07.png[]
 
-Availability sets are made up of *Update domains* (UD) and *Fault domains* (FD):
+*Availability sets* are made up of *Update domains* (UD) and *Fault domains* (FD):
 
     * *Update domains*. When a maintenance event occurs (such as a performance update or critical security patch applied to the host), the update is sequenced through update domains. Sequencing updates using update domains ensures that the entire datacenter isn't unavailable during platform updates and patching. Update domains are a logical section of the datacenter, and *they are implemented with software and logic*.
 
     * *Fault domains*. Fault domains *provide for the physical separation of your workload* across different hardware in the datacenter. This includes power, cooling, and network hardware that supports the physical servers located in server racks. In the event the hardware that supports a server rack becomes unavailable, only that rack of servers would be affected by the outage.
+
+==== Availability zones
+
+*Availability zones* are physically separate locations *within an Azure region* that use availability sets to provide additional fault tolerance.
+
+    * Availability zones are offered as a service within Azure, and to ensure resiliency, there’s *a minimum of three separate zones* in all enabled regions.
+    * Availability Zones are primarily for VMs, managed disks, load balancers, and SQL databases.
+
+==== Resource Group
+
+A *resource group* is a *unit of management for your resources* in Azure. You can think of your resource group as a container that allows you to aggregate and manage all the resources required for your application in a single manageable unit. This allows you to manage the application collectively over its lifecycle, rather than manage components individually. Before any resource can be provisioned, you need a resource group for it to be placed in.
+
+image::azure-az900_08.png[]
+
+IMPORTANT: If you *delete a resource group*, all resources contained within are also deleted.
+
+.Consistent naming convention
+[TIP] 
+====
+Use an *understandable naming convention*. +
+An example could be `msftlearn-core-infrastructure-rg`. +
+We've given some indication of what it's used for (msftlearn), the types of resources contained within (core-infrastructure), and the type of resource it is itself (rg).
+====
+
+Resource groups help to organize resources, with several possible strategies:
+
+    * Organize based on *authorization needs*: Since resource groups are a scope of RBAC, you can organize resources by who needs to administer them
+    * Organize for *resource life cycle*: Resource groups serve as the life cycle for the resources within it. If you delete a resource group, you delete all the resources in it.
+    * Organize for usage in *billing reports*: placing resources in the same resource group is a way to group them for usage in billing reports
+
+==== Azure Management Layer
+
+*Azure Resource Manager* is a management layer in which resource groups and all the resources within it are created, configured, managed, and deleted. +
+It provides a consistent management layer which allows you automate the deployment and configuration of resources using different automation and scripting tools, such as Microsoft Azure PowerShell, Azure Command-Line Interface (Azure CLI), Azure portal, REST API, and client SDKs.
+
+With Azure Resource Manager, you can:
+
+    * *Deploy Application resources*: Update, manage, and delete all the resources for your solution in a single, coordinated operation.
+    * *Organize resources*: Manage your infrastructure through declarative templates rather than scripts. You can view which resources are linked by a dependency, and you can apply tags to resources to categorize them for management tasks, such as billing.
+    * *Control access and resources*. You can control who in your organization can perform actions on the resources. You manage permissions by defining roles, adding users or groups to the roles, and applying policies at resource group level. +
+    Examples of elements you may wish to control are: enforcing naming convention on resources, limiting which types and instances of resources can be deployed, or limiting which regions can host a type of resource.
+
+Resource Manager templates are *JSON files* that define the resources you need to deploy your solution.
+
+=== Define core Azure services and products
 
 == Examine Microsoft Azure security, privacy, compliance, and trust (AZ-900)
 
@@ -177,11 +226,11 @@ Availability sets are made up of *Update domains* (UD) and *Fault domains* (FD):
 == Lexique
 
 [glossary]
-IOPS:: I/O operations per second
 CapEx:: Capital Expenditure. This is the up front spending of money on physical infrastructure, and then deducting that up front expense over time. The up front cost from CapEx has a value that reduces over time.
-OpEx:: This is spending money on services or products now and being billed for them now. You can deduct this expense in the same year you spend it. There is no up front cost, as you pay for a service or product as you use it.
 Hosting provider:: un synonyme pour "cloud services provider"
-
+IOPS:: I/O operations per second
+OpEx:: This is spending money on services or products now and being billed for them now. You can deduct this expense in the same year you spend it. There is no up front cost, as you pay for a service or product as you use it.
+RBAC:: Role-Based Access Control 
 
 
 
