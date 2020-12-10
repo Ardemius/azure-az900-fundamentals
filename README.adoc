@@ -18,7 +18,7 @@ endif::[]
 :sb: pass:[<br>]
 // check https://github.com/Ardemius/personal-wiki/wiki/AsciiDoctor-tips for tips on table of content in GitHub
 :toc: macro
-:toclevels: 3
+:toclevels: 4
 // To turn off figure caption labels and numbers
 :figure-caption!:
 
@@ -28,19 +28,629 @@ toc::[]
 
 Microsoft AZ-900 examen : https://docs.microsoft.com/fr-fr/learn/certifications/exams/az-900
 
-Parcours de révision Microsoft :
+.Exam updated on 2020/11/09
+IMPORTANT: Exam was updated on 2020/11/09 with a new plan!
 
-    * Explorer les concepts cloud de Microsoft Azure (AZ-900)
-    * Identifier les principaux services de Microsoft Azure (AZ-900)
-    * Examiner la sécurité, la confidentialité, la conformité et la confiance Microsoft Azure (AZ-900)
-    * Découvrir les tarifs, les contrats de niveau de service et les cycles de vie Microsoft Azure (AZ-900)
+1. Azure Fundamentals part 1: Describe core Azure concepts
+2. Azure Fundamentals part 2: Describe core Azure services
+3. Azure Fundamentals part 3: Describe core solutions and management tools on Azure
+4. Azure Fundamentals part 4: Describe general security and network security features
+5. Azure Fundamentals part 5: Describe identity, governance, privacy, and compliance features
+6. Azure Fundamentals part 6: Describe Azure cost management and service level agreements
 
-== Explore Microsoft Azure cloud concepts (AZ-900)
+== Azure Fundamentals part 1: Describe core Azure concepts
+
+https://docs.microsoft.com/en-us/learn/paths/az-900-describe-cloud-concepts/
+
+=== Introduction to Azure fundamentals
+
+==== What is cloud computing ?
+
+*Cloud computing*: The delivery of computing services over the internet, which is otherwise known as the cloud. These services include servers, storage, databases, networking, software, analytics, and intelligence.
+
+Cloud computing is a way to rent *compute power* and *storage* from someone else's datacenter.
+
+Cloud computing *advantages*:
+
+    * *High availability*: Depending on the service-level agreement (SLA) that you choose, your cloud-based applications can provide a continuous user experience with no apparent downtime even when things go wrong.
+
+    * *Scalability*: Applications in the cloud can be scaled in two ways:
+        ** *Vertically*: Computing capacity can be increased by adding RAM or CPUs to a virtual machine.
+        ** *Horizontally*: Computing capacity can be increased by adding instances of a resource, such as adding more virtual machines to your configuration.
+
+    * *Elasticity*: Cloud-based applications can be configured to take advantage of autoscaling, so your applications will always have the resources they need.
+
+    * *Agility*: Cloud-based resources can be deployed and configured quickly as your application requirements change.
+
+    * *Geo-distribution*: Applications and data can be deployed to regional datacenters around the globe, so your customers always have the best performance in their region.
+
+    * *Disaster recovery*: By taking advantage of cloud-based backup services, data replication, and geo-distribution, you can deploy your applications with the confidence that comes from knowing that your data is safe in the event that disaster should occur.
+
+Cloud *service models*: *IaaS* / *PaaS* / *SaaS*
+
+image::azure-az900_09.png[]
+
+.levels of responsibility betweee a cloud provider and a cloud tenant
+image::azure-az900_10.png[]
+
+*Serverless computing*: With serverless applications, the cloud service provider automatically provisions, scales, and manages the infrastructure required to run the code. Serverless architectures are highly scalable and *event-driven*. They use resources only when a specific function or trigger occurs.
+
+.public, private and hybrid clouds
+image:azure-az900_11.png[]
+
+* *public cloud*: Services are offered over the public internet and available to anyone who wants to purchase them. Cloud resources like servers and storage are owned and operated by a third-party cloud service provider and delivered over the internet.
+* *private cloud*: Computing resources are *used exclusively by users from one business* or organization. A private cloud can be physically located at your organization's on-site datacenter. *It also can be hosted by a third-party service provider*.
+* *hybrid cloud*: This computing environment combines a public cloud and a private cloud by allowing data and applications to be shared between them.
+
+==== What is Azure ?
+
+.How does Azure work?
+image::azure-az900_12.png[]
+
+*Azure portal*: a web-based, unified console that provides an alternative to command-line tools.
+
+.Azure services
+image::azure-az900_13.png[]
+
+Most commonly used categories:
+
+    * *Compute Services*: including micro-services
+    * *Networking features*
+    * *Storage*
+        ** *Azure Blob storage*: Storage service for very large objects, such as *video files* or *bitmaps*
+        ** *Azure File storage*: *File shares* that can be accessed and managed like a file server
+        ** *Azure Queue storage*: A data store for *queuing* and reliably *delivering messages* between applications
+        ** *Azure Table storage*: A NoSQL store that hosts *unstructured data* independent of any schema
+    * *Mobile*
+    * *Databases* 
+    * *Web*
+    * *Internet of Things*
+    * *Big Data*
+    * *Artificial Intelligence*
+        ** includes *cognitive services*, such as *vision*, *speech*, *knowledge mapping*, *Bing search*, *Natural Language Processing*.
+    * *DevOps*
+
+    * *App hosting*: to run your entire web application on a managed platform in Windows or Linux
+    * *Integration*: logic apps and service bus
+    * *Security*
+
+=== Discuss Azure fundamental concepts
+
+* Cloud service providers operate on a *consumption-based model*, which means that end users only pay for the resources that they use.
+* Cloud services are categorized *OpEx* (Operational Expenditure) and not CapEx (Capital Expenditure), OpEx being a consumption-based model.
+
+____
+*IaaS*, *PaaS*, and *SaaS* each contain different levels of managed services. You may easily use a combination of these types of infrastructure. You could use Microsoft 365 on your company’s computers (*SaaS*), and in Azure you could host your VMs (*IaaS*) and use Azure SQL Database (*PaaS*) to store your data. With the cloud’s flexibility, you can use any combination that provides you with the maximum result.
+____
+
+=== Describe core Azure architectural components
+
+The *organizing structure for resources* in Azure has 4 levels: *management groups*, *subscriptions*, *resource groups* and *resources*.
+
+image::azure-az900_14.png[]
+
+==== Azure subscription
+
+    * A subscription provides you with authenticated and authorized access to Azure products and services. It also allows you to provision resources. An Azure subscription is a *logical unit of Azure services* that links to an *Azure account*, which is an *identity in Azure Active Directory* (Azure AD) or in a directory that Azure AD trusts.
+    * An account can have *one subscription or multiple subscriptions* that have different billing models and to which you apply different access-management policies.
+    * Azure applies *access-management policies* at the subscription level.
+    * A subscription is a set of Azure services bundled together for tracking and billing purposes.
+
+.Billing customization
+image::azure-az900_15.png[]
+
+==== Azure Management groups
+
+    * Level of scope above subscriptions. 
+    * All subscriptions within a management group automatically inherit the conditions applied to the management group.
+    * All subscriptions within a single management group must trust the same Azure AD tenant.
+
+image::azure-az900_16.png[]
+
+Important facts about management groups:
+    * *10,000 management groups* can be supported in a single directory.
+    * A management group tree can support up to *6 levels of depth*. This limit doesn't include the root level or the subscription level.
+    * Each management group and subscription can support *only one parent*.
+    * Each management group can have *many children*.
+    * All subscriptions and management groups are within *a single hierarchy in each directory*.
+
+==== Resource
+
+A manageable item that's available through Azure. Virtual machines (VMs), storage accounts, web apps, databases, and virtual networks are examples of resources.
+
+==== Resource group
+
+    * A resource group is a *logical container* for resources deployed on Azure.
+    * All resources must be in a resource group, and a resource can only be a member of a single resource group.
+    * Resource groups *can't be nested*.
+    * If you delete a resource group, *all resources contained within it are also deleted*.
+    * Resource groups are also a scope for applying role-based access control (RBAC) permissions.
+
+==== Azure Resource Manager
+
+    * Azure Resource Manager is the *deployment and management service for Azure*. It provides a management layer that enables you to create, update, and delete resources in your Azure account.
+
+.When a user sends a request from any of the Azure tools, APIs, or SDKs, Resource Manager receives the request.
+image::azure-az900_17.png[]
+
+As benefits, it allows you to:
+
+    * Manage your infrastructure through *declarative templates rather than scripts*. A *Resource Manager template* is a *JSON file* that defines what you want to deploy to Azure.
+    * Apply access control to all services because role-based access control (RBAC) is natively integrated into the management platform.
+    * Clarify your organization's billing by *viewing costs for a group of resources that share the same tag*.
+
+==== Azure regions
+
+Resources are created in *regions*, which are different geographical locations around the globe that contain Azure datacenters. +
+A region is a *geographical area* on the planet that contains *at least one but potentially multiple datacenters* that are nearby and networked together with a low-latency network.
+
+*2 Data Centers en France* pour Azure, Paris et Marseille (correspond à 2 "regions", France Central and France South) +
+https://azure.microsoft.com/fr-fr/global-infrastructure/geographies/
+
+A few examples of *regions* are West US, Canada Central, West Europe, Australia East, and Japan West. At the time of writing this, Azure is generally available in *60 regions* and available in *140 countries*.
+
+image::azure-az900_04.svg[]
+
+Cf site de Microsoft, _"Azure has more global regions than any other cloud provider"_
+
+==== Azure availability zones
+
+Availability zones are *physically separate datacenters within an Azure region*. Each availability zone is made up of one or more datacenters equipped with independent power, cooling, and networking. +
+An availability zone is set up to be an *isolation boundary*. If one zone goes down, the other continues working. Availability zones are connected through high-speed, private fiber-optic networks.
+
+    * Availability zones are offered as a service within Azure, and to ensure resiliency, there’s *a minimum of three separate zones* in all enabled regions.
+    * Availability Zones are primarily for VMs, managed disks, load balancers, and SQL databases.
+
+image::azure-az900_18.png[]
+
+==== Azure region pairs
+
+It's possible that a large disaster could cause an outage big enough to affect even two datacenters. That's why Azure also creates *region pairs*.
+
+.Azure geographies
+[NOTE]
+====
+Azure divides the world into *geographies* that are defined by geopolitical boundaries or country borders. An Azure geography is a discrete market typically *containing two or more regions* that preserves data residency and compliance boundaries.
+====
+
+* Each Azure region is *always paired with another region* within the *same geography* (such as US, Europe, or Asia) at least 300 miles away.
+* Data continues to reside within the same geography as its pair (except for Brazil South) for tax and law enforcement jurisdiction purposes.
+
+image::azure-az900_19.png[]
+
+== Azure Fundamentals part 2: Describe core Azure services
+
+=== Explore Azure database and analytics services
+
+==== Explore Azure Cosmos DB
+
+Azure Cosmos DB is a globally distributed, *multi-model database* service. +
+You can elastically and independently scale throughput and storage across any number of Azure regions worldwide. +
+You can take advantage of fast, single-digit-millisecond *data access by using any one of several popular APIs*. +
+Azure Cosmos DB provides comprehensive service level agreements for throughput, latency, availability, and consistency guarantees.
+
+Azure Cosmos DB is flexible. At the lowest level, Azure Cosmos DB *stores data in atom-record-sequence (ARS) format*. +
+*The data is then abstracted and projected as an API*, which you specify when you're creating your database. +
+Your choices include SQL, MongoDB, Cassandra, Tables, and Gremlin. +
+This level of flexibility means that as you migrate your company's databases to Azure Cosmos DB, your developers can stick with the API that they're the most comfortable with.
+
+.atom-record-sequence (ARS) format
+[NOTE]
+====
+As explained in https://stackoverflow.com/questions/48223881/how-atom-record-sequence-ars-helps-cosmosdb-to-be-multimodel:
+
+    * You can write data in SQL API and read it in Gremlin API as a graph. If it wasn't for ARS, it would not be possible. +
+    The goal of Cosmos DB is *to have all its APIs fully inter-operable* like this and *ARS is the foundational piece to make it happen*.
+    * This solution seems to work when you throw *enough hardware* at it.
+
+Have also a look at https://stackoverflow.com/questions/44304947/what-does-it-mean-that-azure-cosmos-db-is-multi-model :
+
+--
+*Atoms* consist of a small set of primitive types like string, bool, and number. *Records* are structs composed of these types. *Sequences* are arrays consisting of atoms, records, or sequences. +
+The database engine can efficiently translate and project different data models onto the ARS-based data model. +
+The core data model of Cosmos DB is natively accessible from dynamically typed programming languages and can be exposed as-is as JSON.
+--
+====
+
+==== Explore Azure SQL Database
+
+* Azure SQL Database is a relational database based on the latest stable version of the Microsoft SQL Server database engine.
+* It is a *platform as a service* (PaaS) database engine.
+* It provides 99,99% availability
+* Microsoft explains that the newest capabilities of SQL Server are released first to SQL Database, and then to SQL Server itself.
+* You can migrate your existing SQL Server databases with minimal downtime by using the *Azure Database Migration Service*.
+
+==== Explore Azure SQL Managed Instance
+
+* Like Azure SQL Database, *Azure SQL Managed Instance* is a *platform as a service* (PaaS) database engine
+* 99.99% uptime service level agreement (SLA)
+* Azure SQL Managed Instance makes it easy to migrate your on-premises data on SQL Server to the cloud using the *Azure Database Migration Service* (DMS) or *native backup and restore*.
+
+Azure SQL Database and Azure SQL Managed Instance offer many of the same features; however, Azure SQL Managed Instance provides several options that might not be available to Azure SQL Database. +
+For a detailed list of the differences between Azure SQL Database and Azure SQL Managed Instance, check https://docs.microsoft.com/en-us/azure/azure-sql/database/features-comparison.
+
+Here are some examples of differences:
+
+    * *Change Data Capture* is only possible with Azure SQL Managed Instance
+    * Azure SQL Database only uses the default "SQL_Latin1_General_CP1_CI_AS" server collation, it would not be possible to use Cyrillic characters for *collation* for example.
+
+.Change Data Capture
+NOTE: For some complete details about *Change Data Capture*, check https://docs.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-ver15[SQL Server description of this behavior]
+
+==== Explore Azure database for MySQL
+
+* Azure Database for MySQL is a relational database service in the cloud
+* Based on the *MySQL Community Edition* database engine, versions *5.6*, *5.7*, and *8.0*
+* You have a 99.99 percent availability service level agreement from Azure
+* You can use *point-in-time restore* to recover a server to an earlier state, as far *back as 35 days*
+* You can migrate your existing MySQL databases with minimal downtime by using the *Azure Database Migration Service*
+
+image::azure-az900_20.png[]
+
+==== Explore Azure database for PostgreSQL
+
+* Azure Database for PostgreSQL is a relational database service in the cloud.
+* Based on the *community version* of the open-source PostgreSQL database engine.
+* Adjustable *automatic backups* and *point-in-time-restore* for up to *35 days*.
+* Enterprise-grade *security* and compliance to protect sensitive data *at-rest* and *in-motion*. This security covers *data encryption on disk* and *SSL encryption between client and server communication*.
+* Azure Database for PostgreSQL is available in two deployment options: *Single Server* and *Hyperscale (Citus)*.
+
+*Single Server deployment*:
+
+    * Built-in high availability with no additional cost (99.99% SLA).
+    * Ability to protect sensitive data at-rest and in-motion.
+    * Automatic backups and point-in-time-restore for up to 35 days.
+
+*Hyperscale (Citus)*:
+
+--
+The Hyperscale (Citus) option *horizontally scales* queries across multiple machines by using *sharding*. Its query engine parallelizes incoming SQL queries across these servers for faster responses on large datasets. It serves applications that require greater scale and performance, generally workloads that are approaching, or already exceed, *100 GB of data*.
+
+The Hyperscale (Citus) deployment option supports *multi-tenant applications*, *real-time operational analytics*, and *high throughput transactional workloads*. Applications built for PostgreSQL can run distributed queries on Hyperscale (Citus) with standard connection libraries and minimal changes.
+--
+
+==== Explore big data and analytics
+
+Microsoft Azure supports a broad range of technologies and services to provide big data and analytic solutions, including:
+
+    * *Azure Synapse Analytics* (formerly Azure SQL Data Warehouse)
+        ** brings together enterprise data warehousing and big data analytics
+        ** unified experience to ingest, prepare, manage, and serve data for immediate BI and machine learning needs.
+        ** a good, logical, choice for analyzing large volumes of data
+
+    * *Azure HDInsight* ("Hadoop and Distributed Insight")
+        ** fully managed, open-source analytics service for enterprises
+        ** You can run popular open-source frameworks and create cluster types such as *Apache Spark*, *Apache Hadoop*, *Apache Kafka*, *Apache HBase*, *Apache Storm*, and *Machine Learning Services*.
+        ** supports a broad range of scenarios such as *extraction*, *transformation*, and *loading* (ETL), *data warehousing*, *machine learning*, and *IoT*.
+
+    * *Azure Databricks*
+        ** set up your *Apache Spark* environment in minutes, and then autoscale and collaborate on shared projects in an interactive workspace.
+        ** supports *Python*, *Scala*, *R*, *Java*, and *SQL*, as well as data science frameworks and libraries including *TensorFlow*, *PyTorch*, and *scikit-learn*.
+
+    * *Azure Data Lake Analytics*
+        ** on-demand analytics job service that simplifies big data.
+        ** Instead of deploying, configuring, and tuning hardware, you write queries to transform your data and extract valuable insights.
+        ** You only pay for your job when it's running, making it more cost-effective.
+
+=== Explore Azure compute services
+
+Azure computing solutions works on the underlying services:
+
+    * *Virtual machines* : +
+        Virtual Machines provides *infrastructure as a service (IaaS)* and can be used in different ways. When you need total control over an operating system and environment, VMs are an ideal choice.
+    * *Virtual machine scale sets* : +
+        Virtual machine scale sets are an Azure compute resource that you can use to *deploy and manage* a set of *identical VMs*. With all VMs configured the same, virtual machine scale sets are designed to support true autoscale. No pre-provisioning of VMs is required. For this reason, it's easier to build large-scale services targeting big compute, big data, and containerized workloads. As demand goes up, more VM instances can be added. As demand goes down, VM instances can be removed. The process can be manual, automated, or a combination of both.
+    * *Containers and Kubernetes*
+    * *App Service* : +
+        App Service is a *platform as a service (PaaS)* offering.
+    * *Functions* (or serverless computing) : +
+        Functions  are ideal when you're *concerned only about the code running your service* and not the underlying platform or infrastructure. They're commonly used when you need to perform *work in response to an event (often via a REST request), timer, or message from another Azure service*, and when that work *can be completed quickly*, within seconds or less.
+
+==== When to use Azure Virtual Machines
+
+* *Azure Batch* enables large-scale parallel and high-performance computing (HPC) *batch jobs* with the ability to *scale to tens, hundreds, or thousands of VMs*. +
+When you-re ready to run a job, Batch does the following:
+    ** starts a pool of compute VMs for you
+    ** installs applications and staging data
+    ** runs jobs with as many tasks as you have
+    ** identifies failures
+    ** requeues work
+    ** scales down the pool as work completes
+
+==== When to use Azure Container Instances or Azure Kubernetes Service
+
+While virtual machines are an excellent way to reduce costs versus the investments that are necessary for physical hardware, they're still limited to a single operating system per virtual machine. If you want to *run multiple instances of an application on a single host machine*, containers are an excellent choice.
+
+    * it reminds us of a downside of VMs: 1 VM can only run 1 OS at a time
+        ** If you have multiple server apps require different runtime environments, they may also require multiple VMs to execute properly
+    * Also, "short" tasks (like starting an App) are pretty slow with VMs, because creating and starting VMs is slow, as it requires to emulate a full computer
+
+.Difference between VMs and Containers
+IMPORTANT: VMs virtualize the hardware, while Containers virtualize the OS
+
+As a conclusion, you choose a *VM* if you need high flexibility, *complete control on the environment*. +
+-> *In all other cases, Containers* should be preferred.
+
+There are two ways to manage both *Docker* and *Microsoft-based containers* in Azure: *Azure Container Instances* and *Azure Kubernetes Service (AKS)*.
+
+A very good, short video to present *Kubernetes*: https://www.microsoft.com/videoplayer/embed/RE2yEuX
+
+Reminder: a microservice can be scaled independently of others.
+
+A *microservice architecture* is more appropriate when:
+
+    * you have a large application that requires *high release velocity*
+    * you have complex application that needs to be *highly scalable*
+    * you have applications with *rich domains or many subdomains*
+    * you have an *organisation that consists in small development teams*
+
+==== When to use Azure App Service
+
+App Service enables you to *build and host web apps, background jobs, mobile back-ends, and RESTful APIs in the programming language of your choice without managing infrastructure*. +
+It offers automatic scaling and high availability. App Service supports Windows and Linux and enables automated deployments from GitHub, Azure DevOps, or any Git repo to support a continuous deployment model. +
+This *platform as a service (PaaS)* environment allows you to focus on the website and API logic while Azure handles the infrastructure to run and scale your web applications.
+
+*API apps*: Much like hosting a website, you can build *REST-based web APIs* by using your choice of language and framework. You get full *Swagger support* and the ability to *package and publish your API in Azure Marketplace*. The produced apps can be consumed from any HTTP or HTTPS-based client.
+
+==== When to use Azure Functions
+
+If, for a large amount of time, *your application is waiting for a particular input before it performs any processing*, then, to reduce your costs, you could want to avoid having to pay for the time that your application is waiting for input. Functions (serverless computing) could be a good option in that case.
+
+    * With serverless computing, *you pay only for the time your code runs*.
+    * Scaling and performance are handled automatically. You're billed only for the exact resources you use. There's no need to even reserve capacity.
+
+Serverless computing includes the *abstraction of servers* (no infrastructure management), an *event-driven scale*, and *micro-billing*
+
+    * *Event-driven scale*: Serverless computing is an excellent fit for *workloads that respond to incoming events*
+
+Azure has two implementations of serverless compute:
+
+    * *Azure Functions*: Functions can execute code in almost any modern language.
+    * *Azure Logic Apps*: Logic apps are designed in a web-based designer and can execute logic triggered by Azure services without writing any code.
+        ** For this reason, it's *ideal for a business analyst role*.
+
+*Functions* are commonly used when you need to perform work in response to an event (often via a REST request), timer, or message from another Azure service, and when that *work can be completed quickly*, within seconds or less.
+
+Where functions execute code, *logic apps execute workflows* that are designed to automate business scenarios and are built from predefined logic blocks.
+
+Functions and Logic Apps can both create complex *orchestrations*, which are collections of functions or steps that are executed to accomplish a complex task.
+
+    * with Functions, you write code to complete each step.
+    * with Logic Apps, you use a GUI to define the actions and how they relate to one another.
+
+*Functions* are normally *stateless*, but Durable Functions provide state. +
+*Logic Apps* are always stateful*.
+
+==== When to use Windows Virtual Desktop
+
+Windows Virtual Desktop on Azure is a *desktop and application virtualization service* that runs on the cloud. It enables your users to use a cloud-hosted version of Windows from any location. Windows Virtual Desktop *works across devices like Windows, Mac, iOS, Android, and Linux*.
+
+.Windows Virtual Desktop architecture
+image:azure-az900_21.png[]
+
+Windows Virtual Desktop est une solution récente, pré-version publique annoncée en 2019/03.
+
+User sign-in to Windows Virtual Desktop is fast because *user profiles are containerized by using FSLogix*. At sign-in, the user profile container is dynamically attached to the computing environment. The user profile is immediately available and appears in the system exactly like a native user profile.
+
+=== Explore Azure Storage services
+
+.Context
+--
+Suppose your company, Tailwind Traders, has a number of *product brochures*, *datasheets*, *product images*, and *other files* that are related to marketing, sales, and support. In the past, your company has been hosting these files on standalone web servers in your datacenter.
+--
+
+* *Azure Storage* is a service that you can use to store files, messages, tables, and other types of information.
+* An *Azure Storage account* is require to store your data objects.
+
+NOTE: Azure VMs use Azure Disk Storage to store virtual disks. However, you can't use Azure Disk Storage to store a disk outside of a virtual machine.
+
+==== Disk storage fundamentals
+
+*Disk Storage* provides *disks* for Azure virtual machines, and allows data to be persistently stored and accessed from an attached virtual hard disk.
+
+==== Azure Blob storage fundamentals
+
+*Azure Blob Storage* is an *object storage solution* for the cloud. It can store massive amounts of data, such as text or binary data. Azure Blob Storage is unstructured, meaning that there are no restrictions on the kinds of data it can hold. Blob Storage can manage thousands of simultaneous uploads, massive amounts of video data, constantly growing log files, and can be reached from anywhere with an internet connection.
+
+Blob Storage is ideal for:
+
+    * Serving images or documents directly to a browser.
+    * Storing files for distributed access.
+    * Streaming video and audio.
+    * Storing data for backup and restore, disaster recovery, and archiving.
+    * *Storing data for analysis* by an on-premises or Azure-hosted service.
+    * *Storing up to 8 TB of data for virtual machines*.
+
+NOTE: Azure Blob Storage is your best option for storing *disaster recovery* files and *archives*.
+
+==== Azure Files fundamentals
+
+*Azure Files* offers fully managed *file shares* in the cloud that are accessible via the industry standard *Server Message Block (SMB)* and Network File System (preview) protocols.
+
+Azure Files ensures the *data is encrypted at rest*, and the *SMB protocol* ensures the *data is encrypted in transit*.
+
+==== Understanding Blob access tiers
+
+Azure provides several *access tiers* which you can use to balance your storage costs with your access needs. +
+Those last can vary depending on *frequency of access* and planned *retention period*.
+
+    * *Hot access tier*: Optimized for storing data that is accessed frequently (for example, images for your website).
+    * *Cool access tier*: Optimized for data that is infrequently accessed and stored for at least 30 days (for example, invoices for your customers).
+    * *Archive access tier*: Appropriate for data that is rarely accessed and stored for at least 180 days, with flexible latency requirements (for example, long-term backups).
+
+{sb}
+
+    * Only the *hot* and *cool* access tiers can be set at the *account level*. The archive access tier isn't available at the account level.
+    * *Hot*, *cool*, and *archive* tiers can be set at the *blob level*, during upload or after upload.
+    * Data in the cool access tier can tolerate slightly lower availability, but still requires high durability, retrieval latency, and throughput characteristics similar to hot data. For *cool data*, a slightly lower availability service-level agreement (SLA) and *higher access costs* compared to hot data are acceptable trade-offs for *lower storage costs*.
+    * *Archive storage* stores data offline and offers the *lowest storage costs*, but also the *highest costs to rehydrate and access data*.
+
+=== Explore Azure networking services
+
+==== Azure Virtual Network fundamentals
+
+*Azure virtual networks* (or Azure VNet) enable *Azure resources*, such as VMs, web apps, and databases, to *communicate with each other*, with users on the internet, and with your on-premises client computers.
+
+*Virtual Network* allows you to create *multiple isolated virtual networks*. When you set up a virtual network, you define a private IP address space by using either public or private IP address ranges.
+
+For name resolution, you can use the *name resolution service that's built in to Azure*. You also can configure the virtual network to use either an internal or an external DNS server.
+
+*Communicate between Azure resources* can be done using one of the 2 following options:
+
+    * Virtual networks
+    * Service endpoints
+
+*Communicate with on-premises resources* can be done using one of the 2 following mechanisms:
+
+    * *Point-to-site virtual private networks*
+        ** the client computer initiates an encrypted VPN connection to Azure to connect that computer to the Azure virtual network.
+    * *Site-to-site virtual private networks*
+        ** links your on-premises VPN device or gateway to the Azure VPN gateway in a virtual network.
+        ** The connection is encrypted and works over the internet.
+    * *Azure ExpressRoute*
+        ** For environments where you need *greater bandwidth* and even *higher levels of security*.
+        ** provides dedicated *private connectivity* to Azure that *doesn't travel over the internet*.
+
+*Route network traffic*. +
+By default, Azure routes traffic between subnets on any connected virtual networks, on-premises networks, and the internet. You also can control routing and override those settings, as follows:
+
+    * *Route tables*: A route table allows you to define rules about how traffic should be directed. You can create custom route tables that control how packets are routed between subnets.
+    * *Border Gateway Protocol*: Border Gateway Protocol (BGP) works with Azure VPN gateways or ExpressRoute to propagate on-premises BGP routes to Azure virtual networks.
+
+Azure virtual networks enable you to *filter network traffic* between subnets by using the following approaches:
+
+    * *Network security groups*: A network security group is an Azure resource that can contain multiple inbound and outbound security rules.
+    * *Network virtual appliances*: A network virtual appliance is a specialized VM that carries out a particular network function, such as running a firewall or performing wide area network (WAN) optimization.
+
+*Connect virtual networks*
+
+    * You can link virtual networks together by using *virtual network peering*.
+    * *UDR* is *user-defined Routing* and allows network admins to control the routing tables between subnets, within a subnet as well as between VNets.
+
+image::azure-az900_22.png[]
+
+==== Azure Virtual Network settings
+
+Settings to configure for the creation of a basic virtual network:
+
+    * Network name
+    * Address space
+    * Subscription
+    * Resource group
+    * Location
+    * Subnet
+    * DDoS protection
+    * Service endpoints
+
+Once created, you can then configure:
+
+    * Network security group
+    * Route table
+
+==== Azure VPN Gateway fundamentals
+
+A *virtual private network (VPN)* is a type of private interconnected network. +
+VPNs use an encrypted tunnel within another network. So *traffic is encrypted* while traveling over the untrusted network to prevent eavesdropping or other attacks.
+
+A VPN gateway is a type of *virtual network gateway*. Azure VPN Gateway instances are *deployed in Azure Virtual Network instances* and enable the following connectivity:
+
+    * Connect on-premises datacenters to virtual networks through a site-to-site connection.
+    * Connect individual devices to virtual networks through a point-to-site connection.
+    * Connect virtual networks to other virtual networks through a network-to-network connection.
+
+image::azure-az900_23.png[]
+
+NOTE: You can deploy only 1 VPN gateway in each virtual network.
+
+A VPN gateway can be of 2 types, the difference of which being how traffic to be encrypted is specified.
+
+    * *policy-based*: 
+        ** Policy-based VPN gateways specify statically the IP address of packets that should be encrypted through each tunnel +
+        This type of device evaluates every data packet against those sets of IP addresses to choose the tunnel where that packet is going to be sent through.
+    * *route-based*: 
+        ** If defining which IP addresses are behind each tunnel is too cumbersome, route-based gateways can be used.
+        ** With route-based gateways, IPSec tunnels are modeled as a network interface or virtual tunnel interface. IP routing (either static routes or dynamic routing protocols) decides which one of these tunnel interfaces to use when sending each packet.
+        ** Can use *dynamic routing protocols*, where routing/forwarding tables direct traffic to different IPSec tunnels
+
+NOTE: A *Basic VPN gateway* should only be used for *Dev/Test workloads*. In addition, it's unsupported to migrate from Basic to the VpnGW1/2/3/Az SKUs at a later time without having to remove the gateway and redeploy.
+
+.Required Azure resources to deploy an operational VPN Gateway
+image:azure-az900_24.png[]
+
+===== High-availability scenarios
+
+* *By default*, VPN gateways are deployed as 2 instances in an *active/standby configuration*, even if you only see 1 VPN gateway resource in Azure.
+* But, with the introduction of *BGP routing protocol*, you can also deploy VPN gateways in an *active/active configuration*.
+    ** In this case, you assign a unique public IP address to each instance.You then create separate tunnels from the on-premises device to each IP address.
+
+.VPN gateway active/standby configuration
+image:azure-az900_25.png[]
+
+.VPN gateway active/active configuration
+image:azure-az900_26.png[]
+
+* Another high-availability option is to configure a* VPN gateway* as a *secure failover path for ExpressRoute connections*.
+* In regions that support availability zones, VPN gateways and ExpressRoute gateways can be deployed in a *zone-redundant configuration*. 
+
+==== Azure ExpressRoute fundamentals
+
+IMPORTANT: *ExpressRoute* lets you extend your on-premises networks into the Microsoft cloud over a private connection with the help of a connectivity provider.
+
+ExpressRoute connections *don't go over the public Internet*. +
+ExpressRoute does provide private connectivity, BUT it is NOT encrypted.
+
+image::azure-az900_27.png[]
+
+*Dynamic routing*: ExpressRoute uses the Border Gateway Protocol (BGP) routing protocol. BGP is used to exchange routes between on-premises networks and resources running in Azure. This protocol enables dynamic routing between your on-premises network and services running in the Microsoft cloud.
+
+.ExpressRoute connectivity models
+image::azure-az900_28.png[]
+
+3 models available to *connect your on-premises network to the Microsoft Cloud*:
+
+    * *Colocation at a Cloud Exchange*
+        ** For example, if your datacenter is colocated at a cloud exchange such as an ISP, you can request a virtual cross-connection to the Microsoft cloud.
+    * *Point-to-point Ethernet connection*
+    * *Any-to-any networks*
+
+== Azure Fundamentals part 3: Describe core solutions and management tools on Azure
+
+=== Choose the best AI service for your needs
+
+== Lexique
+
+[glossary]
+ACU:: Azure Compute Units. Ressources de calcul dédiées utilisées pour exécuter des applications déployées dans le plan App Service.
+BGP:: Border Gateway Protocol. BGP is used to exchange routes between on-premises networks and resources running in Azure. This protocol enables dynamic routing between your on-premises network and services running in the Microsoft cloud.
+CapEx:: Capital Expenditure. This is the up front spending of money on physical infrastructure, and then deducting that up front expense over time. The up front cost from CapEx has a value that reduces over time.
+CDN:: A content delivery network, or content distribution network (CDN), is a geographically distributed network of proxy servers and their data centers. The goal is to provide high availability and performance by distributing the service spatially relative to end users.
+Hosting provider:: un synonyme pour "cloud services provider"
+IOPS:: I/O operations per second
+ISP:: Internet Service Provider
+OpEx:: This is spending money on services or products now and being billed for them now. You can deduct this expense in the same year you spend it. There is no up front cost, as you pay for a service or product as you use it.
+RBAC:: Role-Based Access Control 
+SKU:: The Gateway *Stock-Keeping Unit* (SKU) defines the throughput capabilities of the VPN connection.
+UDR:: User-Defined Routing, allows network admins to control the routing tables between subnets, within a subnet as well as between VNets.
+VPN:: Virtual Private Network
+VXC:: Virtual Cross-Connection. Virtual cross connects (VXC) are private, direct connections between a network and a cloud provider, content delivery network, or a carrier through an internet exchange point.
+
+
+
+
+
+
+
+
+
+
+== OLD COURSE CONTENT, BEFORE 2020/11/09
+
+=== Explore Microsoft Azure cloud concepts (AZ-900)
 
 https://docs.microsoft.com/fr-fr/learn/paths/explore-microsoft-azure-cloud-concepts/
 
 * "The exam is intended for candidates with non-technical backgrounds, such as candidates involved in selling or purchasing cloud-based solutions and services."
-    ** TODO : réfléchir si on ne peut pas intégrer cet examen dans les 1eres étapes du parcours, et être également adressé aux NON-IT, commes les commerciaux
+    ** TODO : réfléchir si on ne peut pas intégrer cet examen dans les 1eres étapes du parcours, et être également adressé aux NON-IT, comme les commerciaux
 
 * 4 modules dans ce cours (et pour l'exam AZ-900)
     ** Explore Microsoft Azure cloud concepts
@@ -48,7 +658,7 @@ https://docs.microsoft.com/fr-fr/learn/paths/explore-microsoft-azure-cloud-conce
     ** Examine Microsoft Azure security, privacy, compliance, and trust
     ** Review Microsoft Azure pricing, Service Level Agreements, and lifecycles
 
-=== Discuss why cloud services
+==== Discuss why cloud services
 
 .Cloud Computing
 ----
@@ -92,7 +702,7 @@ Key Cloud Concepts :
 
     * *Security*. Cloud providers offer a broad set of policies, technologies, controls, and expert technology skills that can provide better security than most organizations can otherwise achieve. The result is strengthened security, which helps to protect data, apps, and infrastructure from potential threats.
 
-=== Distinguish types of cloud models
+==== Distinguish types of cloud models
 
 3 different cloud deployment models: *Public Cloud*, *Private Cloud*, and *Hybrid Cloud*.
 
@@ -106,7 +716,7 @@ Another example is one or more applications that run on old hardware that can’
 
 Remember, the *cloud deployment model* you choose will depend on your *budget*, *security*, *scalability*, and *maintenance needs*. Azure provides all of the flexibility and capabilities to meet your specific needs.
 
-=== Explore types of cloud services
+==== Explore types of cloud services
 
 .Shared responsibility model
 ____
@@ -125,9 +735,9 @@ ____
 IaaS, PaaS, and SaaS each contain different levels of managed services. You may easily use a combination of these types of infrastructure. You could use Microsoft 365 on your company’s computers (*SaaS*), and in Azure you could host your VMs (*IaaS*) and use Azure SQL Database (*PaaS*) to store your data. With the cloud’s flexibility, you can use any combination that provides you with the maximum result.
 ____
 
-== Distinguish Microsoft Azure Core Services (AZ-900)
+=== Distinguish Microsoft Azure Core Services (AZ-900)
 
-=== Discuss core Azure architectural components
+==== Discuss core Azure architectural components
 
 In this module, you will:
 
@@ -135,7 +745,7 @@ In this module, you will:
 * Understand the service level agreements provided by Azure
 * Learn how to provide your own service level agreements for your apps
 
-==== Azure Regions
+===== Azure Regions
 
 *2 Data Centers en France* pour Azure, Paris et Marseille (correspond à 2 "regions", France Central and France South) +
 https://azure.microsoft.com/fr-fr/global-infrastructure/geographies/
@@ -163,7 +773,7 @@ Data residency refers to the physical or geographic location of an organization'
 .Availability Options
 image:azure-az900_06.png[]
 
-==== Availability Sets
+===== Availability Sets
 
 .Availability Sets, Update domains and Fault domains
 image::azure-az900_07.png[]
@@ -174,14 +784,14 @@ image::azure-az900_07.png[]
 
     * *Fault domains*. Fault domains *provide for the physical separation of your workload* across different hardware in the datacenter. This includes power, cooling, and network hardware that supports the physical servers located in server racks. In the event the hardware that supports a server rack becomes unavailable, only that rack of servers would be affected by the outage.
 
-==== Availability zones
+===== Availability zones
 
 *Availability zones* are physically separate locations *within an Azure region* that use availability sets to provide additional fault tolerance.
 
     * Availability zones are offered as a service within Azure, and to ensure resiliency, there’s *a minimum of three separate zones* in all enabled regions.
     * Availability Zones are primarily for VMs, managed disks, load balancers, and SQL databases.
 
-==== Resource Group
+===== Resource Group
 
 A *resource group* is a *unit of management for your resources* in Azure. You can think of your resource group as a container that allows you to aggregate and manage all the resources required for your application in a single manageable unit. This allows you to manage the application collectively over its lifecycle, rather than manage components individually. Before any resource can be provisioned, you need a resource group for it to be placed in.
 
@@ -203,7 +813,7 @@ Resource groups help to organize resources, with several possible strategies:
     * Organize for *resource life cycle*: Resource groups serve as the life cycle for the resources within it. If you delete a resource group, you delete all the resources in it.
     * Organize for usage in *billing reports*: placing resources in the same resource group is a way to group them for usage in billing reports
 
-==== Azure Management Layer
+===== Azure Management Layer
 
 *Azure Resource Manager* is a management layer in which resource groups and all the resources within it are created, configured, managed, and deleted. +
 It provides a consistent management layer which allows you automate the deployment and configuration of resources using different automation and scripting tools, such as Microsoft Azure PowerShell, Azure Command-Line Interface (Azure CLI), Azure portal, REST API, and client SDKs.
@@ -216,23 +826,6 @@ With Azure Resource Manager, you can:
     Examples of elements you may wish to control are: enforcing naming convention on resources, limiting which types and instances of resources can be deployed, or limiting which regions can host a type of resource.
 
 Resource Manager templates are *JSON files* that define the resources you need to deploy your solution.
-
-=== Define core Azure services and products
-
-== Examine Microsoft Azure security, privacy, compliance, and trust (AZ-900)
-
-== Review Microsoft Azure pricing, service level agreements, and lifecycles (AZ-900)
-
-== Lexique
-
-[glossary]
-CapEx:: Capital Expenditure. This is the up front spending of money on physical infrastructure, and then deducting that up front expense over time. The up front cost from CapEx has a value that reduces over time.
-Hosting provider:: un synonyme pour "cloud services provider"
-IOPS:: I/O operations per second
-OpEx:: This is spending money on services or products now and being billed for them now. You can deduct this expense in the same year you spend it. There is no up front cost, as you pay for a service or product as you use it.
-RBAC:: Role-Based Access Control 
-
-
 
 
 
