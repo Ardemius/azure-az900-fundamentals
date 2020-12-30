@@ -148,7 +148,8 @@ image::azure-az900_15.png[]
 image::azure-az900_16.png[]
 
 Important facts about management groups:
-    * *10,000 management groups* can be supported in a single directory.
+
+    * *10 000 management groups* can be supported in a single directory.
     * A management group tree can support up to *6 levels of depth*. This limit doesn't include the root level or the subscription level.
     * Each management group and subscription can support *only one parent*.
     * Each management group can have *many children*.
@@ -164,7 +165,7 @@ A manageable item that's available through Azure. Virtual machines (VMs), storag
     * All resources must be in a resource group, and a resource can only be a member of a single resource group.
     * Resource groups *can't be nested*.
     * If you delete a resource group, *all resources contained within it are also deleted*.
-    * Resource groups are also a scope for applying role-based access control (RBAC) permissions.
+    * Resource groups are also a scope for applying *role-based access control* (*RBAC*) permissions.
 
 ==== Azure Resource Manager
 
@@ -375,7 +376,8 @@ There are two ways to manage both *Docker* and *Microsoft-based containers* in A
 
 A very good, short video to present *Kubernetes*: https://www.microsoft.com/videoplayer/embed/RE2yEuX
 
-Reminder: a microservice can be scaled independently of others.
+.Reminder
+NOTE: A microservice can be scaled independently of others.
 
 A *microservice architecture* is more appropriate when:
 
@@ -419,7 +421,7 @@ Functions and Logic Apps can both create complex *orchestrations*, which are col
     * with Logic Apps, you use a GUI to define the actions and how they relate to one another.
 
 *Functions* are normally *stateless*, but Durable Functions provide state. +
-*Logic Apps* are always stateful*.
+*Logic Apps* are always *stateful*.
 
 ==== When to use Windows Virtual Desktop
 
@@ -589,7 +591,7 @@ image:azure-az900_25.png[]
 .VPN gateway active/active configuration
 image:azure-az900_26.png[]
 
-* Another high-availability option is to configure a* VPN gateway* as a *secure failover path for ExpressRoute connections*.
+* Another high-availability option is to configure a *VPN gateway* as a *secure failover path for ExpressRoute connections*.
 * In regions that support availability zones, VPN gateways and ExpressRoute gateways can be deployed in a *zone-redundant configuration*. 
 
 ==== Azure ExpressRoute fundamentals
@@ -617,18 +619,210 @@ image::azure-az900_28.png[]
 
 === Choose the best AI service for your needs
 
+Artificial Intelligence (AI) is a category of computing that *adapts and improves* its decision-making ability *over time based on its successes and failures*.
+
+==== Identify the product options
+
+There are two basic approaches to AI:
+
+    * *deep learning* system: modeled on the neural network of the human mind, enabling it to discover, learn, and grow through experience.
+    * *machine learning*: a data science technique that uses existing data to train a model, test it, and then apply the model to new data to forecast future behaviors, outcomes, and trends.
+
+3 primary product offerings from Microsoft:
+
+    * *Azure Machine Learning*
+        ** It consists of tools and services that allow you to connect to data to train and test models to find one that will most accurately *predict a future result*. After you've run experiments to test the model, you can deploy and use it in real time via a web API endpoint.
+        ** Choose Azure Machine Learning when your *data scientists* need *complete control* over the design and training of an algorithm using your *own data*.
+
+    * *Azure Cognitive Services*
+        ** provides prebuilt machine learning models that enable applications to see, hear, speak, understand, and even begin to reason. +
+        You don't need special machine learning or data science knowledge to use these services.
+        ** While Azure Machine Learning requires you to bring your own data and train models over that data, Azure Cognitive Services, for the most part, *provides pretrained models* so that you can bring in your live data to get predictions on.
+        ** Azure Cognitive Services can be divided into the following categories: *language*, *speech*, *vision*, *decision*
+
+    * *Azure Bot Service*
+        ** Azure Bot Service  and Bot Framework  are platforms for creating virtual agents that understand and reply to questions just like a human.
+
+==== Analyze the decision criteria
+
+* *First, are you building a virtual agent that interfaces with humans via natural language?* +
+In this case you can use:
+    ** *QnA Maker*
+    ** *Power Virtual Agents*, Microsoft Power Platform, Power Automate
+
+* *Second, do you need a service that can understand the content and meaning of images, video, or audio, or that can translate text into a different language?*
+    ** Use *Azure Cognitive Services* when it comes to general purpose tasks, such as performing speech to text, integrating with search, or identifying the objects in an image.
+
+* *Third, do you need to predict user behavior or provide users with personalized recommendations in your app?*
+    ** The *Azure Cognitive Services Personalizer* service watches your users' actions within an application. +
+    You can use Personalizer to *predict their behavior* and provide relevant experiences as it identifies *usage patterns*.
+
+* *Fourth, will your app predict future outcomes based on private historical data?*
+    ** Choose *Azure Machine Learning* when you need to analyze data to predict future outcomes. 
+
+* *Finally, do you need to build a model by using your own data or perform a different task than those listed above?*
+    ** Use *Azure Machine Learning* for maximum flexibility.
+
+==== Use Machine Learning for decision support systems
+
+A practical case is given to determine which MS products would be the best for the example needs.
+
+==== Use Cognitive Services for data analysis
+
+Another practical use case.
+
+==== Use Bot Service for interactive chat experiences
+
+Again, a practical use case.
+
+.Decision criteria to choose the good IA product
+[IMPORTANT]
+====
+The questions to ask oneself to determine the best AI services are always the same:
+
+    * *First, are you building a virtual agent that interfaces with humans via natural language?*
+        ** If yes, Azure Bot is the best choice
+    * *Second, do you need a service that can understand the content and meaning of images, video, audio, or translate text into a different language?*
+        ** If yes, consider Azure Cognitive Services
+    * *Third, do you need to predict user behavior or provide users with personalized recommendations?*
+        ** if yes, consider Azure Cognitive Services Personalizer
+    * *Finally, will you need to predict future outcomes based on private historical data?*
+        ** if yes, consider Azure Machine Learning
+====
+
+=== Choose the best tools to help organizations build better solutions
+
+Here we talk about *DevOps practices* and *develop solutions*.
+
+==== Understand your product options
+
+.What is DevOps?
+[NOTE]
+====
+*DevOps* is a new approach that helps to align technical teams as they work toward common goals. To accomplish this alignment, organizations employ practices and processes that seek to *automate the ongoing development*, *maintenance*, and *deployment* of software systems. Their aim is to expedite the release of software changes, ensure the ongoing deployability of the system, and ensure that all changes meet a high quality bar.
+====
+
+Microsoft offers tools to enable *source-code management*, *continuous integration and continuous delivery (CI/CD)*, and *automating the creation of testing environments*.
+
+* *Azure DevOps Services* +
+Azure DevOps Services is a suite of services that address every stage of the *software development lifecycle*.
+
+    ** *Azure Repos* is a *centralized source-code repository* where software development, DevOps engineering, and documentation professionals can publish their code for review and collaboration.
+    ** *Azure Boards* is an *agile project management suite* that includes Kanban boards, reporting, and tracking ideas and work from high-level epics to work items and issues.
+    ** *Azure Pipelines* is a *CI/CD pipeline automation tool*.
+    ** *Azure Artifacts* is a *repository for hosting artifacts*, such as compiled source code, which can be fed into testing or deployment pipeline steps.
+    ** *Azure Test Plans* is an *automated test tool* that can be used in a CI/CD pipeline to ensure quality before a software release.
+
+* *GitHub* and *GitHub Actions*
+    ** *GitHub Actions* enables *workflow automation with triggers for many lifecycle events*. One such example would be automating a CI/CD toolchain.
+
+.Differences between Azure DevOps and GitHub
+[NOTE]
+====
+* *GitHub* is a lighter-weight tool than Azure DevOps, with a focus on individual developers contributing to the open-source code.
+* *Azure DevOps* is more focused on enterprise development, with heavier project-management and planning tools, and finer-grained access control.
+====
+
+* *Azure DevTest Labs*
+    ** Azure DevTest Labs provides an automated means of managing the process of building, setting up, and tearing down virtual machines (VMs) *that contain builds of your software projects*.
+    ** Anything you can deploy in Azure via an ARM template can be provisioned through DevTest Labs.
+    ** Provisioning pre-created lab environments with their required configurations and tools already installed is a huge time saver for quality assurance professionals and developers.
+        *** Suppose you need to test a new feature on an old version of an operating system. Azure DevTest Labs can set up everything automatically upon request.
+
+==== Analyse the decision criteria
+
+* *First, do you need to automate and manage test-lab creation?*
+    ** If your aim is to automate the creation and management of a test lab environment, *Azure DevTest labs* is the only matching option.
+* *Second, are you building open-source software?*
+    ** *GitHub* has long been the preferred host for open-source software
+* *Third, regarding source-code management and DevOps tools, what level of granularity do you need for permissions?*
+    ** *GitHub* works on a *simple model of read/write permissions* to every feature. Meanwhile, *Azure DevOps* has a *much more granular set of permissions* that allow organizations to refine who is able to perform most operations across the entire toolset.
+* *Fourth, regarding source-code management and DevOps tools, how sophisticated does your project management and reporting need to be?*
+    ** Azure DevOps is more adapted to complex needs
+* *Finally, regarding source-code management and DevOps tools, how tightly do you need to integrate with third-party tools?*
+    ** No silver bullet, you have to check how those 3rd party vendors tools integrate with Azure DevOps or GitHub (through hooks, APIs, etc.)
+
+==== Use Azure DevOps to manage the application development lifecycle
+
+Practical use case study, to know how to choose the best DevOps solutions (based on previous questions)
+
+==== Use GitHub to contribute to open-source software
+
+Likewise, practical use case.
+
+==== Use Azure DevTest Labs to manage testing environments
+
+=== Choose the best monitoring service for visibility, insight, and outage mitigation
+
+==== Identify your product options
+
+* *Azure Advisor*: evaluates your Azure resources and makes recommendations to help improve reliability, security, and performance, achieve operational excellence, and reduce costs.
+
+* *Azure Monitor*: is a platform for collecting, analyzing, visualizing, and potentially taking action *based on the metric and logging data from your entire Azure and on-premises environment*. +
+image:azure-az900_29.png[]
+
+* *Azure Service Health*: provides a personalized *view of the health of the Azure services, regions, and resources* you rely on. +
+The https://status.azure.com website, which displays only major issues that broadly affect Azure customers, doesn't provide the full picture. +
+Service Health helps you keep an eye on several event types:
+    ** *Service issues*: problems in Azure, such as outages
+    ** *Planned maintenance*
+    ** *Health advisories* are issues that require you to act to avoid service interruption, including service retirements and breaking changes
+
+NOTE: Use *Azure Service Health* to set up alerts that are specific to Azure outages that affect *all Azure customers*. Use *Azure Monitor* to set up alerts for outages and other events that affect *only your specific resources*.
+
+==== Analyze the decision criteria
+
+* *Do you need to analyze how you're using Azure to reduce costs? Improve resilience? Harden your security?*
+    ** Choose *Azure Advisor* when you're looking for an analysis of your deployed resources. Azure Advisor analyzes the configuration and usage of your resources and provides suggestions on how to optimize for reliability, security, performance, costs, and operations based on experts' best practices.
+
+* *Do you want to monitor Azure services or your usage of Azure?*
+    ** If you want to *keep tabs on Azure itself*, especially the services and regions you depend on, you want to choose *Azure Service Health*. You can view the current status of the Azure services you rely on, upcoming planned outages, and services that will be sunset. You can set up alerts that help you stay on top of incidents and upcoming downtime without having to visit the dashboard regularly. +
+    However, if you want to *keep track of the performance or issues related to your specific VM or container instances, databases, your applications*, and so on, you want to visit *Azure Monitor* and create reports and notifications to help you understand how your services are performing or diagnose issues related to your Azure usage.
+
+* *Do you want to measure custom events alongside other usage metrics?*
+    ** Choose *Azure Monitor* when you want to measure custom events alongside other *collected telemetry data*. Custom events, such as those added in the source code of your software applications, could help identify and diagnose why your application is behaving a certain way.
+
+* *Do you need to set up alerts for outages or when autoscaling is about to deploy new instances?*
+    ** Here again, you would use *Azure Monitor* to set up alerts for key events that are related to your specific resources.
+
+==== Use Azure Advisor
+
+A practical use case to know how to choose the best Azure monitoring service.
+
+.Use case
+--
+_Tailwind Traders wants to optimize its cloud spend. Also, the organization is concerned about security breaches, because it stores customer data and historical purchase data in cloud-based databases. As the organization ramps up its cloud expertise, it wants to better understand its use of the cloud, better understand best practices, and pinpoint "easy wins" where it can tighten up its cloud spend and security practices._
+--
+
+Which service should you choose?
+
+* First, in this scenario, *does Tailwind Traders need to analyze its Azure usage for the sake of optimization?* +
+    ** Yes. Tailwind Traders understands that it might be spending too much, is concerned about its security practices, and wants to have its cloud usage analyzed against industry best practices. Therefore, Azure Advisor is the perfect option for this scenario. ++
+    Although you might have found the right product option, let's continue evaluating the decision criteria for this scenario.
+
+* Second, in this scenario, *does Tailwind Traders want to monitor the health of Azure services that affect all customers or the resources that are deployed on Azure?*
+    ** This scenario isn't concerned with operations. However, Azure Advisor does analyze and provide recommendations for achieving operational excellence.
+
+* Third, in this scenario, *does Tailwind Traders want to measure custom events alongside other usage metrics?*
+    ** No, measuring custom events isn't mentioned as a requirement and isn't a consideration in this scenario.
+
+* Fourth, in this scenario, *does Tailwind Traders want to set up alerts for outages or when autoscaling is about to deploy new instances?*
+    ** Again, this scenario isn't concerned with operations. However, Azure Advisor does analyze and provide recommendations for achieving operational excellence.
+
 == Lexique
 
 [glossary]
-ACU:: Azure Compute Units. Ressources de calcul dédiées utilisées pour exécuter des applications déployées dans le plan App Service.
-BGP:: Border Gateway Protocol. BGP is used to exchange routes between on-premises networks and resources running in Azure. This protocol enables dynamic routing between your on-premises network and services running in the Microsoft cloud.
-CapEx:: Capital Expenditure. This is the up front spending of money on physical infrastructure, and then deducting that up front expense over time. The up front cost from CapEx has a value that reduces over time.
-CDN:: A content delivery network, or content distribution network (CDN), is a geographically distributed network of proxy servers and their data centers. The goal is to provide high availability and performance by distributing the service spatially relative to end users.
+ACU:: *Azure Compute Units*. Ressources de calcul dédiées utilisées pour exécuter des applications déployées dans le plan App Service.
+ARM:: *Azure Resource Manager*. Les modèles Azure Resource Manager sont des fichiers JSON (JavaScript Object Notation) qui définissent l'infrastructure et la configuration de votre projet.
+BGP:: *Border Gateway Protocol*. BGP is used to exchange routes between on-premises networks and resources running in Azure. This protocol enables dynamic routing between your on-premises network and services running in the Microsoft cloud.
+CapEx:: *Capital Expenditure*. This is the up front spending of money on physical infrastructure, and then deducting that up front expense over time. The up front cost from CapEx has a value that reduces over time.
+CDN:: A *content delivery network*, or content distribution network (CDN), is a geographically distributed network of proxy servers and their data centers. The goal is to provide high availability and performance by distributing the service spatially relative to end users.
 Hosting provider:: un synonyme pour "cloud services provider"
 IOPS:: I/O operations per second
 ISP:: Internet Service Provider
 OpEx:: This is spending money on services or products now and being billed for them now. You can deduct this expense in the same year you spend it. There is no up front cost, as you pay for a service or product as you use it.
 RBAC:: Role-Based Access Control 
+RCA:: Root Cause Analyse for Azure incidents
 SKU:: The Gateway *Stock-Keeping Unit* (SKU) defines the throughput capabilities of the VPN connection.
 UDR:: User-Defined Routing, allows network admins to control the routing tables between subnets, within a subnet as well as between VNets.
 VPN:: Virtual Private Network
