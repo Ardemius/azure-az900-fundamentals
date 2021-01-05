@@ -809,6 +809,64 @@ Which service should you choose?
 * Fourth, in this scenario, *does Tailwind Traders want to set up alerts for outages or when autoscaling is about to deploy new instances?*
     ** Again, this scenario isn't concerned with operations. However, Azure Advisor does analyze and provide recommendations for achieving operational excellence.
 
+=== Choose the best tools for managing and configuring your Azure environment
+
+==== Identify the product options
+
+2 categories of management tools: 
+
+    * *visual* tools
+    * *code-based* tools, which allow *infrastructure as a code*. +
+    There are also 2 approaches for infrastructure as a code:
+        ** *imperative* code: imperative code details each individual step that should be performed to achieve a desired outcome
+        ** *declarative* code: declarative code details only a desired outcome, and it allows an interpreter to decide how to best achieve that outcome. +
+        This distinction is important because tools that are based on declarative code can provide a more robust approach to deploying dozens or hundreds of resources simultaneously and reliably.
+
+Your product options:
+
+    * *Azure portal*
+    * *Azure mobile app*
+
+    * *Azure PowerShell*: a shell with which developers and DevOps and IT professionals can execute commands called *cmdlets* (pronounced command-lets) +
+    These commands *call the Azure Rest API* to perform every possible management task in Azure. Cmdlets can be executed independently or combined into a script file and executed together to orchestrate:
+        ** The routine setup, teardown, and maintenance of a single resource or multiple connected resources.
+        ** The deployment of an entire infrastructure, which might contain dozens or hundreds of resources, from *imperative code*. +
+    Azure PowerShell *can be accessed in a web browser* via Azure Cloud Shell.
+    
+    * *Azure CLI*: nearly the same thing as Azure PowerShell BUT in *Bash*.
+
+    * *ARM templates*: contrary to Azure PowerShell and CLI, which use imperative code, *Azure Resource Manager templates* can describe the resources you want to use in a *declarative JSON format*.
+        ** The benefit is that the entire ARM template is *verified before any code is executed* to ensure that the resources will be created and connected correctly.
+        ** The template then *orchestrates the creation of those resources in parallel*. That is, if you need 50 instances of the same resource, all 50 instances are created at the same time.
+        ** Ultimately, the developer, DevOps professional, or IT professional *needs only to define the desired state and configuration of each resource* in the ARM template, and the template does the rest.
+        ** *Templates can even execute PowerShell and Bash scripts* before or after the resource has been set up.
+
+==== Analyze the decision criteria
+
+* *Do you need to perform one-off management, administrative, or reporting actions?*
+    ** Use either *Azure PowerShell* or the *Azure CLI* for certain operations that you perform *occasionally* (quickly obtain the IP address of a virtual machine (VM) you've deployed, reboot a VM, or scale an app).
+    With them, you can keep *custom scripts* handy on your local hard drive for quick use.
+    ** By contrast, *Azure Resource Manager templates* (ARM templates) express the infrastructure requirements for your application for a *repeatable deployment*. ARM templates aren't intended for one-off scenarios (even if they could do it).
+    ** You could perform most, if not all, management and administrative actions via the *Azure portal*. But, for regular operations, it is more efficient to avoid visual checking and clicking, so prefer Azure Powershell or Azure CLI.
+    ** The last option is the *Azure mobile app*, in case a desktop is not available, or for on-call presence (out of office) when you need to keep an eye on the health of the cloud environment.
+
+* *Do you need a way to repeatedly set up one or more resources and ensure that all the dependencies are created in the proper order?*
+    ** *ARM templates* express your application's infrastructure requirements for a *repeatable deployment*. A *validation step* ensures that all resources can be created, so that the resources are created in the *proper order* based on dependencies, in parallel, and *idempotent*.
+    ** By contrast, it's entirely possible to use either PowerShell or the Azure CLI to set up all the resources for a deployment. However, there's no validation step in these tools. If a script encounters an error, the dependency resources can't be rolled back easily, deployments happen serially, and only some operations are idempotent.
+
+* *When you're scripting, do you come from a Windows administration or Linux administration background?*
+    ** If you have Windows experience, use Azure Powershell, and if you have a Linux administration background, prefer Azure CLI.
+
+=== Choose the best Azure serverless technology for your business scenario
+
+==== Identify the product options
+
+You create an instance of the service, and you add your code. No infrastructure configuration or maintenance is required, or even allowed. +
+You configure your *serverless apps* to *respond to events*. An event could be a REST endpoint, a periodic timer, or even a message received from another Azure service. The serverless app runs only when it's triggered by an event. +
+Scaling and performance are handled automatically, and you're *billed only for the resources you use*. You don't even need to reserve resources.
+
+*Serverless computing* is ordinarily used to *handle back-end scenarios*. In other words, serverless computing is responsible for sending message from one system to another, or processing messages that were sent from other systems. It's *not used for user-facing systems* but, rather, it works in the background.
+
 == Lexique
 
 [glossary]
@@ -827,6 +885,18 @@ SKU:: The Gateway *Stock-Keeping Unit* (SKU) defines the throughput capabilities
 UDR:: User-Defined Routing, allows network admins to control the routing tables between subnets, within a subnet as well as between VNets.
 VPN:: Virtual Private Network
 VXC:: Virtual Cross-Connection. Virtual cross connects (VXC) are private, direct connections between a network and a cloud provider, content delivery network, or a carrier through an internet exchange point.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
