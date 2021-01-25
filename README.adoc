@@ -636,6 +636,7 @@ There are two basic approaches to AI:
 
     * *Azure Cognitive Services*
         ** provides prebuilt machine learning models that enable applications to see, hear, speak, understand, and even begin to reason. +
+        You can perform *sentiment analysis* with Azure Cognitive Services. +
         You don't need special machine learning or data science knowledge to use these services.
         ** While Azure Machine Learning requires you to bring your own data and train models over that data, Azure Cognitive Services, for the most part, *provides pretrained models* so that you can bring in your live data to get predictions on.
         ** Azure Cognitive Services can be divided into the following categories: *language*, *speech*, *vision*, *decision*
@@ -866,6 +867,53 @@ You configure your *serverless apps* to *respond to events*. An event could be a
 Scaling and performance are handled automatically, and you're *billed only for the resources you use*. You don't even need to reserve resources.
 
 *Serverless computing* is ordinarily used to *handle back-end scenarios*. In other words, serverless computing is responsible for sending message from one system to another, or processing messages that were sent from other systems. It's *not used for user-facing systems* but, rather, it works in the background.
+
+* *Azure Functions*
+    ** Azure Functions have an *atomic nature*, and can be written in many common programming languages
+    ** Azure Functions *scales automatically*, and *charges accrue only when a function is triggered*
+    ** An Azure function is a *stateless environment*. A function *behaves as if it's restarted every time it responds to an event*. This feature is ideal for processing incoming data. And if *state* is required, the function *can be connected to an Azure storage account*.
+    ** Azure Functions can perform *orchestration* tasks by using an *extension called Durable Functions*, which allows developers to chain functions together while maintaining state.
+    ** The Azure Functions solution is ideal when you're concerned only with the code that's running your service and not the underlying platform or infrastructure. You use Functions most commonly when you *need to perform work in response to an event*. You do this often via a REST request, timer, or message from another Azure service, and when that *work can be completed quickly, within seconds or less*.
+
+* *Azure Logic Apps*
+    ** Logic Apps is a *low-code/no-code development platform hosted as a cloud service*
+    ** Logic Apps simplifies how you design and build scalable solutions, whether in the cloud, on-premises, or both. This solution covers app integration, data integration, system integration, enterprise application integration (EAI), and business-to-business (B2B) integration.
+    ** You build an app by *linking triggers to actions with connectors*. 
+        *** A *trigger* is an event, such as a timer, that causes an app to execute, a new message to be sent to a queue, or an HTTP request. 
+        *** An *s* is a task or step that can execute.
+        *** To build enterprise integration solutions with Azure Logic Apps, you can choose from a *growing gallery of over 200 connectors*. The gallery includes services such as Salesforce, SAP, Oracle DB, and file shares.
+
+===== What are the differences between these services?
+
+* You can call Azure Functions from Azure Logic Apps, and vice versa. 
+* The primary difference between the two services is their intent. Azure Functions is a serverless compute service, and *Azure Logic Apps* is intended to be a *serverless orchestration service*. +
+Although you can use *Azure Functions* to *orchestrate a long-running business process that involves various connections*, this was *not its primary use case* when it was designed.
+
+{sb}
+
+* Additionally, the two services are *priced differently*. 
+    ** *Azure Functions* pricing is based on the *number of executions* and the *running time of each execution*. 
+    ** *Logic Apps* pricing is based on the *number of executions* and the *type of connectors* that it utilizes.
+
+==== Analyze the decision criteria
+
+* *Do you need to perform an orchestration across well-known APIs?*
+    ** *Azure Logic Apps* was designed with orchestration in mind, and excels at connecting a large array of disparate services via their APIs to pass and process data through many steps in a workflow.
+    ** It's possible to create the same workflow by using Azure Functions, but it might take a considerable amount of time to research which APIs to call and how to call them.
+
+* *Do you need to execute custom algorithms or perform specialized data parsing and data lookups?*
+    ** With *Azure Functions*, you can use the full expressiveness of a programming language in a compact form. This lets you concisely build complex algorithms, or data lookup and parsing operations. You would be responsible for maintaining the code, handling exceptions resiliently, and so on.
+    ** Although Azure Logic Apps can perform logic (loops, decisions, and so on), if you have a logic-intensive orchestration that requires a complex algorithm, implementing that algorithm might be more verbose and visually overwhelming.
+
+* *Do you have existing automated tasks written in an imperative programming language?*
+    ** It might then be easier to port your code into the body of an *Azure Functions* function app than to re-create it by using Azure Logic Apps.
+
+* *Do you prefer a visual (declarative) workflow or writing (imperative) code?*
+    ** Ultimately, your choice comes down to whether you prefer to work in a declarative environment or an imperative environment. *Developers* who have expertise in an imperative programming language might prefer to think about automation and orchestration from an *imperative mindset*. *IT professionals and business analysts* might prefer to work in a more *visual low-code/no-code (declarative) environment*.
+
+=== Choose the best Azure serverless technology for your business scenario
+
+TO BE COMPLETED
 
 == Lexique
 
