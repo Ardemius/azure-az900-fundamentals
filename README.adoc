@@ -880,13 +880,13 @@ Scaling and performance are handled automatically, and you're *billed only for t
     ** Logic Apps simplifies how you design and build scalable solutions, whether in the cloud, on-premises, or both. This solution covers app integration, data integration, system integration, enterprise application integration (EAI), and business-to-business (B2B) integration.
     ** You build an app by *linking triggers to actions with connectors*. 
         *** A *trigger* is an event, such as a timer, that causes an app to execute, a new message to be sent to a queue, or an HTTP request. 
-        *** An *s* is a task or step that can execute.
+        *** An *action* is a task or step that can execute.
         *** To build enterprise integration solutions with Azure Logic Apps, you can choose from a *growing gallery of over 200 connectors*. The gallery includes services such as Salesforce, SAP, Oracle DB, and file shares.
 
 ===== What are the differences between these services?
 
 * You can call Azure Functions from Azure Logic Apps, and vice versa. 
-* The primary difference between the two services is their intent. Azure Functions is a serverless compute service, and *Azure Logic Apps* is intended to be a *serverless orchestration service*. +
+* The primary difference between the two services is their intent. *Azure Functions* is a *serverless compute service*, and *Azure Logic Apps* is intended to be a *serverless orchestration service*. +
 Although you can use *Azure Functions* to *orchestrate a long-running business process that involves various connections*, this was *not its primary use case* when it was designed.
 
 {sb}
@@ -911,9 +911,1462 @@ Although you can use *Azure Functions* to *orchestrate a long-running business p
 * *Do you prefer a visual (declarative) workflow or writing (imperative) code?*
     ** Ultimately, your choice comes down to whether you prefer to work in a declarative environment or an imperative environment. *Developers* who have expertise in an imperative programming language might prefer to think about automation and orchestration from an *imperative mindset*. *IT professionals and business analysts* might prefer to work in a more *visual low-code/no-code (declarative) environment*.
 
-=== Choose the best Azure serverless technology for your business scenario
+=== Choose the best Azure IoT service for your application
 
-TO BE COMPLETED
+*IoT* bridges the physical and digital worlds by enabling *devices* with *sensors* and an internet connection to *communicate with cloud-based systems* via the internet.
+
+==== Identify the product options
+
+IoT enables devices to gather and then relay information for data analysis. Smart devices are equipped with sensors that collect data. +
+By using Azure IoT services, devices that are equipped with these kinds of sensors and that can connect to the internet could send their sensor readings to a specific endpoint in Azure via a message. The message's data is then *collected* and *aggregated*, and it can be *converted into reports and alerts*. +
+Alternately, *all devices could be updated with new firmware* to fix issues or add new functionality by sending software updates from Azure IoT services to each device.
+
+* *Azure IoT Hub*
+
+    ** Azure IoT Hub is a managed service that's hosted in the cloud and that acts as a *central message hub for bi-directional communication* between your IoT application and the devices it manages. You can use Azure IoT Hub to build IoT solutions with reliable and secure communications between millions of IoT devices and a cloud-hosted solution back end. You can connect virtually any device to your IoT hub.
+
+    ** The IoT Hub service supports communications both from the device to the cloud and from the cloud to the device. It also supports multiple messaging patterns, such as *device-to-cloud telemetry*, *file upload from devices*, and *request-reply methods* to control your devices from the cloud. After an IoT hub receives messages from a device, it *can route that message* to other Azure services.
+
+    ** From a cloud-to-device perspective, IoT Hub allows for *"command and control"*. That is, you can have either manual or automated remote control of connected devices, so you can instruct the device to open valves, set target temperatures, restart stuck devices, and so on.
+
+    * IoT Hub monitoring helps you maintain the health of your solution by *tracking events* such as *device creation*, *device failures*, and *device connections*.
+
+* *Azure IoT Central*
+
+    ** Azure IoT Central *builds on top of IoT Hub* by *adding a dashboard* that allows you to *connect*, *monitor*, and *manage your IoT devices*. +
+    The visual user interface (UI) makes it easy to quickly connect new devices and watch as they begin sending telemetry or error messages. You can watch the overall performance across all devices in aggregate, and you can set up alerts that send notifications when a specific device needs maintenance. Finally, you can push firmware updates to the device.
+
+    ** To help you get up and running quickly, IoT Central *provides starter templates* for common scenarios across various industries, such as retail, energy, healthcare, and government. You then customize the design starter templates directly in the UI by choosing from existing themes or creating your own custom theme, setting the logo, and so on. With IoT Central, you can tailor the starter templates for the specific data that's sent from your devices, the reports you want to see, and the alerts you want to send.
++
+.Screenshot of the IoT Central graphical user interface displaying templates you can choose to create a new app.
+image:azure-az900_30.png[]
+
+    ** You can use the UI to control your devices remotely. This feature allows you to push a software update or modify a property of the device. You can adjust the desired temperature for one or all of your refrigerated vending machines from directly inside of IoT Central.
+
+    ** A *key part* of IoT Central is the use of *device templates*. By using a device template, you can connect a device without any service-side coding. IoT Central uses the templates to construct the dashboards, alerts, and so on. +
+    Device developers still need to create code to run on the devices, and that *code must match the device template specification*.
+
+* *Azure Sphere*
+    
+    ** Azure Sphere creates an *end-to-end, highly secure IoT solution* for customers that *encompasses* everything from the *hardware* and *operating system* on the device to the *secure method of sending messages* from the device to the message hub. Azure Sphere has built-in communication and security features for internet-connected devices.
+    {sb}
+    Azure Sphere comes in three parts:
+
+        *** The first part is the *Azure Sphere micro-controller unit (MCU)*, which is responsible for *processing the operating system and signals from attached sensors*. The following image displays the Seed Azure Sphere MT3620 Development Kit MCU, one of several different starter kits that are available for prototyping and developing Azure Sphere applications.
+
+        *** The second part is a *customized Linux operating system (OS)* that handles communication with the security service and can run the vendor's software.
+
+        *** The third part is *Azure Sphere Security Service*, also known as *AS3*. Its job is to *make sure that the device has not been maliciously compromised*. When the device attempts to connect to Azure, it first must authenticate itself, per device, which it does by using certificate-based authentication. If it authenticates successfully, AS3 checks to ensure that the device hasn't been tampered with. After it has established a *secure channel of communication*, AS3 pushes any OS or approved customer-developed software updates to the device.
+
+    ** After the Azure Sphere system has validated the authenticity of the device and authenticated it, the device can interact with other Azure IoT services by sending telemetry and error information.
+
+==== Analyze the decision criteria
+
+* *Is it critical to ensure that the device is not compromised?*
+    ** When *security* is a critical consideration in your product's design, the best product option is *Azure Sphere*, which provides a comprehensive end-to-end solution for IoT devices. +
+    As we mentioned in the previous unit, Azure Sphere ensures a secure channel of communication between the device and Azure by controlling everything from the hardware to the operating system and the authentication process. This ensures that the integrity of the device is uncompromised. After a secure channel is established, messages can be received from the device securely, and messages or software updates can be sent to the device remotely.
+
+* *Do I need a dashboard for reporting and management?*
+    ** Your next decision will be the level of services you require from your IoT solution. If you *merely want to connect to your remote devices to receive telemetry and occasionally push updates*, and you don't need any reporting capabilities, you might prefer to implement *Azure IoT Hub* by itself. Your programmers can still create a customized set of management tools and reports by using the IoT Hub RESTful API.
+
+    ** However, if you want a *pre-built customizable user interface* with which you can view and control your devices remotely, you might prefer to start with *IoT Central*. With this solution, you can control a single device or all devices at once, and you can set up alerts for certain conditions, such as a device failure. +
+    IoT Central integrates with many different Azure products, including IoT Hub, to create a dashboard with reports and management features. The dashboard is based on starter templates for common industry and usage scenarios. You can use the dashboard that's generated by the starter template as is or customize it to suit your needs. You can have multiple dashboards and target them at a variety of users.
+
+== Azure Fundamentals part 4: Describe general security and network security features
+
+=== Protect against security threats on Azure
+
+==== Protect against security threats by using Azure Security Center
+
+* *What's Azure Security Center?*
+    ** Azure Security Center is a *monitoring service* that *provides visibility of your security posture across all of your services*, both on *Azure* and *on-premises*. The term security posture refers to cybersecurity policies and controls, as well as how well you can predict, prevent, and respond to security threats.
++
+[IMPORTANT]
+====
+Security Center can:
+
+        *** Monitor security settings across on-premises and cloud workloads.
+        *** Automatically apply required security settings to new resources as they come online.
+        *** Provide security recommendations that are based on your current configurations, resources, and networks.
+        *** Continuously monitor your resources and perform automatic security assessments to identify potential vulnerabilities before those vulnerabilities can be exploited.
+        *** Use *machine learning* to detect and block malware from being installed on your virtual machines (VMs) and other resources. You can also use adaptive application controls to *define rules that list allowed applications* to ensure that only applications you allow can run.
+        *** Detect and analyze potential inbound attacks and investigate threats and any post-breach activity that might have occurred.
+        *** Provide just-in-time access control for network ports. Doing so reduces your attack surface by ensuring that the network only allows traffic that you require at the time that you need it to.
+====
+
+Through Security Center, the company can view its overall *regulatory compliance* from a security perspective all from one place. 
+With Security Center, the company's resources can be analysed against the security controls of any governance policies it has assigned, so it can view its overall *regulatory compliance* from a security perspective all from one place.
+
+image::azure-az900_31.png[]
+
+* *Protect against threats* +
+Security Center includes advanced cloud defense capabilities for virtual machines, network security, and file integrity. Let's look at how some of these capabilities apply to Tailwind Traders.
+
+    ** *Just-in-time VM access* +
+    Tailwind Traders will configure just-in-time access to VMs. This access blocks traffic by default to specific network ports of virtual machines, but allows traffic for a specified time when an administrator requests and approves it.
+
+    ** *Adaptive application controls* +
+    Tailwind Traders can *control which applications are allowed to run on its virtual machines*. In the background, Security Center uses machine learning to look at the processes running on a virtual machine. It creates exception rules for each resource group that holds the virtual machines and provides recommendations. This process provides alerts that inform the company about unauthorized applications that are running on its VMs.
+
+    ** *Adaptive network hardening* +
+    Security Center can *monitor the internet traffic patterns* of the VMs and compare those patterns with the company's current Network Security Group (NSG) settings. From there, Security Center can make recommendations on whether the NSGs should be locked down further and provide remediation steps.
+
+    ** *File integrity monitoring* +
+    Tailwind Traders can also configure the *monitoring of changes to important files* on both Windows and Linux, registry settings, applications, and other aspects that might indicate a security attack.
+
+* *Respond to security alerts*
+    ** Tailwind Traders can use Security Center to get a centralized view of all of its security alerts. From there, the company can dismiss false alerts, investigate them further, *remediate alerts manually*, or *use an automated response* with a *workflow automation*.
+    ** *Workflow automation* uses *Azure Logic Apps* and *Security Center connectors*. The logic app can be triggered by a threat detection alert or by a Security Center recommendation, filtered by name or by severity. You can then configure the logic app to run an action such as sending an email or posting a message to a Microsoft Teams channel.
+
+==== Detect and respond to security threats by using Azure Sentinel
+
+Security management on a large scale can benefit from a dedicated *Security Information and Event Management (SIEM)* system. A SIEM system *aggregates security data* from many different sources (as long as those sources support an *open-standard logging format*). It also provides *capabilities for threat detection and response*.
+
+*Azure Sentinel* is Microsoft's *cloud-based SIEM system*. It uses intelligent security analytics and threat analysis.
+
+* *Azure Sentinel capabilities* +
+Azure Sentinel enables you to:
+
+    ** *Collect cloud data at scale* +
+    Collect data across all users, devices, applications, and infrastructure, both on-premises and from multiple clouds.
+    ** *Detect previously undetected threats* +
+    Minimize false positives by using Microsoft's comprehensive analytics and threat intelligence.
+    ** *Investigate threats with artificial intelligence* +
+    Examine suspicious activities at scale, tapping into years of cybersecurity experience from Microsoft.
+    ** *Respond to incidents rapidly* +
+    Utilize built-in orchestration and automation of common tasks.
+
+* *Connect your data sources* +
+Tailwind Traders decides to explore the capabilities of Azure Sentinel. First, the company identifies and connects its data sources. +
+Azure Sentinel supports a number of data sources, which it can analyze for security events. These connections are handled by built-in connectors or industry-standard log formats and APIs.
+
+    * *Connect Microsoft solutions* +
+    Connectors provide real-time integration for services like Microsoft Threat Protection solutions, Microsoft 365 sources (including Office 365), Azure Active Directory, and Windows Defender Firewall.
+    * *Connect other services and solutions* +
+    Connectors are available for common non-Microsoft services and solutions, including AWS CloudTrail, Citrix Analytics (Security), Sophos XG Firewall, VMware Carbon Black Cloud, and Okta SSO.
+    * *Connect industry-standard data sources* +
+    Azure Sentinel supports data from other sources that use the Common Event Format (CEF) messaging standard, Syslog, or REST API.
+
+* *Detect threats* +
+Tailwind Traders needs to be notified when something suspicious occurs. It decides to use both *built-in analytics* and *custom rules* to detect threats.
+
+    ** *Built in analytics* use *templates designed by Microsoft's team* of security experts and analysts based on known threats, common attack vectors, and escalation chains for suspicious activity. These templates can be customized and search across the environment for any activity that looks suspicious. Some templates use *machine learning behavioral analytics* that are based on Microsoft proprietary algorithms.
+
+    ** *Custom analytics* are rules that you create to search for specific criteria within your environment. You can preview the number of results that the query would generate (based on past log events) and set a schedule for the query to run. You can also set an alert threshold.
+
+* *Investigate and respond* +
+When Azure Sentinel detects suspicious events, Tailwind Traders can investigate specific alerts or incidents (a group of related alerts). With the investigation graph, the company can review information from entities directly connected to the alert and see common exploration queries to help guide the investigation.
++
+.Here's an example that shows what an investigation graph looks like in Azure Sentinel
+image:azure-az900_32.png[]
+
+    ** The company will also use *Azure Monitor Workbooks* to *automate responses to threats*. For example, it can set an alert that looks for malicious IP addresses that access the network and create a workbook that does the following steps:
+
+        1. When the alert is triggered, open a ticket in the IT ticketing system.
+        2. Send a message to the security operations channel in Microsoft Teams or Slack to make sure the security analysts are aware of the incident.
+        3. Send all of the information in the alert to the senior network admin and to the security admin. The email message includes two user option buttons: Block or Ignore.
+
+    ** When an admin chooses *Block*, the IP address is blocked in the firewall and the user is disabled in Azure Active Directory. 
+    ** When an admin chooses *Ignore*, the alert is closed in Azure Sentinel and the incident is closed in the IT ticketing system.
+    ** The workbook continues to run after it receives a response from the admins. +
+    *Workbooks* can be *run manually* or *automatically* when a rule triggers an alert.
+
+==== Store and manage secrets by using Azure Key Vault
+
+*Azure Key Vault* is a centralized cloud service for *storing an application's secrets in a single, central location*. It provides secure access to sensitive information by providing access control and logging capabilities.
+
+Azure Key Vault can help you:
+
+    * *Manage secrets* +
+    You can use Key Vault to securely store and tightly control access to tokens, passwords, certificates, API keys, and other secrets.
+
+    * *Manage encryption keys* +
+    You can use Key Vault as a key management solution. Key Vault makes it easier to create and control the encryption keys that are used to encrypt your data.
+
+    * *Manage SSL/TLS certificates* +
+    Key Vault enables you to provision, manage, and deploy your public and private Secure Sockets Layer / Transport Layer Security (SSL/TLS) certificates for both your Azure resources and your internal resources.
+
+    * *Store secrets backed by hardware security modules (HSMs)* +
+    These secrets and keys can be protected either by software or by FIPS 140-2 Level 2 validated HSMs.
+
+The benefits of using Key Vault include:
+
+    * *Centralized application secrets* +
+    Centralizing the storage for your application secrets enables you to control their distribution and reduces the chances that secrets are accidentally leaked.
+
+    * *Securely stored secrets and keys* +
+    Azure uses industry-standard algorithms, key lengths, and HSMs. Access to Key Vault requires proper authentication and authorization.
+
+    * *Access monitoring and access control* +
+    By using Key Vault, you can monitor and control access to your application secrets.
+
+    * *Simplified administration of application secrets* +
+    Key Vault makes it easier to enroll and renew certificates from public certificate authorities (CAs). You can also scale up and replicate content within regions and use standard certificate management tools.
+
+    * *Integration with other Azure services* +
+    You can integrate Key Vault with storage accounts, container registries, event hubs, and many more Azure services. These services can then securely reference the secrets stored in Key Vault.
+
+Once create, the secret can be accessed through the Azure Portal, or with Azure CLI in Azure Cloud Shell, or with Azure PowerShell.
+
+.Retrieve the secret with Azure CLI in Azure Cloud Shell
+[source,bash]
+----
+ardemius@Azure:~$ az keyvault list --query [0]
+{
+  "id": "/subscriptions/4db700a1-ce71-4523-b484-93f5d1306b32/resourceGroups/learn-8f554fa5-8dd4-4ada-ad60-062d819da102/providers/Microsoft.KeyVault/vaults/my-keyvault-tsc123",
+  "location": "eastus",
+  "name": "my-keyvault-tsc123",
+  "resourceGroup": "learn-8f554fa5-8dd4-4ada-ad60-062d819da102",
+  "tags": {},
+  "type": "Microsoft.KeyVault/vaults"
+}
+
+ardemius@Azure:~$ az keyvault list --query [0].name --output tsv
+my-keyvault-tsc123
+
+ardemius@Azure:~$ az keyvault secret show \
+>   --name MyPassword \
+>   --vault-name $(az keyvault list --query [0].name --output tsv) \
+>   --query value \
+>   --output tsv
+hVFkk96
+----
+
+==== Host your Azure virtual machines on dedicated physical servers by using Azure Dedicated Host
+
+On Azure, virtual machines (VMs) run on shared hardware that Microsoft manages. Although the underlying hardware is shared, your VM workloads are isolated from workloads that other Azure customers run.
+
+Some organizations must follow *regulatory compliance* that requires them to be the *only customer using the physical machine that hosts their virtual machines*. *Azure Dedicated Host* provides dedicated physical servers to host your Azure VMs for Windows and Linux.
+
+A *dedicated host* is mapped to a physical server in an Azure datacenter. A *host group* is a collection of dedicated hosts.
+
+What are the benefits of Azure Dedicated Host?
+
+    * Gives you visibility into, and control over, the server infrastructure that's running your Azure VMs.
+    * Helps address compliance requirements by deploying your workloads on an isolated server.
+    * Lets you choose the number of processors, server capabilities, VM series, and VM sizes within the same host.
+
+After a dedicated host is provisioned, Azure assigns it to the physical server in Microsoft's cloud datacenter. +
+For *high availability*, you can provision multiple hosts in a *host group* and deploy your virtual machines across this group. VMs on dedicated hosts can also take advantage of maintenance control. This feature enables you to control when regular maintenance updates occur, within a 35-day rolling window.
+
+*Pricing considerations*
+
+    * You're *charged per dedicated host*, independent of how many virtual machines you deploy to it. The host price is based on the VM family, type (hardware size), and region.
+    * *Software licensing*, *storage*, and *network usage* are *billed separately* from the host and VMs. For more information. see Azure Dedicated Host pricing.
+
+=== Secure network connectivity on Azure
+
+==== What is defense in depth?
+
+The objective of *defense in depth* is to protect information and *prevent it from being stolen* by those who aren't authorized to access it. +
+A defense-in-depth strategy uses a series of mechanisms to *slow the advance of an attack* that aims at acquiring unauthorized access to data.
+
+*Layers of defense in depth*
+
+You can visualize defense in depth as a *set of layers*, with the *data to be secured at the center*:
+
+image::azure-az900_33.png[]
+
+Each layer provides protection so that if one layer is breached, a subsequent layer is already in place to prevent further exposure. This approach removes reliance on any single layer of protection. It *slows down an attack* and provides alert telemetry that security teams can act upon, either automatically or manually.
+
+Here's a brief overview of the role of each layer:
+
+    * The *physical security* layer is the first line of defense to protect computing hardware in the datacenter.
+    * The *identity and access* layer controls access to infrastructure and change control.
+    * The *perimeter* layer uses distributed denial of service (DDoS) protection to filter large-scale attacks before they can cause a denial of service for users.
+    * The *network* layer limits communication between resources through segmentation and access controls.
+    * The *compute* layer secures access to virtual machines.
+    * The *application* layer helps ensure that applications are secure and free of security vulnerabilities.
+    * The *data* layer controls access to business and customer data that you need to protect.
+
+*Security posture*
+
+Your security posture is your organization's ability to protect from and respond to security threats. The common principles used to define a security posture are *confidentiality*, *integrity*, and *availability*, known collectively as *CIA*.
+
+    * *Confidentiality* +
+    The principle of least privilege means *restricting access to information only to individuals explicitly granted access*, at only the level that they need to perform their work. This information includes protection of user passwords, email content, and access levels to applications and underlying infrastructure.
+
+    * *Integrity* +
+    *Prevent unauthorized changes to information*:
+        ** At rest: when it's stored.
+        ** In transit: when it's being transferred from one place to another, including from a local computer to the cloud.
+
+    +
+    A common approach used in data transmission is for the sender to create a unique fingerprint of the data by using a one-way hashing algorithm. The hash is sent to the receiver along with the data. The receiver recalculates the data's hash and compares it to the original to ensure that the data wasn't lost or modified in transit.
+
+    * *Availability* +
+    Ensure that services are functioning and can be accessed only by authorized users. Denial-of-service attacks are designed to degrade the availability of a system, affecting its users.
+
+==== Protect virtual networks by using Azure Firewall
+
+A *firewall* is a network security device that monitors incoming and outgoing network traffic and *decides whether to allow or block specific traffic* based on a defined set of security rules. You can create firewall rules that specify ranges of IP addresses. Only clients granted IP addresses from within those ranges are allowed to access the destination server. Firewall rules can also include specific network protocol and port information.
+
+*Azure Firewall* is a managed, cloud-based network security service that helps *protect resources in your Azure Virtual Networks*. +
+A *virtual network* is similar to a *traditional network that you'd operate in your own datacenter*. It's a fundamental building block for your private network that enables virtual machines and other compute resources to securely communicate with each other, the internet, and on-premises networks.
+
+image::azure-az900_34.png[]
+
+*Azure Firewall* is a *stateful firewall*. A stateful firewall *analyzes the complete context of a network connection*, not just an individual packet of network traffic. Azure Firewall features high availability and unrestricted cloud scalability.
+
+Azure Firewall provides a central location to create, enforce, and log application and network connectivity policies across subscriptions and virtual networks. Azure Firewall *uses a static (unchanging) public IP address* for your virtual network resources, which enables outside firewalls to identify traffic coming from your virtual network. The service is *integrated with Azure Monitor* to enable logging and analytics.
+
+Azure Firewall provides many features, including:
+
+    * Built-in high availability.
+    * Unrestricted cloud scalability.
+    * Inbound and outbound filtering rules.
+    * Inbound Destination Network Address Translation (DNAT) support.
+    * Azure Monitor logging.
+
+You typically deploy Azure Firewall on a central virtual network to control general network access.
+
+*What can I configure with Azure Firewall?*
+
+    * Application rules that define fully qualified domain names (FQDNs) that can be accessed from a subnet.
+    * Network rules that define source address, protocol, destination port, and destination address.
+    * Network Address Translation (NAT) rules that define destination IP addresses and ports to translate inbound requests.
+
+*Azure Application Gateway* also provides a firewall that's called the *web application firewall (WAF)*. WAF provides centralized, inbound protection for your web applications against common exploits and vulnerabilities. *Azure Front Door* and *Azure Content Delivery Network* also provide WAF services.
+
+==== Protect from DDoS attacks by using Azure DDoS Protection
+
+A *distributed denial of service* (DDoS) attack attempts to *overwhelm and exhaust an application's resources*, making the application slow or unresponsive to legitimate users. DDoS attacks can target any resource that's publicly reachable through the internet, including websites.
+
+* Azure DDoS Protection *identifies the attacker's attempt* to overwhelm the network and *blocks further traffic* from them, ensuring that traffic never reaches Azure resources. Legitimate traffic from customers still flows into Azure without any interruption of service.
+
+* DDoS Protection can also help you *manage your cloud consumption*. When you run on-premises, you have a fixed number of compute resources. But in the cloud, elastic computing means that you can automatically scale out your deployment to meet demand. A cleverly designed DDoS attack can cause you to increase your resource allocation, which incurs unneeded expense. DDoS Protection Standard helps ensure that the network load you process reflects customer usage. You can also receive credit for any costs accrued for scaled-out resources during a DDoS attack.
+
+*What service tiers are available to DDoS Protection?*
+
+    * *Basic*
+        ** automatically enabled for free as part of your Azure subscription
+
+    * *Standard*
+        ** provides additional mitigation capabilities that are tuned specifically to Azure Virtual Network resources. +
+        Protection policies are tuned through dedicated traffic monitoring and *machine learning algorithms*.
+
+In all cases, the Azure global network is used to distribute and mitigate attack traffic across Azure regions.
+
+*What kinds of attacks can DDoS Protection help prevent?*
+
+    * *Volumetric attacks* +
+    The goal of this attack is to flood the network layer with a substantial amount of seemingly legitimate traffic.
+    * *Protocol attacks* +
+    These attacks render a target inaccessible by exploiting a weakness in the layer 3 (ex: IP) and layer 4 (ex: TCP) protocol stack.
+    * *Resource-layer (application-layer) attacks (only with web application firewall)*
+    These attacks target web application packets to disrupt the transmission of data between hosts. You need a web application firewall (WAF) to protect against L7 attacks. DDoS Protection Standard protects the WAF from volumetric and protocol attacks.
+
+NOTE: For the previous layer 3, 4 and L7, we are speaking about the https://fr.wikipedia.org/wiki/Mod%C3%A8le_OSI[OSI model].
+
+==== Filter network traffic by using Network Security Groups (NSGs)
+
+A *network security group* enables you to *filter network traffic* to and from Azure resources *within an Azure virtual network*. You can think of NSGs *like an internal firewall*. An NSG can contain multiple inbound and outbound security rules that enable you to filter traffic to and from resources by source and destination IP address, port, and protocol.
+
+A network security group can contain as many rules as you need, within Azure subscription limits. Each rule specifies these properties:
+
+|===
+|Property	                |Description
+
+|*Name*	                    |A unique name for the NSG.
+|*Priority*	                |A number between 100 and 4096. Rules are processed in priority order, with lower numbers processed before higher numbers.
+|*Source or Destination*	|A single IP address or IP address range, service tag, or application security group.
+|*Protocol*	                |TCP, UDP, or Any.
+|*Direction*	            |Whether the rule applies to inbound or outbound traffic.
+|*Port Range*	            |A single port or range of ports.
+|*Action*	                |Allow or Deny.
+|===
+
+When you create a network security group, Azure creates a series of default rules to provide a baseline level of security. You can't remove the default rules, but you can override them by creating new rules with higher priorities.
+
+==== Exercise - Configure network access to a VM by using a network security group
+
+You start by creating a Linux VM and installing Nginx, a popular web server, on that VM. To make your web server accessible, you then create a network security group (NSG) rule that allows inbound access on port 80 (HTTP).
+
+There are many *ways to create and manage VMs*, including their network settings. For example, you can use the *Azure portal*, the *Azure CLI*, *Azure PowerShell*, or an *Azure Resource Manager (ARM) template*.
+
+Here, you use the Azure CLI. The Azure CLI enables you to connect to Azure and run administrative commands on Azure resources. As with other command-line interfaces, you can run commands directly from a terminal or you can add commands to a Bash script or a PowerShell script. The Azure CLI runs on Windows, macOS, or Linux.
+
+Here, you access the *Azure CLI* from *Azure Cloud Shell*. Cloud Shell is a browser-based shell experience that you use to manage and develop Azure resources. Think of Cloud Shell as an interactive console that runs in the cloud.
+
+.Azure Cloud Shell
+[source,bash]
+----
+Requesting a Cloud Shell.Succeeded.
+Connecting terminal...
+
+Welcome to Azure Cloud Shell
+
+Type "az" to use Azure CLI
+Type "help" to learn about Cloud Shell
+
+# First, let's create a Linux VM
+ardemius@Azure:~$ az vm create \
+>   --resource-group learn-f86915b8-0c40-4a12-9524-7fcff6b051b6 \
+>   --name my-vm \
+>   --image UbuntuLTS \
+>   --admin-username azureuser \
+>   --generate-ssh-keys
+SSH key files '/home/ardemius/.ssh/id_rsa' and '/home/ardemius/.ssh/id_rsa.pub' have been generated under ~/.ssh to allow SSH access to the VM. If using machines without permanent storage, back up your keys to a safe location.
+{- Finished ..
+  "fqdns": "",
+  "id": "/subscriptions/24f6044d-738b-4d20-8eba-a9307e45b4b4/resourceGroups/learn-f86915b8-0c40-4a12-9524-7fcff6b051b6/providers/Microsoft.Compute/virtualMachines/my-vm",
+  "location": "westus",
+  "macAddress": "00-0D-3A-32-97-2A",
+  "powerState": "VM running",
+  "privateIpAddress": "10.0.0.4",
+  "publicIpAddress": "104.42.185.11",
+  "resourceGroup": "learn-f86915b8-0c40-4a12-9524-7fcff6b051b6",
+  "zones": ""
+}
+
+# then we configure Nginx on our VM using the Custom Script Extension
+ardemius@Azure:~$ az vm extension set \
+>   --resource-group learn-f86915b8-0c40-4a12-9524-7fcff6b051b6 \
+>   --vm-name my-vm \
+>   --name customScript \
+>   --publisher Microsoft.Azure.Extensions \
+>   --version 2.1 \
+>   --settings '{"fileUris":["https://raw.githubusercontent.com/MicrosoftDocs/mslearn-welcome-to-azure/master/configure-nginx.sh"]}' \
+>   --protected-settings '{"commandToExecute": "./configure-nginx.sh"}'
+{- Finished ..
+  "autoUpgradeMinorVersion": true,
+  "enableAutomaticUpgrade": null,
+  "forceUpdateTag": null,
+  "id": "/subscriptions/24f6044d-738b-4d20-8eba-a9307e45b4b4/resourceGroups/learn-f86915b8-0c40-4a12-9524-7fcff6b051b6/providers/Microsoft.Compute/virtualMachines/my-vm/extensions/customScript",
+  "instanceView": null,
+  "location": "westus",
+  "name": "customScript",
+  "protectedSettings": null,
+  "provisioningState": "Succeeded",
+  "publisher": "Microsoft.Azure.Extensions",
+  "resourceGroup": "learn-f86915b8-0c40-4a12-9524-7fcff6b051b6",
+  "settings": {
+    "fileUris": [
+      "https://raw.githubusercontent.com/MicrosoftDocs/mslearn-welcome-to-azure/master/configure-nginx.sh"
+    ]
+  },
+  "tags": null,
+  "type": "Microsoft.Compute/virtualMachines/extensions",
+  "typeHandlerVersion": "2.1",
+  "typePropertiesType": "customScript"
+}
+
+# get your VM's IP address and store the result as a Bash variable
+ardemius@Azure:~$ IPADDRESS="$(az vm list-ip-addresses \
+>   --resource-group learn-f86915b8-0c40-4a12-9524-7fcff6b051b6 \
+>   --name my-vm \
+>   --query "[].virtualMachine.network.publicIpAddresses[*].ipAddress" \
+>   --output tsv)"
+ardemius@Azure:~$ echo $IPADDRESS
+104.42.185.11
+# Open a new browser tab and go to your web server.
+# After a few moments, you see that the connection isn't happening. 
+# If you wait for the browser to time out, you'll see something like this:
+# "Hmmm... can't reach this page. 104.42.185.11 took too long to respond"
+
+# Same thing when using curl to download the home page
+ardemius@Azure:~$ curl --connect-timeout 5 http://$IPADDRESS
+
+# After five seconds, you see an error message that states that the connection timed out.
+# This message means that the VM was not accessible within the timeout period.
+curl: (28) Connection timed out after 5000 milliseconds
+
+# list the network security groups that are associated with your VM
+ardemius@Azure:~$ az network nsg list \
+>   --resource-group learn-f86915b8-0c40-4a12-9524-7fcff6b051b6 \
+>   --query '[].name' \
+>   --output tsv
+my-vmNSG
+# Every VM on Azure is associated with at least one network security group. 
+# In this case, Azure created an NSG for you called my-vmNSG.
+
+# list the rules associated with the NSG named my-vmNSG
+ardemius@Azure:~$ az network nsg rule list \
+>   --resource-group learn-f86915b8-0c40-4a12-9524-7fcff6b051b6 \
+>   --nsg-name my-vmNSG
+[
+  {
+    "access": "Allow",
+    "description": null,
+    "destinationAddressPrefix": "*",
+    "destinationAddressPrefixes": [],
+    "destinationApplicationSecurityGroups": null,
+    "destinationPortRange": "22",
+    "destinationPortRanges": [],
+    "direction": "Inbound",
+    "etag": "W/\"2a5921d9-0138-40ae-90cf-d4b5fa837018\"",
+    "id": "/subscriptions/24f6044d-738b-4d20-8eba-a9307e45b4b4/resourceGroups/learn-f86915b8-0c40-4a12-9524-7fcff6b051b6/providers/Microsoft.Network/networkSecurityGroups/my-vmNSG/securityRules/default-allow-ssh",
+    "name": "default-allow-ssh",
+    "priority": 1000,
+    "protocol": "Tcp",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "learn-f86915b8-0c40-4a12-9524-7fcff6b051b6",
+    "sourceAddressPrefix": "*",
+    "sourceAddressPrefixes": [],
+    "sourceApplicationSecurityGroups": null,
+    "sourcePortRange": "*",
+    "sourcePortRanges": [],
+    "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+  }
+]
+
+# Let's customize the output with the "--query" argument
+ardemius@Azure:~$ az network nsg rule list \
+>   --resource-group learn-f86915b8-0c40-4a12-9524-7fcff6b051b6 \
+>   --nsg-name my-vmNSG \
+>   --query '[].{Name:name, Priority:priority, Port:destinationPortRange, Access:access}' \
+>   --output table
+Name               Priority    Port    Access
+-----------------  ----------  ------  --------
+default-allow-ssh  1000        22      Allow
+
+# You see the default rule, default-allow-ssh. 
+# This rule allows inbound connections over port 22 (SSH). 
+# SSH (Secure Shell) is a protocol that's used on Linux to allow administrators to access the system remotely.
+# By default, a Linux VM's NSG allows network access only on port 22. 
+# This enables administrators to access the system. 
+# You need to also allow inbound connections on port 80, which allows access over HTTP.
+
+# create a rule called allow-http that allows inbound access on port 80
+ardemius@Azure:~$ az network nsg rule create \
+>   --resource-group learn-f86915b8-0c40-4a12-9524-7fcff6b051b6 \
+>   --nsg-name my-vmNSG \
+>   --name allow-http \
+>   --protocol tcp \
+>   --priority 100 \
+>   --destination-port-range 80 \
+>   --access Allow
+{- Finished ..
+  "access": "Allow",
+  "description": null,
+  "destinationAddressPrefix": "*",
+  "destinationAddressPrefixes": [],
+  "destinationApplicationSecurityGroups": null,
+  "destinationPortRange": "80",
+  "destinationPortRanges": [],
+  "direction": "Inbound",
+  "etag": "W/\"e5337a39-9e39-49fb-9606-a0e09241f1b4\"",
+  "id": "/subscriptions/24f6044d-738b-4d20-8eba-a9307e45b4b4/resourceGroups/learn-f86915b8-0c40-4a12-9524-7fcff6b051b6/providers/Microsoft.Network/networkSecurityGroups/my-vmNSG/securityRules/allow-http",
+  "name": "allow-http",
+  "priority": 100,
+  "protocol": "Tcp",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "learn-f86915b8-0c40-4a12-9524-7fcff6b051b6",
+  "sourceAddressPrefix": "*",
+  "sourceAddressPrefixes": [],
+  "sourceApplicationSecurityGroups": null,
+  "sourcePortRange": "*",
+  "sourcePortRanges": [],
+  "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+}
+
+# For learning purposes, here you set the priority to 100. In this case, the priority doesn't matter. 
+# You would need to consider the priority if you had overlapping port ranges.
+
+# verify the configuration
+ardemius@Azure:~$ az network nsg rule list \
+>   --resource-group learn-f86915b8-0c40-4a12-9524-7fcff6b051b6 \
+>   --nsg-name my-vmNSG \
+>   --query '[].{Name:name, Priority:priority, Port:destinationPortRange, Access:access}' \
+>   --output table
+Name               Priority    Port    Access
+-----------------  ----------  ------  --------
+default-allow-ssh  1000        22      Allow
+allow-http         100         80      Allow
+
+# Check the result 
+ardemius@Azure:~$ echo $IPADDRESS
+104.42.185.11
+ardemius@Azure:~$ curl --connect-timeout 10 http://$IPADDRESS
+<html><body><h2>Welcome to Azure! My name is my-vm.</h2></body></html>
+
+# That's good !
+# Same thing can be checked with the web server : "Welcome to Azure! My name is my-vm."
+
+----
+
+.Content of the previous MicrosoftDocs/mslearn-welcome-to-azure/master/configure-nginx.sh
+[source,bash]
+----
+#!/bin/bash
+
+# Update apt cache.
+sudo apt-get update
+
+# Install Nginx.
+sudo apt-get install -y nginx
+
+# Set the home page.
+echo "<html><body><h2>Welcome to Azure! My name is $(hostname).</h2></body></html>" | sudo tee -a /var/www/html/index.html
+----
+
+==== Combine Azure Services to create a complete network security solution
+
+Here are some recommendations on how to combine Azure services to create a complete network security solution: 
+
+    * Secure the *perimeter layer*. +
+    The perimeter layer is about protecting your organization's resources from network-based attacks. +
+    Identifying these attacks, alerting the appropriate security teams, and eliminating their impact are important to keeping your network secure. +
+    To do this:
+        ** Use *Azure DDoS Protection* to filter large-scale attacks before they can cause a denial of service for users.
+        ** Use perimeter firewalls with *Azure Firewall* to identify and alert on malicious attacks against your network.
+
+    * Secure the *network layer* +
+    The focus is on limiting network connectivity across all of your resources to *allow only what's required*. +
+    Use *Network Security Groups* to create rules that define allowed inbound and outbound communication at this layer: 
+        ** Limit communication between resources by segmenting your network and configuring access controls.
+        ** Deny by default.
+        ** Restrict inbound internet access and limit outbound where appropriate.
+        ** Implement secure connectivity to on-premises networks.
+
+    * *Combine services* +
+    You can combine Azure networking and security services to manage your network security and provide increased layered protection. Here are two ways you can combine services:
+        ** *Network security groups* and *Azure Firewall* +
+        Azure Firewall complements the functionality of network security groups. +
+            *** Network Security Groups provide distributed network-layer traffic filtering to limit traffic to resources within virtual networks in each subscription.
+            *** Azure Firewall is a fully stateful, centralized network firewall as a service. +
+            It provides network-level and application-level protection across different subscriptions and virtual networks.
+
+        ** *Azure Application Gateway web application firewall* (WAF) and *Azure Firewall* +
+        Web application firewall (WAF) is a feature of Azure Application Gateway that provides your web applications with centralized, inbound protection against common exploits and vulnerabilities. +
+        *Azure Firewall* provides:
+            *** Inbound protection for non-HTTP/S protocols (for example, RDP, SSH, and FTP).
+            *** Outbound network-level protection for all ports and protocols.
+            *** Application-level protection for outbound HTTP/S.
+
+== Azure Fundamentals part 5: Describe identity, governance, privacy, and compliance features
+
+=== Secure access to your applications by using Azure identity services
+
+Learn how Azure Active Directory helps you *manage and secure identities*. +
+Also see how *single sign-on*, *multifactor authentication*, and *Conditional Access* enable your users to securely access resources and applications from your intranet and from public networks.
+
+Learning objectives : 
+
+    * Explain the difference between *authentication* and *authorization*.
+    * Describe how *Azure Active Directory* provides *identity and access management* (IAM).
+    * Explain the role *single sign-on (SSO)*, *multifactor authentication*, and *Conditional Access* play in managing user identity.
+
+==== Compare authentication and authorization
+
+One needs to ensure that employees can access only authorized applications. +
+For example, all employees can access inventory and pricing software, but only store managers can access payroll and certain accounting software.
+
+* *What is authentication (AuthN)?*
+
+    ** Authentication is the process of *establishing the identity of a person or service* that wants to access a resource. +
+    It involves the act of challenging a party for legitimate credentials and provides the basis for creating a *security principal* for identity and access control. It establishes whether the user is who they say they are.
+
+.Security Principal
+[NOTE]
+====
+A security principal is a *user account*, *computer account*, or *group account*. +
+Security principals are assigned *security identifiers* (SIDs) when they are created, which are used to control access to resources, and used by internal processes to identify security principals.
+====
+
+* *What is authorization (AuthZ)?*
+
+    ** Authentication establishes the user's identity, but authorization is the *process of establishing what level of access an authenticated person or service has*. It specifies what data they're allowed to access and what they can do with it.
+
+The identification card represents credentials that the user has to prove their identity (you'll learn more about the types of credentials later in this module.) Once authenticated, authorization defines what kinds of applications, resources, and data that user can access.
+
+image::azure-az900_35.png[]
+
+==== What is Azure Active Directory?
+
+Azure Active Directory (Azure AD) is a *cloud-based identity and access management service* (IAM). Azure AD enables an organization to control access to apps and resources based on its business requirements.
+
+What a classic question: how does one can integrate its existing Active Directory instance with cloud identity services to create a seamless experience for its users?
+
+* *How does Azure AD compare to Active Directory?*
+
+    ** Microsoft introduced Active Directory in Windows 2000 to give organizations the ability to manage multiple on-premises infrastructure components and systems by using a single identity per user.
+    ** When you secure identities on-premises with Active Directory, Microsoft doesn't monitor sign-in attempts. When you connect Active Directory with *Azure AD*, Microsoft can help protect you by *detecting suspicious sign-in attempts* at no extra cost. For example, Azure AD can detect sign-in attempts from unexpected locations or unknown devices.
+
+* *Who uses Azure AD?*
+
+    ** *IT administrators*: Administrators can use Azure AD to *control access to applications and resources* based on their business requirements.
+    ** *App developers*: Developers can use Azure AD to provide a standards-based approach for *adding functionality* to applications that they build, *such as adding SSO functionality* to an app or enabling an app to work with a user's existing credentials.
+    ** *Users*: Users can *manage their identities*. For example, self-service password reset enables users to change or reset their password with no involvement from an IT administrator or help desk.
+    ** *Online service subscribers*: Microsoft 365, Microsoft Office 365, Azure, and Microsoft Dynamics CRM Online subscribers are already using Azure AD.
+
+NOTE: A *tenant* is a representation of an organization. A tenant is typically separated from other tenants and has its own identity.
+
+.Azure Portal view by an IT administrator when working with Active Directory
+image::azure-az900_36.png[]
+
+* *What services does Azure AD provide?*
+
+    ** *Authentication* +
+    This includes *verifying identity to access applications and resources*. It also includes providing functionality such as self-service password reset, multifactor authentication, a custom list of banned passwords, and smart lockout services.
+
+    ** *Single sign-on* +
+    SSO enables you to remember only one username and one password to access multiple applications. *A single identity is tied to a user*, which simplifies the security model. As users change roles or leave an organization, access modifications are tied to that identity, which greatly reduces the effort needed to change or disable accounts.
+
+    ** *Application management* +
+    You can manage your cloud and on-premises apps by using Azure AD. Features like Application Proxy, SaaS apps, the My Apps portal (also called the access panel), and single-sign on provide a better user experience.
+
+    ** *Device management* +
+    Along with accounts for individual people, Azure AD supports the *registration of devices*. Registration enables devices to be managed through tools like Microsoft Intune. It also allows for device-based conditional access policies to restrict access attempts to only those coming from known devices, regardless of the requesting user account.
+
+* *What's single sign-on?*
+
+    ** Single sign-on enables a user to *sign in one time* and use that credential to *access multiple resources* and applications from different providers.
+    ** With SSO, you need to remember only *one ID* and *one password*. Access across applications is granted to a single identity that's tied to the user, which *simplifies the security model*. As users change roles or leave an organization, access is tied to a single identity.
+
+* *How can I connect Active Directory with Azure AD?*
+
+    ** Connecting Active Directory with Azure AD enables you to provide a *consistent identity* experience to your users.
+    ** *Azure AD Connect* synchronizes user identities between on-premises Active Directory and Azure AD. Azure AD Connect *synchronizes changes* between both identity systems, so you can use features like SSO, multifactor authentication, and self-service password reset under both systems. Self-service password reset prevents users from using known compromised passwords.
+
+.Azure AD Connect
+image::azure-az900_37.png[]
+
+==== What are multifactor authentication and Conditional Access?
+
+* *What's multifactor authentication?*
+
+    ** Multifactor authentication is a process where a user is prompted during the sign-in process for an additional form of identification. Examples include a code on their mobile phone or a fingerprint scan.
+    ** Multifactor authentication provides additional security for your identities by *requiring two or more elements to fully authenticate*. +
+    These elements fall into three categories:
+
+        *** *Something the user knows*: This might be an email address and password.
+        *** *Something the user has*: This might be a code that's sent to the user's mobile phone.
+        *** *Something the user is*: This is typically some sort of biometric property, such as a fingerprint or face scan that's used on many mobile devices.
+
+* *What's Azure AD Multi-Factor Authentication?*
+
+    ** Azure AD Multi-Factor Authentication is a Microsoft service that *provides multifactor authentication capabilities*. +
+    Azure AD Multi-Factor Authentication enables users to choose an *additional form of authentication during sign-in*, such as a phone call or mobile app notification. +
+    These services provide Azure AD Multi-Factor Authentication capabilities:
+
+        *** *Azure Active Directory* +
+        The Azure Active Directory free edition enables Azure AD Multi-Factor Authentication for administrators with the global admin level of access, via the Microsoft Authenticator app, phone call, or SMS code. You can also enforce Azure AD Multi-Factor Authentication for all users via the Microsoft Authenticator app only, by enabling security defaults in your Azure AD tenant.
+        {lb}
+        Azure Active Directory Premium (P1 or P2 licenses) allows for comprehensive and granular configuration of Azure AD Multi-Factor Authentication through Conditional Access policies (explained below).
+
+        *** *Multifactor authentication for Office 365* +
+        *Conditional Access* is a tool that Azure Active Directory uses to *allow (or deny) access to resources* based on identity *signals*. These signals include *who* the user is, *where* the user is, and *what device* the user is requesting access from.
+        {lb}
+        Conditional Access also provides a more granular multifactor authentication experience for users. For example, a user might not be challenged for second authentication factor if they're at a known location. However, they might be challenged for a second authentication factor if their sign-in signals are unusual or they're at an unexpected location.
+        {lb}
+        During sign-in, Conditional Access collects signals from the user, makes *decisions* based on those *signals*, and then *enforces* that decision by allowing or denying the access request or challenging for a multifactor authentication response. +
+        So we have: signals -> decisions -> enforcement
+
+    ** Some use examples of Conditionnal Access: 
+        *** You might want to allow users to access Office 365 services from a mobile device as long as they use approved client apps, like the Outlook mobile app.
+        *** You require users to access your application only from managed devices. +
+        A *managed device* being a device that meets your standards for security and compliance.
+
+    ** Conditional Access comes with a *"What If" tool*, which helps you plan and troubleshoot your Conditional Access policies. You can use this tool to model your proposed Conditional Access policies across recent sign-in attempts from your users to see what the impact would have been if those policies had been enabled. The What If tool *enables you to test your proposed Conditional Access policies* before you implement them.
+
+=== Build a cloud governance strategy on Azure
+
+NOTE: The term *governance* describes the general process of establishing rules and policies and ensuring that those rules and policies are enforced.
+
+When running in the cloud, a good governance strategy helps you *maintain control over the applications and resources* that you manage in the cloud. Maintaining control over your environment ensures that you stay compliant with:
+
+    * Industry standards, like PCI DSS.
+    * Corporate or organizational standards, such as ensuring that network data is encrypted.
+
+One could enforce similar processes that prevent teams from directly creating or configuring resources on Azure, similar to its existing approach where central IT provisions infrastructure. But it is known that these restrictions reduce team agility and the ability to innovate. How can we enable innovation while still maintaining control?
+
+==== Accelerate your cloud adoption journey by using the Cloud Adoption Framework for Azure
+
+The *Cloud Adoption Framework* consists of tools, documentation, proven practice and includes these stages: 
+
+    1. Define your strategy.
+    2. Make a plan.
+    3. Ready your organization.
+    4. Adopt the cloud.
+    5. Govern and manage your cloud environments.
+
+image::azure-az900_38.png[]
+
+*1) Define your strategy*
+
+Here, you answer why you're moving to the cloud and what you want to get out of cloud migration. Do you need to scale to meet demand or reach new markets? Will it reduce costs or increase business agility?
+
+    1. *Define and document your motivations*: Meeting with stakeholders and leadership can help you answer why you're moving to the cloud.
+    2. *Document business outcomes*: Meet with leadership from your finance, marketing, sales, and human resource groups to help you document your goals.
+    3. *Develop a business case*: Validate that moving to the cloud gives you the right return on investment (ROI) for your efforts.
+    4. *Choose the right first project*: Choose a project that's achievable but also shows progress toward your cloud migration goals.
+
+*2) Make a plan*
+
+Here, you build a plan that maps your aspirational goals to specific actions. A good plan helps ensure that your efforts map to the desired business outcomes.
+
+    1. *Digital estate*: Create an inventory of the existing digital assets and workloads that you plan to migrate to the cloud.
+    2. *Initial organizational alignment*: Ensure that the right people are involved in your migration efforts, both from a technical standpoint as well as from a cloud governance standpoint.
+    3. *Skills readiness plan*: Build a plan that helps individuals build the skills they need to operate in the cloud.
+    4. *Cloud adoption plan*: Build a comprehensive plan that brings together the development, operations, and business teams toward a shared cloud adoption goal.
+
+*3) Ready your organization*
+
+Here, you create a *landing zone*, or an environment in the cloud to begin hosting your workloads.
+
+    1. *Azure setup guide*: Review the Azure setup guide to become familiar with the tools and approaches you need to use to create a landing zone.
+    2. *Azure landing zone*: Begin to build out the Azure subscriptions that support each of the major areas of your business. A landing zone includes cloud infrastructure as well as governance, accounting, and security capabilities.
+    3. *Expand the landing zone*: Refine your landing zone to ensure that it meets your operations, governance, and security needs.
+    4. *Best practices*: Start with recommended and proven practices to help ensure that your cloud migration efforts are scalable and maintainable.
+
+*4) Adopt the cloud*
+
+Here, you begin to migrate your applications to the cloud. Along the way, you might find ways to modernize your applications and build innovative solutions that use cloud services. +
+The Cloud Adoption Framework breaks this stage into two parts: *migrate* and *innovate*.
+
+    * *Migrate*
+        1. *Migrate your first workload*: Use the Azure migration guide to deploy your first project to the cloud.
+        2. *Migration scenarios*: Use additional in-depth guides to explore more complex migration scenarios.
+        3. *Best practices*: Check in with the *Azure cloud migration best practices* checklist to verify that you're following recommended practices.
+        4. *Process improvements*: Identify ways to make the migration process scale while requiring less effort.
+
+    * *Innovate*
+        1. *Business value consensus*: Verify that investments in new innovations add value to the business and meet customer needs.
+        2. *Azure innovation guide*: Use this guide to accelerate development and build a minimum viable product (MVP) for your idea.
+        3. *Best practices*: Verify that your progress maps to recommended practices before you move forward.
+        4. *Feedback loops*: Check in frequently with your customers to verify that you're building what they need.
+
+*5) Govern and manage your cloud environments*
+
+Here, you begin to *form your cloud governance and cloud management strategies*. As the *cloud estate changes over time*, *so do cloud governance processes and policies*. You need to create resilient solutions that are constantly optimized.
+
+    * *Govern*
+        1. *Methodology*: Consider your end state solution. Then define a methodology that incrementally takes you from your first steps all the way to full cloud governance.
+        2. *Benchmark*: Use the *governance benchmark tool* to assess your current state and future state to establish a vision for applying the framework.
+        3. *Initial governance foundation*: Create an MVP that captures the first steps of your governance plan.
+        4. *Improve the initial governance foundation*: Iteratively add governance controls that address tangible risks as you progress toward your end state solution.
+
+    * *Manage*
+        1. *Establish a management baseline*: Define your minimum commitment to operations management. A management baseline is the minimum set of tools and processes that should be applied to every asset in an environment.
+        2. *Define business commitments*: Document supported workloads to establish operational commitments with the business and agree on cloud management investments for each workload.
+        3. *Expand the management baseline*: Apply recommended best practices to iterate on your initial management baseline.
+        4. *Advanced operations and design principles*: For workloads that require a higher level of business commitment, perform a deeper architecture review to deliver on your resiliency and reliability commitments.
+
+==== Create a subscription governance strategy
+
+.Reminder about structure for Azure resources
+NOTE: The organizing structure for resources in Azure has four levels: *management groups*, *subscriptions*, *resource groups*, and *resources*.
+
+At the beginning of any cloud governance implementation, you identify a cloud organization structure that meets your business needs. This step often involves forming a *cloud center of excellence team* (also called a *cloud enablement team* or a *cloud custodian team*). This team is empowered to *implement governance practices* from a centralized location for the entire organization.
+
+Teams often *start their Azure governance strategy* at the *subscription level*. There are three main aspects to consider when you create and manage subscriptions: +
+billing, access control, and subscription limits.
+
+*Billing*
+
+    * You can create *one billing report per subscription*. If you have multiple departments and need to do a "chargeback" of cloud costs, one possible solution is to organize subscriptions by department or by project.
+
+*Access control*
+
+    * A *subscription* is a *deployment boundary for Azure resources*. Every subscription is *associated with an Azure Active Directory tenant*. Each tenant provides administrators the ability to set granular access through defined roles by using Azure role-based access control.
+    * When you design your *subscription architecture*, consider the deployment boundary factor. For example, do you need separate subscriptions for development and for production environments? With separate subscriptions, you can control access to each one separately and isolate their resources from one another.
+
+*Subscription limits*
+
+    * Maximum number of network Azure ExpressRoute circuits per subscription is 10. +
+    If you'll need to exceed those limits, you might need to add more subscriptions. If you hit a hard limit maximum, there's no flexibility to increase it.
+
+==== Control access to cloud resources by using Azure role-based access control
+
+.Reminder: ONLY what is really needed!
+IMPORTANT: It's a good security practice to grant users only the rights they need to perform their job, and only to the relevant resources.
+
+Instead of defining the detailed access requirements for each individual, and then updating access requirements when new resources are created, Azure enables you to control access through *Azure role-based access control* (Azure RBAC).
+
+Azure provides *built-in roles* that describe common access rules for cloud resources. You can also define your own roles. *Each role* has an associated *set of access permissions* that relate to that role. When you assign individuals or groups to one or more roles, they receive all of the associated access permissions.
+
+*How is role-based access control applied to resources?*
+
+    * Role-based access control is applied to a *scope*, which is a resource or set of resources that this access applies to: +
+    management group, single subscription, resource group, single resource +
+    image:azure-az900_39.png[]
+
+    * When you grant access at a parent scope, those *permissions are inherited by all child scopes*
+
+*How is Azure RBAC enforced?*
+
+Azure RBAC is enforced on *any action* that's initiated *against an Azure resource that passes through Azure Resource Manager*. Resource Manager is a management service that provides a way to organize and secure your cloud resources.
+
+You typically access Resource Manager from the Azure portal, Azure Cloud Shell, Azure PowerShell, and the Azure CLI. *Azure RBAC doesn't enforce access permissions at the application or data level*. Application security must be handled by your application.
+
+RBAC uses an allow model. When you're assigned a role, RBAC allows you to perform certain actions, such as read, write, or delete. If one role assignment grants you read permissions to a resource group and a different role assignment grants you write permissions to the same resource group, you have *both* read and write permissions on that resource group.
+
+*Who does Azure RBAC apply to?*
+
+You can apply Azure RBAC to an *individual person* or to a *group*. You can also apply Azure RBAC to other special identity types, such as *service principals* and *managed identities*. These identity types are used by applications and services to automate access to Azure resources.
+
+*How do I manage Azure RBAC permissions?*
+
+You manage access permissions on the *Access control (IAM)* pane *in the Azure portal*. This pane shows *who* has access to *what scope* and *what roles* apply. You can also grant or remove access from this pane.
+
+.Ex: Alain Charon has been assigned the Backup Operator role for this resource group.
+image:azure-az900_40.png[]
+
+==== Prevent accidental changes by using resource locks
+
+A *resource lock* prevents resources from being accidentally deleted or changed. +
+Even with Azure role-based access control (Azure RBAC) policies in place, there's still a risk that people with the right level of access could delete critical cloud resources. Think of a resource lock as a *warning system* that *reminds you that a resource should not be deleted or changed*.
+
+You can manage resource locks from the Azure portal, PowerShell, the Azure CLI, or from an Azure Resource Manager template. +
+To view, add, or delete locks in the Azure portal, go to the *Settings* section of any resource's Settings pane in the *Azure portal*.
+
+You can apply locks to a subscription, a resource group, or an individual resource. You can set the lock level to *CanNotDelete* or *ReadOnly*. +
+Applying the "ReadOnly" lock level  is like restricting all authorized users to the permissions granted by the *Reader* role in Azure RBAC.
+
+*Resource locks apply regardless of RBAC permissions*. Even if you're an owner of the resource, you must still remove the lock before you can perform the blocked activity.
+
+*Combine resource locks with Azure Blueprints*: To make the protection process more robust, you can combine resource locks with Azure Blueprints. +
+Azure Blueprints enables you to *define the set of standard Azure resources that your organization requires*. For example, you can define a blueprint that specifies that a certain resource lock must exist.
+
+==== Organize your Azure resources by using tags
+
+One way to organize related resources is to *place them in their own subscriptions*. +
+You can also *use resource groups* to manage related resources. +
+*Resource tags* are another way to organize resources.
+
+*How do I manage resource tags?*
+
+You can add, modify, or delete resource tags through PowerShell, the Azure CLI, Azure Resource Manager templates, the REST API, or the Azure portal.
+
+You can also manage tags by using Azure Policy. For example, *you can apply tags to a resource group*, but those tags are *NOT automatically applied to the resources* within that resource group. You can use Azure Policy to ensure that a resource inherits the same tags as its parent resource group.
+
+.Example of tags AppName, CostCenter, Owner, Environment and Impact
+image:azure-az900_41.png[]
+
+==== Control and audit your resources by using Azure Policy
+
+How do you ensure that your resources stay compliant? How can you be alerted if a resource's configuration has changed? +
+*Azure Policy* is a service in Azure that enables you to *create*, *assign*, and *manage policies that control or audit your resources*. These policies enforce different rules and effects over your resource configurations so that those configurations stay compliant with corporate standards.
+
+*How does Azure Policy define policies?*
+
+    * Azure Policy enables you to define both *individual policies* and *groups of related policies* (those last are known as *initiatives*). Azure Policy evaluates your resources and *highlights resources that aren't compliant* with the policies you've created. Azure Policy can also *prevent noncompliant resources from being created*.
+
+    * Azure Policy comes with a number of built-in policy and initiative definitions that you can use, under categories such as Storage, Networking, Compute, Security Center, and Monitoring. +
+    For example, say you define a policy that allows only a certain stock-keeping unit (SKU) size of virtual machines (VMs) to be used in your environment. After you enable this policy, that policy is applied when you create new VMs or resize existing VMs. Azure Policy also evaluates any current VMs in your environment.
+
+    * In some cases, Azure Policy *can automatically remediate noncompliant resources and configurations* to ensure the integrity of the state of the resources. For example, if all resources in a certain resource group should be tagged with the AppName tag and a value of "SpecialOrders," Azure Policy can automatically reapply that tag if it has been removed.
+
+    * Azure Policy also *integrates with Azure DevOps* by applying any continuous integration and delivery pipeline policies that apply to the pre-deployment and post-deployment phases of your applications.
+
+*Azure Policy in action*
+
+Implementing a policy in Azure Policy involves these three steps:
+
+    1. Create a *policy definition*.
+    2. Assign the definition to resources.
+    3. Review the evaluation results.
+
+*Create a policy definition*
+
+A policy definition expresses *what to evaluate* and *what action to take*. +
+Every policy definition has conditions under which it's enforced. A policy definition also has an accompanying effect that takes place when the conditions are met.
+
+Examples: 
+
+    * *Allowed virtual machine SKUs*: This policy enables you to specify a set of VM SKUs that your organization can deploy.
+    * *Allowed locations*: This policy enables you to restrict the locations that your organization can specify when it deploys resources. Its effect is used to enforce your geographic compliance requirements.
+    * *MFA should be enabled on accounts with write permissions on your subscription*: This policy requires that multifactor authentication (MFA) be enabled for all subscription accounts with write privileges to prevent a breach of accounts or resources.
+    * *CORS should not allow every resource to access your web applications*: Cross-origin resource sharing (CORS) is an HTTP feature that enables a web application running under one domain to access resources in another domain. For security reasons, modern web browsers restrict cross-site scripting by default. This policy allows only required domains to interact with your web app.
+    * *System updates should be installed on your machines*: This policy enables Azure Security Center to recommend missing security system updates on your servers.
+
+*Assign the definition to resources*
+
+To implement your policy definitions, you assign definitions to resources. A *policy assignment* is a *policy definition that takes place within a specific scope*. This scope could be a management group (a collection of multiple subscriptions), a single subscription, or a resource group.
+
+Policy assignments are *inherited by all child resources within that scope*. If a policy is applied to a resource group, that policy is applied to all resources within that resource group. *You can exclude a subscope* from the policy assignment if there are specific child resources you need to be exempt from the policy assignment.
+
+*Review the evaluation results*
+
+When a condition is evaluated against your existing resources, *each resource is marked as compliant or noncompliant*. You can review the noncompliant policy results and take any action that's needed.
+
+*Policy evaluation happens about once per hour*. If you make changes to your policy definition and create a policy assignment, that policy is evaluated over your resources within the hour.
+
+===== What are Azure Policy initiatives?
+
+An Azure Policy initiative is a *way of grouping related policies into one set*. The initiative definition contains all of the policy definitions to help track your compliance state for a larger goal.
+
+For example, Azure Policy includes an initiative named "Enable Monitoring in Azure Security Center". Its goal is to monitor all of the available security recommendations for all Azure resource types in Azure Security Center. +
+Under this initiative, the following policy definitions are included (among a total of over 100 policy definitions):
+
+    * *Monitor unencrypted SQL Database in Security Center*: This policy monitors for unencrypted SQL databases and servers.
+    * *Monitor OS vulnerabilities in Security Center*: This policy monitors servers that don't satisfy the configured OS vulnerability baseline.
+    * *Monitor missing Endpoint Protection in Security Center*: This policy monitors for servers that don't have an installed endpoint protection agent.
+
+.Initiatives are defined by using the Azure Portal or command-line tools
+image:azure-az900_42.png[]
+
+==== Govern multiple subscriptions by using Azure Blueprints
+
+What happens when your cloud environment starts to *grow beyond just ONE subscription*? How can you scale the configuration of these features, knowing they need to be enforced for resources in new subscriptions?
+
+Instead of having to configure features like Azure Policy for each new subscription, with Azure Blueprints you can *define a repeatable set of governance tools and standard Azure resources* that your organization requires. In this way, development teams can rapidly build and deploy new environments with the knowledge that they're building within organizational compliance with a set of built-in components that speed the development and deployment phases.
+
+*Azure Blueprints* orchestrates the deployment of various resource templates and other artifacts, such as:
+
+    * Role assignments
+    * Policy assignments
+    * Azure Resource Manager templates
+    * Resource groups
+
+When you form a *cloud center of excellence team* or a *cloud custodian team*, that team can use *Azure Blueprints* to scale their governance practices throughout the organization. +
+Implementing a blueprint in Azure Blueprints involves these three steps:
+
+    * Create an Azure blueprint.
+    * Assign the blueprint.
+    * Track the blueprint assignments.
+
+With Azure Blueprints, the relationship between the *blueprint definition* (*what should be deployed*) and the *blueprint assignment* (*what was deployed*) is preserved. In other words, Azure creates a record that associates a resource with the blueprint that defines it. This connection helps you track and audit your deployments.
+
+*Blueprints are also versioned*. Versioning enables you to track and comment on changes to your blueprint.
+
+*What are blueprint artifacts?*
+
+Each component in the blueprint definition is known as an *artifact*.
+
+    * Artifacts *can have no parameters*. An example is the "Deploy threat detection on SQL servers" policy, which requires no further configuration.
+    * Artifacts *can also contain one or more parameters* that you can configure.
+
+You can specify a parameter's value *when you create the blueprint definition* or *when you assign the blueprint definition to a scope*. In this way, you can maintain one standard blueprint but have the flexibility to specify the relevant configuration parameters at each scope where the definition is assigned.
+
+FYI, Azure Blueprints has several built-in blueprint definitions that relate to ISO 27001 (a standard that applies to the security of IT systems). +
+Here are the artifacts that are created when you run an ISO 27001 blueprint from a template: 
+
+image::azure-az900_43.png[]
+
+You see that the blueprint template contains policy assignments, Resource Manager templates, and resource groups. +
+*The blueprint deploys these artifacts to any existing subscriptions within the PROD-MG management group*. The blueprint also deploys these artifacts to any new subscriptions as they're created and added to the management group.
+
+==== Summary
+
+*Cloud governance* requires good analysis and requirement gathering. Luckily, the *Cloud Adoption Framework* for Azure can help you define and implement your governance strategy. There are several services and features in Azure to support these efforts:
+
+    * *Azure role-based access control* (Azure RBAC) enables you to create roles that define access permissions.
+    * *Resource locks* prevent resources from being accidentally deleted or changed.
+    * *Resource tags* provide extra information, or metadata, about your resources.
+    * *Azure Policy* is a service in Azure that enables you to create, assign, and manage policies that control or audit your resources.
+    * *Azure Blueprints* enables you to define a repeatable set of governance tools and standard Azure resources that your organization requires.
+
+=== Examine privacy, compliance, and data protection standards on Azure
+
+In general, *compliance* means to adhere to a law, standard, or set of guidelines. +
+*Regulatory compliance* refers to the discipline and process of ensuring that a company follows the laws that governing bodies enforce.
+
+==== Explore compliance terms and requirements
+
+.Some popular compliance offerings available on Azure
+image:azure-az900_44.png[]
+
+.Data transfer to the US from companies established in the US
+[NOTE]
+====
+For some information on data transfer for companies established in the US and the CLOUD Act, see: +
+https://gsell.tech/how-can-data-sovereignty-be-preserved-after-the-privacy-shield-has-been-invalidated/ +
+(article from 2020/07)
+
+Pour rappel, l'invalidation du "Privacy shield" par la Cour de Justice de l'UE date de juillet 2020. +
+Voir l'article de Wikipedia : https://fr.wikipedia.org/wiki/Bouclier_de_protection_des_donn%C3%A9es_UE-%C3%89tats-Unis
+
+Un bon article, à jour (2021/02), faisant l'état des lieux du sujet : +
+https://blog.cryptshare.com/en/legal-rift-eu-usa-data-handling-data-transfer-implications-for-enterprises
+====
+
+==== Access the Microsoft Privacy Statement, the Online Services Terms, and the Data Protection Addendum
+
+Microsoft Privacy Statement, the Online Services Terms, and the Data Protection Addendum explain the personal data Microsoft collects, how Microsoft uses it, and for what purposes. +
+It is *Microsoft responsability* to handle your data *securely* and in compliance with *privacy* and *legal requirements*.
+
+*What's in the Microsoft Privacy Statement?*
+
+    * The Microsoft Privacy Statement explains what personal data Microsoft *collects*, how Microsoft *uses* it, and for *what purposes*.
+    * It provides trust in how Microsoft collects, protects, and uses customer data.
+
+*What's in the Online Services Terms?*
+
+    * The Online Services Terms (OST) is a *legal agreement between Microsoft and the customer*. The OST details the obligations by both parties with respect to the processing and security of customer data and personal data.
+
+*What is the Data Protection Addendum?*
+
+    * The Data Protection Addendum (DPA) *further defines the data processing and security terms for online services*. These terms include:
+        ** Compliance with laws.
+        ** Disclosure of processed data.
+        ** Data Security, which includes security practices and policies, data encryption, data access, customer responsibilities, and compliance with auditing.
+        ** Data transfer, retention, and deletion.
+
+    * To access the DPA, go to https://www.microsoftvolumelicensing.com/DocumentSearch.aspx[Licensing Terms and Documentation], then, in the search bar, enter "DPA"
+
+==== Explore the Trust Center
+
+The https://www.microsoft.com/trust-center?rtc=1%3Fazure-portal%3Dtrue[Trust Center] showcases Microsoft's principles for maintaining data integrity in the cloud and *how Microsoft implements and supports security, privacy, compliance, and transparency* in all Microsoft cloud products and services. +
+The Trust Center is an important part of the Microsoft Trusted Cloud Initiative and provides support and resources for the legal and compliance community.
+
+The Trust Center provides you with *documentation* about *compliance standards* and *how Azure can support your business*.
+
+==== Access Azure compliance documentation
+
+The https://docs.microsoft.com/en-us/azure/compliance/[Azure compliance documentation] allows you to access detailed documentation about *legal* and *regulatory standards* and *compliance* on Azure.
+
+The Azure compliance documentation includes detailed information about legal and regulatory standards and compliance on Azure.
+
+==== What is Azure Government?
+
+https://azure.microsoft.com/global-infrastructure/government[Azure Government] is a *separate instance of the Microsoft Azure service*. It addresses the security and *compliance needs of US federal agencies*, state and local governments, and their solution providers. Azure Government offers physical isolation from non-US government deployments and provides screened US personnel.
+
+==== What is Azure China 21Vianet?
+
+https://docs.microsoft.com/en-us/azure/china[Azure China 21Vianet] is operated by 21Vianet. It's a physically separated instance of cloud services located in China. Azure China 21Vianet is independently operated and transacted by Shanghai Blue Cloud Technology Co., Ltd. ("21Vianet"), a wholly owned subsidiary of Beijing 21Vianet Broadband Data Center Co., Ltd.
+
+According to the China Telecommunication Regulation, providers of cloud services, infrastructure as a service (IaaS) and platform as a service (PaaS), must have value-added telecom permits. Only locally registered companies with less than 50 percent foreign investment qualify for these permits. To comply with this regulation, the Azure service in China is operated by 21Vianet, based on the technologies licensed from Microsoft.
+
+== Azure Fundamentals part 6: Describe Azure cost management and service level agreements
+
+Module objectives: 
+
+    * Use the *Total Cost of Ownership Calculator* to compare your current datacenter costs to running the same workloads on Azure.
+    * Describe the different ways you can purchase Azure products and services.
+    * Use the *Pricing calculator* to *estimate the monthly cost* of running your cloud workloads.
+    * Define some of the major factors that affect total cost, and apply recommended practices to minimize cost.
+
+=== Plan and manage your Azure costs
+
+==== Compare costs by using the Total Cost of Ownership Calculator
+
+The https://azure.microsoft.com/pricing/tco/calculator[TCO Calculator] (Total Cost of Ownership calculator) helps you *estimate the cost savings of operating your solution on Azure over time*, instead of in your on-premises datacenter.
+
+The term total cost of ownership is commonly used in finance. It can be hard to see all the hidden costs related to operating a technology capability on-premises. Software licenses and hardware are additional costs.
+
+With the *TCO Calculator*, you enter the details of your on-premises workloads. Then you review the suggested industry average cost (which you can adjust) for related operational costs. These costs include electricity, network maintenance, and IT labor. You're then presented with a side-by-side report. Using the report, you can compare those costs with the same workloads running on Azure.
+
+image::azure-az900_45.png[]
+
+Working with the TCO Calculator involves three steps:
+
+    * *Define your workloads* +
+    Enter the specifications of your on-premises infrastructure, based on these 4 categories: 
+        ** *servers*: This category includes operating systems, virtualization methods, CPU cores, and memory (RAM).
+        ** *databases*: This category includes database types, server hardware, and the Azure service you want to use, which includes the expected maximum concurrent user sign-ins.
+        ** *storage*: This category includes storage type and capacity, which includes any backup or archive storage.
+        ** *networking*: This category includes the amount of network bandwidth you currently consume in your on-premises environment.
+
+    * *Adjust assumptions* +
+    You specify whether your current on-premises licenses are enrolled for https://www.microsoft.com/licensing/licensing-programs/software-assurance-default[Software Assurance], which can save you money by reusing those licenses on Azure. +
+    You also specify whether you need to *replicate your storage to another Azure region* for greater redundancy.
+    {lb}
+    Then, you can see the *key operating cost assumptions* across several different areas, which vary among teams and organizations. These costs have been certified by Nucleus Research, an independent research company. For example, these costs include:
+
+        ** Electricity price per kilowatt hour (KWh).
+        ** Hourly pay rate for IT administration.
+        ** Network maintenance cost as a percentage of network hardware and software costs.
+
++
+.Couverture Software Assurance (offre Azure Hybrid Benefit)
+[NOTE]
+====
+L’offre Azure Hybrid Benefit vous permet de *valoriser vos licences locales* et d’économiser jusqu’à 40 % sur les machines virtuelles et jusqu’à 82 % avec les instances Azure Reserved Virtual Machines (VM).
+====
+
+    * *View the report* +
+    Choose a time frame between one and five years. the TCO Calculator generates a report that's based on the information you've entered. Here's an example: +
+    image:azure-az900_46.png[]
+    For each category (compute, datacenter, networking, storage, and IT labor), you can also view a *side-by-side comparison* of the cost breakdown of operating those workloads *on-premises versus operating them on Azure*. Here's an example: +
+    image:azure-az900_47.png[]
+
+==== Purchase Azure services
+
+Questions to be addressed to prepare Cloud migration:
+
+    * What types of Azure subscriptions are available?
+    * How do we purchase Azure services?  
+    * Does location or network traffic affect cost?
+    * What other factors affect the final cost?
+    * How can we get a more detailed estimate of the cost to run on Azure?
+
+*What types of Azure subscriptions can I use?*
+
+Azure offers both free and paid subscription options to fit your needs and requirements. They are:
+
+    * *Free trial*: A free trial subscription provides you with 12 months of popular free services, a credit to explore any Azure service for 30 days, and more than 25 services that are always free. Your Azure services are disabled when the trial ends or when your credit expires for paid products, unless you upgrade to a paid subscription.
+    * *Pay-as-you-go*: A pay-as-you-go subscription enables you to pay for what you use by attaching a credit or debit card to your account. Organizations can apply for volume discounts and prepaid invoicing.
+    * *Member offers*: Your existing membership to certain Microsoft products and services might provide you with credits for your Azure account and reduced rates on Azure services. For example, member offers are available to Visual Studio subscribers, Microsoft Partner Network members, Microsoft for Startups members, and Microsoft Imagine members.
+
+*How do I purchase Azure services?*
+
+    * *Through an Enterprise Agreement*: 
+    Larger customers, known as enterprise customers, can sign an Enterprise Agreement with Microsoft. This agreement commits them to spending a predetermined amount on Azure services over a period of three years. The service fee is typically paid annually. As an Enterprise Agreement customer, you'll receive the best customized pricing based on the kinds and amounts of services you plan on using.
+
+    * *Directly from the web*: 
+    Here, you purchase Azure services directly from the Azure portal website and pay standard prices. You're billed monthly, as a credit card payment or through an invoice. This purchasing method is known as Web Direct.
+
+    * *Through a Cloud Solution Provider*: 
+    A Cloud Solution Provider (CSP) is a Microsoft Partner who helps you build solutions on top of Azure. Your CSP bills you for your Azure usage at a price they determine. They also answer your support questions and escalate them to Microsoft, as needed.
+
+Your account is billed according to Azure's *"pay for what you use" model*. +
+At the *end of each month*, you're billed for what you've used. At any time, you can check the cost management and billing page in the Azure portal to get a summary of your current usage and review invoices from prior months.
+
+*What factors affect cost?*
+
+The way you use resources, your subscription type, and pricing from third-party vendors are common factors. Let's take a quick look at each: 
+
+    * *Resource type*: such as blob storage or table storage, etc.
+    * *Usage meters*: +
+    When you provision a resource, Azure creates *meters* to *track usage of that resource*. Azure uses these meters to generate a usage record that's later used to help calculate your bill.
+    {lb}
+    Think of usage meters similar to how you use electricity or water in your home. You might pay a base price each month for electricity or water service, but your final bill is based on the total amount that you consumed.
+    {lb}
+    Let's look at a single VM as an example. The following kinds of meters are relevant to tracking its usage:
+        ** Overall CPU time.
+        ** Time spent with a public IP address.
+        ** Incoming (ingress) and outgoing (egress) network traffic in and out of the VM.
+        ** Disk size and amount of disk read and disk write operations.
+        ** Each meter tracks a specific type of usage. For example, a meter might track bandwidth usage (ingress or egress network traffic in bits per second), number of operations, or its size (storage capacity in bytes).
+    {lb}
+    The usage that a meter tracks *correlates to a quantity of billable units*. Those units are charged to your account for each billing period. The rate per billable unit depends on the resource type you're using.
+
+    * *Resource usage* +
+    In Azure, you're *always charged based on what you use*. As an example, let's look at how this billing applies to deallocating a VM.
+    {lb}
+    In Azure, you can delete or deallocate a VM. Deleting a VM means that you no longer need it. The VM is removed from your subscription, and then it's prepared for another customer. +
+    Deallocating a VM means that the VM is no longer running. But the associated hard disks and data are still kept in Azure. The VM isn't assigned to a CPU or network in Azure's datacenter, so it doesn't generate the costs associated with compute time or the VM's IP address. Because the disks and data are still stored, and the resource is present in your Azure subscription, you're still billed for disk storage.
+    {lb}
+    Deallocating a VM when you don't plan on using it for some time is just one way to minimize costs. For example, you might deallocate the VMs you use for testing purposes on weekends when your testing team isn't using them. 
+
+    * *Azure subscription types* +
+    Some Azure subscription types also include usage allowances, which affect costs. +
+    For example, an Azure free trial subscription provides access to a number of Azure products that are free for 12 months. It also includes credit to spend within your first 30 days of sign-up. And you get access to more than 25 products that are always free (based on resource and region availability).
+
+    * *Azure Marketplace* +
+    You can also purchase Azure-based solutions and services from *third-party vendors* through Azure Marketplace. Examples include managed network firewall appliances or connectors to third-party backup services. *Billing structures are set by the vendor*.
+
+*Does location or network traffic affect cost?*
+
+*Location* is known as the Azure region.
+
+Azure infrastructure is distributed globally, which enables you to deploy your services centrally or *provision your services closest to where your customers use them*. +
+Different regions can have different associated prices. Because geographic regions can *impact where your network traffic flows*, network traffic is a *cost influence* to consider as well.
+
+*Billing zones* are a factor in determining the cost of some Azure services. +
+https://azure.microsoft.com/pricing/details/bandwidth[Bandwidth] refers to *data moving in and out of Azure datacenters*. Some *inbound data transfers* (data going into Azure datacenters) are *free*. For outbound data transfers (data leaving Azure datacenters), data transfer pricing is based on zones.
+
+The https://azure.microsoft.com/en-us/pricing/calculator/[Azure Pricing calculator] helps you in the process of taking all factors into account to get an accurate cost estimate. +
+It displays Azure products in categories: region, tier, billing options, support options, programs and offers, Azure Dev/Test pricing
+
+Keep in mind that *the Pricing calculator provides estimates and NOT actual price quotes*. Actual prices can vary depending upon the date of purchase, the payment currency you're using, and the type of Azure customer you are.
+
+==== Exercise - Estimate workload cost by using the Pricing calculator
+
+In the https://azure.microsoft.com/en-us/pricing/calculator/[Azure Pricing calculator], in the "Example Scenarios" section, you can find templates for some *reference architectures*, or common cloud-based solutions that you can use as a starting point (like "Modern data warehouse")
+
+==== Manage and minimize total cost on Azure
+
+Calculate your projected costs by using the *Pricing calculator* and the *Total Cost of Ownership (TCO) Calculator*. Only add the products, services, and resources that you need for your solution.
+
+*Use Azure Advisor to monitor your usage*
+
+    * Azure Advisor *identifies unused or underutilized resources* and recommends unused resources that you can remove. This information helps you configure your resources to match your actual workload. +
+    image:azure-az900_48.png[]
+
+*Use spending limits to restrict your spending*
+
+    * If you have a *free trial* or a *credit-based Azure subscription*, you can use *spending limits* to prevent accidental overrun.
+    * If you have a credit-based subscription and you reach your configured spending limit, Azure suspends your subscription until a new billing period begins.
+
+*Use Azure Reservations to prepay*
+
+    * *Azure Reservations* offers *discounted prices* on certain Azure services. Azure Reservations can save you up to 72 percent as compared to pay-as-you-go prices. To receive a discount, *you reserve services and resources by paying in advance*.
+    * For example, you can prepay for one year or three years of use of VMs, database compute capacity, database throughput, and other Azure resources.
+
+*Choose low-cost locations and regions*
+
+    * The cost of Azure products, services, and resources can vary across locations and regions. If possible, you should use them in those *locations and regions where they cost less*.
+    * But remember, some resources are metered and *billed according to how much outgoing (egress) network bandwidth they consume*. You should provision connected resources that are metered by bandwidth in the same Azure region to reduce egress traffic between them.
+
+*Research available cost-saving offers*
+
+    * Keep up to date with the *latest Azure customer and subscription offers*, and switch to offers that provide the greatest cost-saving benefit.
+
+*Use Azure Cost Management + Billing to control spending*
+
+    * Azure Cost Management + Billing is a free service that helps you understand your Azure bill, manage your account and subscriptions, monitor and control Azure spending, and optimize resource use.
+    * This service includes: 
+        ** *Reporting*: Use historical data to generate reports and forecast future usage and expenditure.
+        ** *Data enrichment*: Improve accountability by categorizing resources with tags that correspond to real-world business and organizational units.
+        ** *Budgets*: Create and manage cost and usage budgets by monitoring resource demand trends, consumption rates, and cost patterns.
+        ** *Alerting*: Get alerts based on your cost and usage budgets.
+        ** *Recommendations*: Receive recommendations to eliminate idle resources and to optimize the Azure resources you provision.
+
+*Apply tags to identify cost owners*
+
+    * Tags help you manage costs associated with the different groups of Azure products and resources. You can *apply tags to groups of Azure resources to organize billing data*.
+
+*Resize underutilized virtual machines*
+
+    * Virtual machine *costs are linear* and double for each size larger *in the same series*. So in this case, if you reduce the VM's size from Standard_D4_v4 to Standard_D2_v4, which is the next size lower, you reduce your compute cost by 50 percent.
+    * Keep in mind that *resizing a VM requires it to be stopped, resized, and then restarted*. This process might take a few minutes depending on how significant the size change is. Be sure to properly plan for an outage, or shift your traffic to another instance while you perform resize operations.
+
+*Deallocate virtual machines during off hours*
+
+    * Recall that to deallocate a VM means to *no longer run the VM*, but *preserve the associated hard disks and data* in Azure.
+    * This approach is an *excellent strategy for development and testing environments*, where the VMs are needed only during business hours. Azure even provides a way to automatically start and stop your VMs on a schedule.
+
+*Delete unused resources*
+
+    * It's not uncommon to find nonproduction or proof-of-concept systems that are no longer needed following the completion of a project.
+
+*Migrate from IaaS to PaaS services*
+
+    * One way to reduce costs is to gradually move IaaS workloads to run on platform as a service (PaaS) services.
+
+*Save on licensing costs* +
+You can do it by: 
+
+    * Choosing cost-effective operating systems
+    * Using *Azure Hybrid Benefit* to repurpose software licenses on Azure
+        ** If you've purchased licenses for Windows Server or SQL Server, and your licenses are covered by https://www.microsoft.com/licensing/licensing-programs/software-assurance-default[Software Assurance], you might be able to *repurpose those licenses on VMs on Azure*.
+
+==== Knowledge check
+
+    * Which is the best first step the team should take to *compare the cost of running these environments* on Azure versus in their datacenter?
+        ** Run the *Total Cost of Ownership Calculator*.
+
+    * What's the best way to ensure that the *development team doesn't provision too many virtual machines* at the same time?
+        ** *Apply spending limits* to the development team's Azure subscription.
+    
+    * Which is the most efficient way for the *testing team* to *save costs on virtual machines on weekends*, when testers are not at work?
+        ** *Deallocate virtual machines* when they're not in use. +
+        Indeed, *Usage meters* track not only *CPU time but also network traffic and the number of disk operations*. +
+        Meaning Azure bills you NOT only for the CPU time that you use.
+
+    * Resources in the Dev and Test environments are each paid for by different departments. What's the *best way to categorize costs by department*?
+        ** *Apply a tag* to each virtual machine that identifies the appropriate billing department.
+
+To sum it up, to have a clear picture of the total cost of running in the cloud: 
+
+    1. Use the *Total Cost of Ownership Calculator* to estimate the cost savings of operating its solution on Azure instead of in its on-premises datacenter.
+    2. Then use the *Pricing calculator* to get a more detailed estimate for running a typical workload on Azure each month.
+    3. Create a check list of cost-saving measures
+
+=== Choose the right Azure services by examining the SLAs and service lifecycle
+
+==== What are service-level agreements (SLAs)?
+
+.What is a SLA?
+[IMPORTANT]
+====
+A service-level agreement (SLA) is a formal agreement between a service company and the customer. +
+An SLA describes how Microsoft responds when an Azure service fails to perform to its specification.
+====
+
+*Where can I access SLAs for Azure services?*
+
+    * You can access SLAs from https://azure.microsoft.com/support/legal/sla/[Service Level Agreements]
+    * Each Azure service defines its own SLA.
+
+    * *SLA details*: This section defines the specific guarantees for the service. Performance commitments are commonly measured as a percentage, which typically ranges from 99.9 percent ("three nines") to 99.99 percent ("four nines"). +
+    The primary performance commitment typically focuses on *uptime*, or the percentage of time that a product or service is successfully operational. Some SLAs focus on other factors as well, including latency, or how fast the service must respond to a request.
+
+*How do percentages relate to total downtime?*
+
+    * *Downtime* refers to the time duration that the service is unavailable.
+    * Here's a table to give you a sense of how total downtime decreases as the SLA percentage increases from 99 percent to 99.999 percent: +
+    image:azure-az900_49.png[]
+
+*What are service credits?*
+
+IMPORTANT: A *service credit* is the percentage of the fees you paid that are credited back to you according to the claim approval process.
+
+    * Here's how credits are applied for Azure Database for MySQL according to uptime: +
+    image:azure-az900_50.png[]
+
+[WARNING]
+====
+Free products typically don't have an SLA. +
+Services like Azure Advisor are always free, and, hence, their SLA states that it doesn't have a financially backed SLA.
+====
+
+*How do I know when there's an outage?*
+
+    * https://status.azure.com/status[Azure status] provides a global view of the health of Azure services and regions. If you suspect there's an outage, this is often a good place to start your investigation.
+    * From the Azure status page, you can also access *Azure Service Health*. This provides a personalized view of the health of the Azure services and regions that you're using, directly from the Azure portal.
+
+*How can I request a service credit from Microsoft?*
+
+    * Typically, you need to *file a claim* with Microsoft to receive a service credit.
+    * Each SLA specifies the timeline by which you must submit your claim and when Microsoft processes your claim. For many services, you must *submit your claim by the end of the calendar month* following the month in which the incident occurred.
+
+==== Define your application SLA
+
+IMPORTANT: An *application SLA* defines the SLA requirements for a specific application. This term typically refers to an application that you build on Azure.
+
+*Usage patterns* define when and how users access your application.
+
+One question to consider is *whether the availability requirement differs between critical and non-critical time periods*. For example, a tax-filing application can't fail during a filing deadline. +
+For Tailwind Traders, retail stores aren't open 24 hours a day, so if the application were down in the middle of the night, the impact would be minimal. However, because Tailwind Traders has retail locations all over the world, it will need to ensure that each location has access to the service during its retail hours.
+
+==== Design your application to meet your SLA
+
+IMPORTANT: A *workload* is a distinct capability or task that's logically separated from other tasks, in terms of business logic and data storage requirements. Each workload defines a set of requirements for availability, scalability, data consistency, and disaster recovery.
+
+The process of combining SLAs helps you compute the *composite SLA* for a *set of services*. Computing the composite SLA requires that you multiply the SLA of each individual service. +
+Example with an application that requires 2 VMs, 1 Azure SQL database and 1 Azure Load Balancer:
+
+image::azure-az900_51.png[]
+
+Here the result is *99.78%*, meaning *NOT the 99.99%* that you get from each service taken separately.
+
+.Be careful with composite SLA
+WARNING: Using multiple services adds an extra level of complexity and slightly increases the risk of failure.
+
+To ensure high availability, you might plan for your application to have *duplicate components across several regions*, known as *redundancy*. +
+Conversely, to *minimize costs during non-critical periods*, you might run your application *only in a single region*.
+
+Example for Tailwind Traders, its main website must be available as close to 100 percent of the time as possible. To accomplish that, Tailwind Traders *might deploy extra instances of the same virtual machine across different availability zones in the same Azure region*. Doing so helps ensure that if one zone is affected, virtual machine instances in the other zone can pick up the load.
+
+WARNING: Consider how critical high availability is to your requirements before you add redundancy. There may be simpler ways to meet your application SLA.
+
+.SLA above 99.99% (4 nines) is very difficult to achieve.
+[NOTE]
+====
+Performance targets above 99.99 percent are very difficult to achieve. An SLA of 99.99 percent *means 1 minute of downtime per week*. It's difficult for humans to respond to failures quickly enough to meet SLA performance targets above 99.99 percent. Instead, your application must be able to self-diagnose and self-heal during an outage.
+====
+
+==== Access preview services and preview features
+
+*What is the service lifecycle?*
+
+    * The service lifecycle defines *how every Azure service is released for public use*.
+    * Every Azure service *starts in the development phase*. In this phase, the Azure team collects and defines its requirements, and begins to build the service.
+    * Next, the service is released to the *public preview phase*. During this phase, the public can access and experiment with it so that it can provide feedback. 
+    * After a new Azure service is validated and tested, it's released to all customers as a production-ready service. This is known as *general availability (GA)*.
+
+Each Azure preview defines its own terms and conditions. All preview-specific terms and conditions supplement your existing Azure service agreement. +
+*Some previews aren't covered by customer support*. Therefore, previews are *not recommended for business-critical workloads*.
+
+You can access preview services from the https://portal.azure.com/[Azure portal]. +
+Select "Create a resource", and search for "preview" in the search box.
+
+TIP: You can access preview features that are specific to the Azure portal itself from https://preview.portal.azure.com/[Microsoft Azure (Preview)].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 == Lexique
 
@@ -921,18 +2374,49 @@ TO BE COMPLETED
 ACU:: *Azure Compute Units*. Ressources de calcul dédiées utilisées pour exécuter des applications déployées dans le plan App Service.
 ARM:: *Azure Resource Manager*. Les modèles Azure Resource Manager sont des fichiers JSON (JavaScript Object Notation) qui définissent l'infrastructure et la configuration de votre projet.
 BGP:: *Border Gateway Protocol*. BGP is used to exchange routes between on-premises networks and resources running in Azure. This protocol enables dynamic routing between your on-premises network and services running in the Microsoft cloud.
+BYOD:: Bring Your Own Device
 CapEx:: *Capital Expenditure*. This is the up front spending of money on physical infrastructure, and then deducting that up front expense over time. The up front cost from CapEx has a value that reduces over time.
+CCM:: Cloud Controls Matrix
 CDN:: A *content delivery network*, or content distribution network (CDN), is a geographically distributed network of proxy servers and their data centers. The goal is to provide high availability and performance by distributing the service spatially relative to end users.
+CORS:: Cross-Origin Resource Sharing
+CSA:: Cloud Security Alliance
+FedRAMP:: Federal Risk and Authorization Management Program. Microsoft cloud services have undergone independent, third-party FedRAMP Moderate and High Baseline audits. Microsoft cloud services certified according to the FedRAMP standards.
+FQDN:: Fully Qualified Domain Names
+HIPAA:: The Health Insurance Portability and Accountability Act (HIPAA) is a US federal law that regulates patient Protected Health Information (PHI).
 Hosting provider:: un synonyme pour "cloud services provider"
+IAM:: Identity and Access Management
 IOPS:: I/O operations per second
 ISP:: Internet Service Provider
+MFA:: Multi-Factor Authentication
+MTCS:: Multi-Tier Cloud Security
+NIST / CSF:: National Institute of Standards and Technology (NIST) Cybersecurity Framework (CSF) is a voluntary framework that consists of standards, guidelines, and best practices to manage cybersecurity-related risks.
+NSG:: Network Security Group, enables you to *filter network traffic* to and from Azure resources *within an Azure virtual network*. You can think of NSGs *like an internal firewall*.
 OpEx:: This is spending money on services or products now and being billed for them now. You can deduct this expense in the same year you spend it. There is no up front cost, as you pay for a service or product as you use it.
+PCI / DSS:: Payment Card Industry (PCI) / Data Security Standard (DSS)
+PHI:: Protected Health Information
 RBAC:: Role-Based Access Control 
 RCA:: Root Cause Analyse for Azure incidents
 SKU:: The Gateway *Stock-Keeping Unit* (SKU) defines the throughput capabilities of the VPN connection.
+TCO:: Total Cost of Ownership. The Total Cost of Ownership (TCO) Calculator can help you compare the cost of running in the datacenter versus running on Azure.
 UDR:: User-Defined Routing, allows network admins to control the routing tables between subnets, within a subnet as well as between VNets.
 VPN:: Virtual Private Network
 VXC:: Virtual Cross-Connection. Virtual cross connects (VXC) are private, direct connections between a network and a cloud provider, content delivery network, or a carrier through an internet exchange point.
+WAF:: Web Application Firewall is a feature of *Azure Application Gateway* that provides your web applications with centralized, inbound protection against common exploits and vulnerabilities.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
