@@ -79,7 +79,7 @@ Cloud computing *advantages*:
         ** *Horizontally*: Computing capacity can be increased by adding instances of a resource, such as adding more virtual machines to your configuration.
 
     * *Elasticity*: Cloud-based applications can be configured to take advantage of autoscaling, so your applications will always have the resources they need.
-        ** Cf le formateur Microsoft : l'élasticité, c'est la *scalabilité automatisée*.
+        ** _AVTD_ - Cf le formateur Microsoft : l'élasticité, c'est la *scalabilité automatisée*.
 
     * *Agility*: Cloud-based resources can be deployed and configured quickly as your application requirements change.
 
@@ -150,12 +150,20 @@ Most commonly used categories:
 * Cloud service providers operate on a *consumption-based model*, which means that end users only pay for the resources that they use.
 * Cloud services are categorized *OpEx* (Operational Expenditure) and not *CapEx* (Capital Expenditure), OpEx being a consumption-based model.
 
-____
-*IaaS*, *PaaS*, and *SaaS* each contain different levels of managed services. You may easily use a combination of these types of infrastructure. You could use Microsoft 365 on your company’s computers (*SaaS*), and in Azure you could host your VMs (*IaaS*) and use Azure SQL Database (*PaaS*) to store your data. With the cloud’s flexibility, you can use any combination that provides you with the maximum result.
-____
+[IMPORTANT]
+====
+* *CapEx*: Capital Expenditure. This is the *up front spending of money* on physical infrastructure, and then deducting that up front expense over time. The up front cost from CapEx has a value that reduces over time.
+
+* *OpEx*: Operational Expenditure. This is spending money on services or products now and being billed for them now. You can deduct this expense in the same year you spend it. There is *no up front cost*, as you *pay for a service or product as you use it*.
+    ** L'OpEx est associée à la notion de "pay-as-you-go"
+====
 
 ._AVTD_ - OpEx vs CapEx
 image:azure-az900_AVTD-part1_03.png[]
+
+____
+*IaaS*, *PaaS*, and *SaaS* each contain different levels of managed services. You may easily use a combination of these types of infrastructure. You could use Microsoft 365 on your company’s computers (*SaaS*), and in Azure you could host your VMs (*IaaS*) and use Azure SQL Database (*PaaS*) to store your data. With the cloud’s flexibility, you can use any combination that provides you with the maximum result.
+____
 
 === Describe core Azure architectural components
 
@@ -2551,6 +2559,17 @@ TIP: You can access preview features that are specific to the Azure portal itsel
     ** Via ces previews Azure, les clients peuvent bêta-tester de nouveaux services / fonctionnalités.
     ** *Pas de SLA* pour ces services en Preview
 
+== Resources
+
+D'autres sites permettant de préparer la certification :
+
+    * Exam AZ-900: Microsoft Azure Fundamentals — Most Complete Preparation Guide Ever! : https://kyleake.medium.com/exam-az-900-microsoft-azure-fundamentals-most-complete-preparation-guide-ever-76614d31a59c
+    * Java & Moi - Certification Microsoft Azure Fundamentals : https://javaetmoi.com/2020/02/certification-microsoft-azure-fondamentals/
+
+Sites d'examens blancs, questions / réponses pour s'entraîner : 
+
+    * https://www.examtopics.com/exams/microsoft/az-900
+
 == Lexique
 
 [glossary]
@@ -2590,56 +2609,9 @@ VPN:: Virtual Private Network
 VXC:: Virtual Cross-Connection. Virtual cross connects (VXC) are private, direct connections between a network and a cloud provider, content delivery network, or a carrier through an internet exchange point.
 WAF:: Web Application Firewall is a feature of *Azure Application Gateway* that provides your web applications with centralized, inbound protection against common exploits and vulnerabilities.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 == OLD COURSE CONTENT, BEFORE 2020/11/09
+
+WARNING: Certaines notions abordées dans cet ancien contenu, comme les *Availability sets* et la définition de la *fault tolerance*, ne sont PAS reprises dans le nouveau cours de préparation Microsoft Learn à la certification AZ-900.
 
 === Explore Microsoft Azure cloud concepts (AZ-900)
 
@@ -2822,6 +2794,45 @@ With Azure Resource Manager, you can:
     Examples of elements you may wish to control are: enforcing naming convention on resources, limiting which types and instances of resources can be deployed, or limiting which regions can host a type of resource.
 
 Resource Manager templates are *JSON files* that define the resources you need to deploy your solution.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
