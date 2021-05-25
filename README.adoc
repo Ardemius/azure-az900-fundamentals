@@ -38,6 +38,26 @@ IMPORTANT: Exam was updated on 2020/11/09 with a new plan!
 5. Azure Fundamentals part 5: Describe identity, governance, privacy, and compliance features
 6. Azure Fundamentals part 6: Describe Azure cost management and service level agreements
 
+Déroulement de la certification :
+
+    * 40 questions sur 1 heure
+    * score minimum de 700 / 1000
+
+.Compétences mesurées par la certification AZ-900
+image:azure-az900_AVTD-part1_01.png[]
+
+.Azure Virtual Training Days : Notions de bases
+[NOTE]
+====
+Pour information, j'ai assisté aux *"Azure Virtual Training Days : Notions de bases"* les 18 et 19/05 (6 heures au total). +
+Leur contenu est bien moins poussé que les informations de la documentation Microsoft "Learn", aussi ne sont-ils vraiment pas obligatoires pour l'examen.
+
+Néanmoins, plusieurs démos y sont présentées, et j'ai ajouté à ce doc les informations intéressantes que j'y ai notées avec le préfixe "AVTD".
+
+Le formateur de Microsoft était Mehdi SEBBANE, Azure Technical Trainer Microsoft. +
+12 ans chez Microsoft, localisé à Vancouver (Canada), PFE Identity and Security.
+====
+
 == Azure Fundamentals part 1: Describe core Azure concepts
 
 https://docs.microsoft.com/en-us/learn/paths/az-900-describe-cloud-concepts/
@@ -59,6 +79,7 @@ Cloud computing *advantages*:
         ** *Horizontally*: Computing capacity can be increased by adding instances of a resource, such as adding more virtual machines to your configuration.
 
     * *Elasticity*: Cloud-based applications can be configured to take advantage of autoscaling, so your applications will always have the resources they need.
+        ** Cf le formateur Microsoft : l'élasticité, c'est la *scalabilité automatisée*.
 
     * *Agility*: Cloud-based resources can be deployed and configured quickly as your application requirements change.
 
@@ -70,6 +91,9 @@ Cloud *service models*: *IaaS* / *PaaS* / *SaaS*
 
 image::azure-az900_09.png[]
 
+._AVTD_ - Les 3 types de services Cloud : IaaS, PaaS, SaaS
+image:azure-az900_AVTD-part1_04.png[]
+
 .levels of responsibility betweee a cloud provider and a cloud tenant
 image::azure-az900_10.png[]
 
@@ -78,9 +102,16 @@ image::azure-az900_10.png[]
 .public, private and hybrid clouds
 image:azure-az900_11.png[]
 
-* *public cloud*: Services are offered over the public internet and available to anyone who wants to purchase them. Cloud resources like servers and storage are owned and operated by a third-party cloud service provider and delivered over the internet.
-* *private cloud*: Computing resources are *used exclusively by users from one business* or organization. A private cloud can be physically located at your organization's on-site datacenter. *It also can be hosted by a third-party service provider*.
-* *hybrid cloud*: This computing environment combines a public cloud and a private cloud by allowing data and applications to be shared between them.
+    * *public cloud*: Services are offered over the public internet and available to anyone who wants to purchase them. Cloud resources like servers and storage are owned and operated by a third-party cloud service provider and delivered over the internet.
+    ** le Cloud public est assimilé à de l'*OpEx*
+
+    * *private cloud*: Computing resources are *used exclusively by users from one business* or organization. A private cloud can be physically located at your organization's on-site datacenter. *It also can be hosted by a third-party service provider*.
+    ** le cloud privé est assimilé à du *CapEx*
+
+    * *hybrid cloud*: This computing environment combines a public cloud and a private cloud by allowing data and applications to be shared between them.
+
+._AVTD_ - 3 types de Cloud : public, privé et hybride
+image:azure-az900_AVTD-part1_02.png[]
 
 ==== What is Azure ?
 
@@ -117,11 +148,14 @@ Most commonly used categories:
 === Discuss Azure fundamental concepts
 
 * Cloud service providers operate on a *consumption-based model*, which means that end users only pay for the resources that they use.
-* Cloud services are categorized *OpEx* (Operational Expenditure) and not CapEx (Capital Expenditure), OpEx being a consumption-based model.
+* Cloud services are categorized *OpEx* (Operational Expenditure) and not *CapEx* (Capital Expenditure), OpEx being a consumption-based model.
 
 ____
 *IaaS*, *PaaS*, and *SaaS* each contain different levels of managed services. You may easily use a combination of these types of infrastructure. You could use Microsoft 365 on your company’s computers (*SaaS*), and in Azure you could host your VMs (*IaaS*) and use Azure SQL Database (*PaaS*) to store your data. With the cloud’s flexibility, you can use any combination that provides you with the maximum result.
 ____
+
+._AVTD_ - OpEx vs CapEx
+image:azure-az900_AVTD-part1_03.png[]
 
 === Describe core Azure architectural components
 
@@ -143,7 +177,7 @@ image::azure-az900_15.png[]
 
     * Level of scope above subscriptions. 
     * All subscriptions within a management group automatically inherit the conditions applied to the management group.
-    * All subscriptions within a single management group must trust the same Azure AD tenant.
+    * All subscriptions within a single management group must trust the *same Azure AD tenant*.
 
 image::azure-az900_16.png[]
 
@@ -204,6 +238,9 @@ An availability zone is set up to be an *isolation boundary*. If one zone goes d
 
 image::azure-az900_18.png[]
 
+._AVTD_ - Zones de disponibilité
+image:azure-az900_AVTD-part1_07.png[]
+
 ==== Azure region pairs
 
 It's possible that a large disaster could cause an outage big enough to affect even two datacenters. That's why Azure also creates *region pairs*.
@@ -218,6 +255,11 @@ Azure divides the world into *geographies* that are defined by geopolitical boun
 * Data continues to reside within the same geography as its pair (except for Brazil South) for tax and law enforcement jurisdiction purposes.
 
 image::azure-az900_19.png[]
+
+._AVTD_ - Region pairs / Paires régionales
+image:azure-az900_AVTD-part1_06.png[]
+
+NOTE: Dans tous les cas (comme la réplication inter-régionales), la bande passante est facturée au client
 
 == Azure Fundamentals part 2: Describe core Azure services
 
@@ -259,9 +301,11 @@ The core data model of Cosmos DB is natively accessible from dynamically typed p
 
 * Azure SQL Database is a relational database based on the latest stable version of the Microsoft SQL Server database engine.
 * It is a *platform as a service* (PaaS) database engine.
-* It provides 99,99% availability
+* It provides 99,99% availability ("four nines")
 * Microsoft explains that the newest capabilities of SQL Server are released first to SQL Database, and then to SQL Server itself.
 * You can migrate your existing SQL Server databases with minimal downtime by using the *Azure Database Migration Service*.
+
+* Cf le formateur, ce service de base de données est *distribué mondialement*, contrairement aux implémentations Azure de MySQL et PostgreSQL, qui sont associées à 1 région.
 
 ==== Explore Azure SQL Managed Instance
 
@@ -465,7 +509,13 @@ Blob Storage is ideal for:
     * *Storing data for analysis* by an on-premises or Azure-hosted service.
     * *Storing up to 8 TB of data for virtual machines*.
 
-NOTE: Azure Blob Storage is your best option for storing *disaster recovery* files and *archives*.
+[NOTE]
+====
+Azure Blob Storage is your best option for storing *disaster recovery* files and *archives*.
+
+For a comparison of Azure Blob storage vs Azure Data Lake, see : +
+https://blog.pragmaticworks.com/azure-data-lake-vs-azure-blob-storage-in-data-warehousing
+====
 
 ==== Azure Files fundamentals
 
@@ -514,6 +564,16 @@ For name resolution, you can use the *name resolution service that's built in to
     * *Azure ExpressRoute*
         ** For environments where you need *greater bandwidth* and even *higher levels of security*.
         ** provides dedicated *private connectivity* to Azure that *doesn't travel over the internet*.
+
++
+.AVTD
+[NOTE]
+====
+Pour le trafic sur un réseau privé virtuel, il faut activer le *ICMP* (Internet Control Message Protocol) entre les machines virtuelles.
+
+Durant sa démo, le formateur l'a activé via Powershell : +
+image:azure-az900_AVTD-part1_08.png[]
+====
 
 *Route network traffic*. +
 By default, Azure routes traffic between subnets on any connected virtual networks, on-premises networks, and the internet. You also can control routing and override those settings, as follows:
@@ -639,7 +699,7 @@ There are two basic approaches to AI:
         ** Choose Azure Machine Learning when your *data scientists* need *complete control* over the design and training of an algorithm using your *own data*.
 
     * *Azure Cognitive Services*
-        ** provides prebuilt machine learning models that enable applications to see, hear, speak, understand, and even begin to reason. +
+        ** provides prebuilt machine learning models that enable applications to *see*, *hear*, *speak*, *understand*, and even *begin to reason*. +
         You can perform *sentiment analysis* with Azure Cognitive Services. +
         You don't need special machine learning or data science knowledge to use these services.
         ** While Azure Machine Learning requires you to bring your own data and train models over that data, Azure Cognitive Services, for the most part, *provides pretrained models* so that you can bring in your live data to get predictions on.
@@ -802,7 +862,7 @@ _Tailwind Traders wants to optimize its cloud spend. Also, the organization is c
 Which service should you choose?
 
 * First, in this scenario, *does Tailwind Traders need to analyze its Azure usage for the sake of optimization?* +
-    ** Yes. Tailwind Traders understands that it might be spending too much, is concerned about its security practices, and wants to have its cloud usage analyzed against industry best practices. Therefore, Azure Advisor is the perfect option for this scenario. ++
+    ** Yes. Tailwind Traders understands that it might be spending too much, is concerned about its security practices, and wants to have its cloud usage analyzed against industry best practices. Therefore, Azure Advisor is the perfect option for this scenario. +
     Although you might have found the right product option, let's continue evaluating the decision criteria for this scenario.
 
 * Second, in this scenario, *does Tailwind Traders want to monitor the health of Azure services that affect all customers or the resources that are deployed on Azure?*
@@ -836,7 +896,7 @@ Your product options:
     These commands *call the Azure Rest API* to perform every possible management task in Azure. Cmdlets can be executed independently or combined into a script file and executed together to orchestrate:
         ** The routine setup, teardown, and maintenance of a single resource or multiple connected resources.
         ** The deployment of an entire infrastructure, which might contain dozens or hundreds of resources, from *imperative code*. +
-    Azure PowerShell *can be accessed in a web browser* via Azure Cloud Shell.
+    Azure PowerShell *can be accessed in a web browser* via *Azure Cloud Shell*.
     
     * *Azure CLI*: nearly the same thing as Azure PowerShell BUT in *Bash*.
 
@@ -933,12 +993,12 @@ Alternately, *all devices could be updated with new firmware* to fix issues or a
 
     ** From a cloud-to-device perspective, IoT Hub allows for *"command and control"*. That is, you can have either manual or automated remote control of connected devices, so you can instruct the device to open valves, set target temperatures, restart stuck devices, and so on.
 
-    * IoT Hub monitoring helps you maintain the health of your solution by *tracking events* such as *device creation*, *device failures*, and *device connections*.
+    ** IoT Hub monitoring helps you maintain the health of your solution by *tracking events* such as *device creation*, *device failures*, and *device connections*.
 
 * *Azure IoT Central*
 
     ** Azure IoT Central *builds on top of IoT Hub* by *adding a dashboard* that allows you to *connect*, *monitor*, and *manage your IoT devices*. +
-    The visual user interface (UI) makes it easy to quickly connect new devices and watch as they begin sending telemetry or error messages. You can watch the overall performance across all devices in aggregate, and you can set up alerts that send notifications when a specific device needs maintenance. Finally, you can push firmware updates to the device.
+    The visual user interface (UI) makes it easy to quickly connect new devices and watch as they begin sending *telemetry* or *error messages*. You can watch the overall performance across all devices in aggregate, and you can set up alerts that send notifications when a specific device needs maintenance. Finally, you can *push firmware updates* to the device.
 
     ** To help you get up and running quickly, IoT Central *provides starter templates* for common scenarios across various industries, such as retail, energy, healthcare, and government. You then customize the design starter templates directly in the UI by choosing from existing themes or creating your own custom theme, setting the logo, and so on. With IoT Central, you can tailor the starter templates for the specific data that's sent from your devices, the reports you want to see, and the alerts you want to send.
 +
@@ -956,13 +1016,17 @@ image:azure-az900_30.png[]
     {sb}
     Azure Sphere comes in three parts:
 
-        *** The first part is the *Azure Sphere micro-controller unit (MCU)*, which is responsible for *processing the operating system and signals from attached sensors*. The following image displays the Seed Azure Sphere MT3620 Development Kit MCU, one of several different starter kits that are available for prototyping and developing Azure Sphere applications.
+        *** The first part is the *Azure Sphere micro-controller unit (MCU)*, which is responsible for *processing the operating system and signals from attached sensors*. The following image displays the Seed Azure Sphere MT3620 Development Kit MCU, one of several different starter kits that are available for prototyping and developing Azure Sphere applications. +
+        image:azure-az900_52.jpg[]
 
         *** The second part is a *customized Linux operating system (OS)* that handles communication with the security service and can run the vendor's software.
 
         *** The third part is *Azure Sphere Security Service*, also known as *AS3*. Its job is to *make sure that the device has not been maliciously compromised*. When the device attempts to connect to Azure, it first must authenticate itself, per device, which it does by using certificate-based authentication. If it authenticates successfully, AS3 checks to ensure that the device hasn't been tampered with. After it has established a *secure channel of communication*, AS3 pushes any OS or approved customer-developed software updates to the device.
 
     ** After the Azure Sphere system has validated the authenticity of the device and authenticated it, the device can interact with other Azure IoT services by sending telemetry and error information.
+
+._AVTD_ - IoT Azure
+image:azure-az900_AVTD-part1_09.png[]
 
 ==== Analyze the decision criteria
 
@@ -1024,6 +1088,11 @@ Security Center includes advanced cloud defense capabilities for virtual machine
     ** Tailwind Traders can use Security Center to get a centralized view of all of its security alerts. From there, the company can dismiss false alerts, investigate them further, *remediate alerts manually*, or *use an automated response* with a *workflow automation*.
     ** *Workflow automation* uses *Azure Logic Apps* and *Security Center connectors*. The logic app can be triggered by a threat detection alert or by a Security Center recommendation, filtered by name or by severity. You can then configure the logic app to run an action such as sending an email or posting a message to a Microsoft Teams channel.
 
+_AVTD_ - *Azure Security Center* : *centre de surveillance* offrant une protection contre les menaces dans tous vos centres de données, à la fois *dans Azure et en local*. +
+Azure Security Center va vous donner un *score de sécurité*.
+
+image::azure-az900_AVTD-part2_10.png[]
+
 ==== Detect and respond to security threats by using Azure Sentinel
 
 Security management on a large scale can benefit from a dedicated *Security Information and Event Management (SIEM)* system. A SIEM system *aggregates security data* from many different sources (as long as those sources support an *open-standard logging format*). It also provides *capabilities for threat detection and response*.
@@ -1076,6 +1145,8 @@ image:azure-az900_32.png[]
     ** When an admin chooses *Ignore*, the alert is closed in Azure Sentinel and the incident is closed in the IT ticketing system.
     ** The workbook continues to run after it receives a response from the admins. +
     *Workbooks* can be *run manually* or *automatically* when a rule triggers an alert.
+
+_AVTD_ - *Azure Sentinel* : solution *SIEM* (gestion des informations de sécurité) et *SOAR* (réponse automatisée de sécurité) fournissant des analyses de sécurité sur les menaces à l'échelle de l'entreprise
 
 ==== Store and manage secrets by using Azure Key Vault
 
@@ -1142,7 +1213,12 @@ hVFkk96
 
 On Azure, virtual machines (VMs) run on shared hardware that Microsoft manages. Although the underlying hardware is shared, your VM workloads are isolated from workloads that other Azure customers run.
 
-Some organizations must follow *regulatory compliance* that requires them to be the *only customer using the physical machine that hosts their virtual machines*. *Azure Dedicated Host* provides dedicated physical servers to host your Azure VMs for Windows and Linux.
+[IMPORTANT]
+====
+Some organizations must follow *regulatory compliance* that requires them to be the *only customer using the physical machine that hosts their virtual machines*.
+
+*Azure Dedicated Host* provides dedicated physical servers to host your Azure VMs for Windows and Linux.
+====
 
 A *dedicated host* is mapped to a physical server in an Azure datacenter. A *host group* is a collection of dedicated hosts.
 
@@ -1158,7 +1234,7 @@ For *high availability*, you can provision multiple hosts in a *host group* and 
 *Pricing considerations*
 
     * You're *charged per dedicated host*, independent of how many virtual machines you deploy to it. The host price is based on the VM family, type (hardware size), and region.
-    * *Software licensing*, *storage*, and *network usage* are *billed separately* from the host and VMs. For more information. see Azure Dedicated Host pricing.
+    * *Software licensing*, *storage*, and *network usage* are *billed separately* from the host and VMs. For more information see https://aka.ms/ADHPricing/[Azure Dedicated Host pricing].
 
 === Secure network connectivity on Azure
 
@@ -1175,11 +1251,14 @@ image::azure-az900_33.png[]
 
 Each layer provides protection so that if one layer is breached, a subsequent layer is already in place to prevent further exposure. This approach removes reliance on any single layer of protection. It *slows down an attack* and provides alert telemetry that security teams can act upon, either automatically or manually.
 
+._AVTD_ - Défense en profondeur, via différentes couches de protection
+image:azure-az900_AVTD-part2_11.png[]
+
 Here's a brief overview of the role of each layer:
 
     * The *physical security* layer is the first line of defense to protect computing hardware in the datacenter.
     * The *identity and access* layer controls access to infrastructure and change control.
-    * The *perimeter* layer uses distributed denial of service (DDoS) protection to filter large-scale attacks before they can cause a denial of service for users.
+    * The *perimeter* layer uses *distributed denial of service (DDoS) protection* to filter large-scale attacks before they can cause a denial of service for users.
     * The *network* layer limits communication between resources through segmentation and access controls.
     * The *compute* layer secures access to virtual machines.
     * The *application* layer helps ensure that applications are secure and free of security vulnerabilities.
@@ -1190,22 +1269,22 @@ Here's a brief overview of the role of each layer:
 Your security posture is your organization's ability to protect from and respond to security threats. The common principles used to define a security posture are *confidentiality*, *integrity*, and *availability*, known collectively as *CIA*.
 
     * *Confidentiality* +
-    The principle of least privilege means *restricting access to information only to individuals explicitly granted access*, at only the level that they need to perform their work. This information includes protection of user passwords, email content, and access levels to applications and underlying infrastructure.
+    The *principle of least privilege* means *restricting access to information only to individuals explicitly granted access*, at only the level that they need to perform their work. This information includes protection of user passwords, email content, and access levels to applications and underlying infrastructure.
 
     * *Integrity* +
     *Prevent unauthorized changes to information*:
         ** At rest: when it's stored.
         ** In transit: when it's being transferred from one place to another, including from a local computer to the cloud.
-
-    +
-    A common approach used in data transmission is for the sender to create a unique fingerprint of the data by using a one-way hashing algorithm. The hash is sent to the receiver along with the data. The receiver recalculates the data's hash and compares it to the original to ensure that the data wasn't lost or modified in transit.
+        {lb}
+        A common approach used in data transmission is for the sender to create a unique fingerprint of the data by using a one-way hashing algorithm. The hash is sent to the receiver along with the data. The receiver recalculates the data's hash and compares it to the original to ensure that the data wasn't lost or modified in transit.
 
     * *Availability* +
     Ensure that services are functioning and can be accessed only by authorized users. Denial-of-service attacks are designed to degrade the availability of a system, affecting its users.
 
 ==== Protect virtual networks by using Azure Firewall
 
-A *firewall* is a network security device that monitors incoming and outgoing network traffic and *decides whether to allow or block specific traffic* based on a defined set of security rules. You can create firewall rules that specify ranges of IP addresses. Only clients granted IP addresses from within those ranges are allowed to access the destination server. Firewall rules can also include specific network protocol and port information.
+A *firewall* is a network security device that monitors incoming and outgoing network traffic and *decides whether to allow or block specific traffic* based on a defined set of security rules. +
+You can create firewall rules that specify ranges of IP addresses. Only clients granted IP addresses from within those ranges are allowed to access the destination server. Firewall rules can also include specific network protocol and port information.
 
 *Azure Firewall* is a managed, cloud-based network security service that helps *protect resources in your Azure Virtual Networks*. +
 A *virtual network* is similar to a *traditional network that you'd operate in your own datacenter*. It's a fundamental building block for your private network that enables virtual machines and other compute resources to securely communicate with each other, the internet, and on-premises networks.
@@ -1214,7 +1293,7 @@ image::azure-az900_34.png[]
 
 *Azure Firewall* is a *stateful firewall*. A stateful firewall *analyzes the complete context of a network connection*, not just an individual packet of network traffic. Azure Firewall features high availability and unrestricted cloud scalability.
 
-Azure Firewall provides a central location to create, enforce, and log application and network connectivity policies across subscriptions and virtual networks. Azure Firewall *uses a static (unchanging) public IP address* for your virtual network resources, which enables outside firewalls to identify traffic coming from your virtual network. The service is *integrated with Azure Monitor* to enable logging and analytics.
+Azure Firewall provides a central location to create, enforce, and log application and *network connectivity policies* across subscriptions and virtual networks. Azure Firewall *uses a static (unchanging) public IP address* for your virtual network resources, which enables outside firewalls to identify traffic coming from your virtual network. The service is *integrated with Azure Monitor* to enable logging and analytics.
 
 Azure Firewall provides many features, including:
 
@@ -1540,14 +1619,26 @@ Here are some recommendations on how to combine Azure services to create a compl
             *** Outbound network-level protection for all ports and protocols.
             *** Application-level protection for outbound HTTP/S.
 
+_AVTD_ - *partage* de la gestion de la sécurité entre client et Cloud provider :
+
+.Sécurité partagée entre le client et le Cloud provider
+image::azure-az900_AVTD-part2_12.png[]
+
+* De manière générale, il reste toujours la *gestion des users* (Access Management et RBAC) côté client, même en SaaS, ainsi que la *gouvernance des data*.
+* *Protection contre les attaques DDoS* : tous les services Azures ont par défaut une protection contre les attaques DDoS (activée par défaut). +
+Il s'agit de la même protection que celle utilisée par les infrastructures Microsoft
+
+.Quelles solutions de sécurité réseau pour protéger quelles couches ?
+image:azure-az900_AVTD-part2_13.png[]
+
 == Azure Fundamentals part 5: Describe identity, governance, privacy, and compliance features
 
 https://docs.microsoft.com/en-us/learn/paths/az-900-describe-identity-governance-privacy-compliance-features/
 
 === Secure access to your applications by using Azure identity services
 
-Learn how Azure Active Directory helps you *manage and secure identities*. +
-Also see how *single sign-on*, *multifactor authentication*, and *Conditional Access* enable your users to securely access resources and applications from your intranet and from public networks.
+Learn how *Azure Active Directory* helps you *manage and secure identities*. +
+Also see how *single sign-on*, *multifactor authentication* (MFA), and *Conditional Access* enable your users to securely access resources and applications from your intranet and from public networks.
 
 Learning objectives : 
 
@@ -1579,6 +1670,11 @@ Security principals are assigned *security identifiers* (SIDs) when they are cre
 The identification card represents credentials that the user has to prove their identity (you'll learn more about the types of credentials later in this module.) Once authenticated, authorization defines what kinds of applications, resources, and data that user can access.
 
 image::azure-az900_35.png[]
+
+{sb}
+
+._AVTD_ - Comparaison authentification et autorisation
+image:azure-az900_AVTD-part2_14.png[]
 
 ==== What is Azure Active Directory?
 
@@ -1642,6 +1738,10 @@ image::azure-az900_37.png[]
         *** *Something the user has*: This might be a code that's sent to the user's mobile phone.
         *** *Something the user is*: This is typically some sort of biometric property, such as a fingerprint or face scan that's used on many mobile devices.
 
+    ** _AVTD_ - *Authentification multi-facteurs Azure* : fournit une sécurité supplémentaire à vos identités, en exigeant au moins 2 facteurs pour une authentification complète   
+        *** le MFA combine quelque chose que l'on *sait*, avec quelque chose que l'on *possède* ou que l'on *est*.
+        *** le *MFA* est préconisé pour les *admin*
+
 * *What's Azure AD Multi-Factor Authentication?*
 
     ** Azure AD Multi-Factor Authentication is a Microsoft service that *provides multifactor authentication capabilities*. +
@@ -1667,6 +1767,13 @@ image::azure-az900_37.png[]
         A *managed device* being a device that meets your standards for security and compliance.
 
     ** Conditional Access comes with a *"What If" tool*, which helps you plan and troubleshoot your Conditional Access policies. You can use this tool to model your proposed Conditional Access policies across recent sign-in attempts from your users to see what the impact would have been if those policies had been enabled. The What If tool *enables you to test your proposed Conditional Access policies* before you implement them.
+
+    ** _AVTD_ - *Accès conditionnel* : outil utilisé par AAD pour regrouper les signaux, prendre des décisions et appliquer les stratégies de l'organisation 
++
+.Accès conditionnel
+image:azure-az900_AVTD-part2_15.png[]
+
+        *** Exemple d'accès conditionnel : _"si tu viens du réseau interne, pas besoin de MFA, mais si viens d'Internet, MFA obligatoire"_
 
 === Build a cloud governance strategy on Azure
 
@@ -1751,6 +1858,11 @@ Here, you begin to *form your cloud governance and cloud management strategies*.
         3. *Expand the management baseline*: Apply recommended best practices to iterate on your initial management baseline.
         4. *Advanced operations and design principles*: For workloads that require a higher level of business commitment, perform a deeper architecture review to deliver on your resiliency and reliability commitments.
 
+_AVTD_ - *Cloud Adoption Framework* : 
+
+    * Bon pour savoir où commencer avec le Cloud
+    * Très fortement recommandé quand on débute avec le Cloud
+
 ==== Create a subscription governance strategy
 
 .Reminder about structure for Azure resources
@@ -1758,8 +1870,7 @@ NOTE: The organizing structure for resources in Azure has four levels: *manageme
 
 At the beginning of any cloud governance implementation, you identify a cloud organization structure that meets your business needs. This step often involves forming a *cloud center of excellence team* (also called a *cloud enablement team* or a *cloud custodian team*). This team is empowered to *implement governance practices* from a centralized location for the entire organization.
 
-Teams often *start their Azure governance strategy* at the *subscription level*. There are three main aspects to consider when you create and manage subscriptions: +
-billing, access control, and subscription limits.
+Teams often *start their Azure governance strategy* at the *subscription level*. There are three main aspects to consider when you create and manage subscriptions: billing, access control, and subscription limits.
 
 *Billing*
 
@@ -1798,7 +1909,7 @@ Azure RBAC is enforced on *any action* that's initiated *against an Azure resour
 
 You typically access Resource Manager from the Azure portal, Azure Cloud Shell, Azure PowerShell, and the Azure CLI. *Azure RBAC doesn't enforce access permissions at the application or data level*. Application security must be handled by your application.
 
-RBAC uses an allow model. When you're assigned a role, RBAC allows you to perform certain actions, such as read, write, or delete. If one role assignment grants you read permissions to a resource group and a different role assignment grants you write permissions to the same resource group, you have *both* read and write permissions on that resource group.
+*RBAC* uses an *allow model*. When you're assigned a role, RBAC allows you to perform certain actions, such as read, write, or delete. If one role assignment grants you read permissions to a resource group and a different role assignment grants you write permissions to the same resource group, you have *both* read and write permissions on that resource group.
 
 *Who does Azure RBAC apply to?*
 
@@ -1841,6 +1952,8 @@ You can also manage tags by using Azure Policy. For example, *you can apply tags
 
 .Example of tags AppName, CostCenter, Owner, Environment and Impact
 image:azure-az900_41.png[]
+
+* _AVTD_ - *Balises (tags)* : meta-données, très utiles pour remonter les informations de facturation (entre autres).
 
 ==== Control and audit your resources by using Azure Policy
 
@@ -1905,6 +2018,10 @@ Under this initiative, the following policy definitions are included (among a to
 .Initiatives are defined by using the Azure Portal or command-line tools
 image:azure-az900_42.png[]
 
+* _AVTD_ - *Azure Policy* : vous aide à appliquer les normes de l'organisation et à évaluer la conformité à grande échelle. Assure la cohérence de la gouvernance et des ressources en termes de conformité réglementaire, de sécurité, de coûts et de gestion.
+    ** Ex : dans ce groupe de ressources, vous ne pouvez créer QUE des BDDs, pas de VMs
+    ** Ex : pour cette subscription, vous ne pouvez pas créer de VMs à 5000$ par mois...
+
 ==== Govern multiple subscriptions by using Azure Blueprints
 
 What happens when your cloud environment starts to *grow beyond just ONE subscription*? How can you scale the configuration of these features, knowing they need to be enforced for resources in new subscriptions?
@@ -1945,6 +2062,8 @@ image::azure-az900_43.png[]
 
 You see that the blueprint template contains policy assignments, Resource Manager templates, and resource groups. +
 *The blueprint deploys these artifacts to any existing subscriptions within the PROD-MG management group*. The blueprint also deploys these artifacts to any new subscriptions as they're created and added to the management group.
+
+* _AVTD_ - *Azure Blueprints* : permet aux architectes de définir ce qui doit être déployé de manière scriptée.
 
 ==== Summary
 
@@ -2027,6 +2146,37 @@ https://docs.microsoft.com/en-us/azure/china[Azure China 21Vianet] is operated b
 
 According to the China Telecommunication Regulation, providers of cloud services, infrastructure as a service (IaaS) and platform as a service (PaaS), must have value-added telecom permits. Only locally registered companies with less than 50 percent foreign investment qualify for these permits. To comply with this regulation, the Azure service in China is operated by 21Vianet, based on the technologies licensed from Microsoft.
 
+=== Microsoft 365 Compliance Center
+
+_AVTD_ - *Compliance Manager* : va vous donner un score, une note relatif au niveau atteint par votre solution quant aux exigences demandées par telle ou telle réglementation.
+
+* Le Microsoft 365 Compliance Center est tout nouveau : en GA (General Availability) depuis 2021/01.
+* To visit the Microsoft 365 compliance center, https://compliance.microsoft.com, you need to be a global administrator, compliance administrator, or compliance data administrator.
+
+Compliance Manager helps simplify the way you manage compliance. +
+It calculates a *risk-based score* measuring your progress toward completing recommended actions that help reduce risks around data protection and *regulatory standards*. +
+It also provides workflow capabilities and built-in control mapping to help you efficiently carry out improvement actions.
+
+Compliance Manager is based on 3 tools: 
+
+    * *Continuous assessments*: automatically detects and monitors your system settings
+    * *Recommended actions*: helps you to reduce risks with step-by-step guidance
+    * *Control mapping*: helps you take 1 action, and satisfy multiple regulatory requirements
+
+For more details, check: 
+
+    * https://docs.microsoft.com/en-us/microsoft-365/compliance/microsoft-365-compliance-center
+    * https://docs.microsoft.com/en-us/microsoft-365/compliance/compliance-manager
+
+.Compliance Manager default view
+image:azure-az900_53.png[]
+
+* It shows your score for data protection baseline, based on requirements from *ISO*, *NIST* and *GDPR*.
+
+    ** *ISO*: International Organization for Standardization
+    ** *NIST*: National Institute of Standards and Technology, est une agence du département du Commerce des États-Unis. Son but est de promouvoir l'économie en développant des technologies, la métrologie et des standards de concert avec l'industrie.
+    ** *GDPR*: General Data Protection Regulation
+
 == Azure Fundamentals part 6: Describe Azure cost management and service level agreements
 
 https://docs.microsoft.com/en-us/learn/paths/az-900-describe-azure-cost-management-service-level-agreements/
@@ -2059,6 +2209,18 @@ Working with the TCO Calculator involves three steps:
         ** *storage*: This category includes storage type and capacity, which includes any backup or archive storage.
         ** *networking*: This category includes the amount of network bandwidth you currently consume in your on-premises environment.
 
+.Backup vs archive
+[NOTE]
+====
+* *Sauvegarde* : une sauvegarde correspond à une copie de données qui peut être utilisée pour *restaurer* les données originales dans le cas où ces dernières seraient endommagées ou perdues (suppressions accidentelles, corruptions de fichiers, problèmes techniques, etc.). Cela concerne généralement les données qui sont encore en usage au sein de l’entreprise.
+
+* *Archive* : Un archivage correspond à un ou plusieurs enregistrements de données, spécialement sélectionnées pour une *conservation* plus ou moins longue dans l’éventualité d’un accès ultérieur pour des raisons légales le plus souvent. Cela concerne généralement des données qui ne sont plus utilisées au sein de l’entreprise.
+
+L’une des différences fondamentales à relever est que la *sauvegarde* est toujours une *copie*, alors que *l’archive* doit être le *document original*, supprimé de son emplacement initial et transféré ailleurs. +
+De plus, contrairement à la sauvegarde, l'*archivage* dispose de *fonctionnalités d’indexage et de recherche* poussées. Le contenu même des objets est indexé, et des métadonnées propres aux objets archivés peuvent être stockées dans une base de données et ainsi être utilisées lors des recherches (on parle de *eDiscovery*)
+
+====
+
     * *Adjust assumptions* +
     You specify whether your current on-premises licenses are enrolled for https://www.microsoft.com/licensing/licensing-programs/software-assurance-default[Software Assurance], which can save you money by reusing those licenses on Azure. +
     You also specify whether you need to *replicate your storage to another Azure region* for greater redundancy.
@@ -2074,6 +2236,8 @@ Working with the TCO Calculator involves three steps:
 [NOTE]
 ====
 L’offre Azure Hybrid Benefit vous permet de *valoriser vos licences locales* et d’économiser jusqu’à 40 % sur les machines virtuelles et jusqu’à 82 % avec les instances Azure Reserved Virtual Machines (VM).
+
+*Azure Hybrid Use Benefit* (HUB) is a discount program for Microsoft Azure users that allows them to get more value from their Windows Server licenses by saving them up to 40 percent off the normal cost of running their virtual machines (VMs).
 ====
 
     * *View the report* +
@@ -2129,7 +2293,7 @@ The way you use resources, your subscription type, and pricing from third-party 
         ** Time spent with a public IP address.
         ** Incoming (ingress) and outgoing (egress) network traffic in and out of the VM.
         ** Disk size and amount of disk read and disk write operations.
-        ** Each meter tracks a specific type of usage. For example, a meter might track bandwidth usage (ingress or egress network traffic in bits per second), number of operations, or its size (storage capacity in bytes).
+        ** Each meter tracks a specific type of usage. For example, a meter might track *bandwidth* usage (*ingress or egress network traffic in bits per second*), number of operations, or its size (storage capacity in bytes).
     {lb}
     The usage that a meter tracks *correlates to a quantity of billable units*. Those units are charged to your account for each billing period. The rate per billable unit depends on the resource type you're using.
 
@@ -2148,7 +2312,7 @@ The way you use resources, your subscription type, and pricing from third-party 
     * *Azure Marketplace* +
     You can also purchase Azure-based solutions and services from *third-party vendors* through Azure Marketplace. Examples include managed network firewall appliances or connectors to third-party backup services. *Billing structures are set by the vendor*.
 
-*Does location or network traffic affect cost?*
+*Does location or network traffic (and bandwith) affect cost?*
 
 *Location* is known as the Azure region.
 
@@ -2158,12 +2322,14 @@ Different regions can have different associated prices. Because geographic regio
 *Billing zones* are a factor in determining the cost of some Azure services. +
 https://azure.microsoft.com/pricing/details/bandwidth[Bandwidth] refers to *data moving in and out of Azure datacenters*. Some *inbound data transfers* (data going into Azure datacenters) are *free*. For outbound data transfers (data leaving Azure datacenters), data transfer pricing is based on zones.
 
+==== Azure Pricing Calculator
+
 The https://azure.microsoft.com/en-us/pricing/calculator/[Azure Pricing calculator] helps you in the process of taking all factors into account to get an accurate cost estimate. +
 It displays Azure products in categories: region, tier, billing options, support options, programs and offers, Azure Dev/Test pricing
 
 Keep in mind that *the Pricing calculator provides estimates and NOT actual price quotes*. Actual prices can vary depending upon the date of purchase, the payment currency you're using, and the type of Azure customer you are.
 
-==== Exercise - Estimate workload cost by using the Pricing calculator
+===== Exercise - Estimate workload cost by using the Pricing calculator
 
 In the https://azure.microsoft.com/en-us/pricing/calculator/[Azure Pricing calculator], in the "Example Scenarios" section, you can find templates for some *reference architectures*, or common cloud-based solutions that you can use as a starting point (like "Modern data warehouse")
 
@@ -2234,6 +2400,27 @@ You can do it by:
     * Using *Azure Hybrid Benefit* to repurpose software licenses on Azure
         ** If you've purchased licenses for Windows Server or SQL Server, and your licenses are covered by https://www.microsoft.com/licensing/licensing-programs/software-assurance-default[Software Assurance], you might be able to *repurpose those licenses on VMs on Azure*.
 
+===== AVTD - Comment minimiser les coûts sur Azure ?
+
+6 facteurs sur le coûts des services Azures : 
+
+    * *type de ressource*
+    * *services*
+    * *emplacement* : les mêmes ressources peuvent avoir un coût différent suivant la région où elles vont être déployées (faire tourner un centre de service coûte plus cher en Suisse et en Australie par exemple)
+    * *bande passante*
+    * *instances réservées*
+    * avantage lié à l'utilisation d'*Azure Hybrid* : on amène nos propres licences, qui sont alors réutilisées dans le Cloud Azure.
+
+.Facteurs affectant les coûts
+image:azure-az900_AVTD-part2_16.png[]
+image:azure-az900_AVTD-part2_17.png[]
+
+* *Calculatrice de prix Azure* (Azure Pricing calculator) : Attention, Cette calculatrice ne donne qu'une *ESTIMATION*.
+    ** Linux est généralement moins cher que Windows, car il n'y a pas de licence associée
+
+.Comment minimiser les coûts sur Azure ?
+image:azure-az900_AVTD-part2_18.png[]
+
 ==== Knowledge check
 
     * Which is the best first step the team should take to *compare the cost of running these environments* on Azure versus in their datacenter?
@@ -2265,6 +2452,8 @@ To sum it up, to have a clear picture of the total cost of running in the cloud:
 ====
 A service-level agreement (SLA) is a formal agreement between a service company and the customer. +
 An SLA describes how Microsoft responds when an Azure service fails to perform to its specification.
+
+_AVTD_ - Un SLA décrit les engagements de Microsoft en termes de *temps d'activité* et de *connectivité*.
 ====
 
 *Where can I access SLAs for Azure services?*
@@ -2272,7 +2461,8 @@ An SLA describes how Microsoft responds when an Azure service fails to perform t
     * You can access SLAs from https://azure.microsoft.com/support/legal/sla/[Service Level Agreements]
     * Each Azure service defines its own SLA.
 
-    * *SLA details*: This section defines the specific guarantees for the service. Performance commitments are commonly measured as a percentage, which typically ranges from 99.9 percent ("three nines") to 99.99 percent ("four nines"). +
+    * *SLA details*: This section defines the specific guarantees for the service. Performance commitments are commonly measured as a percentage, which typically ranges from *99.9* percent ("three nines") to *99.99* percent ("four nines"). +
+    {sb}
     The primary performance commitment typically focuses on *uptime*, or the percentage of time that a product or service is successfully operational. Some SLAs focus on other factors as well, including latency, or how fast the service must respond to a request.
 
 *How do percentages relate to total downtime?*
@@ -2290,7 +2480,7 @@ IMPORTANT: A *service credit* is the percentage of the fees you paid that are cr
 
 [WARNING]
 ====
-Free products typically don't have an SLA. +
+*Free products typically don't have an SLA*. +
 Services like Azure Advisor are always free, and, hence, their SLA states that it doesn't have a financially backed SLA.
 ====
 
@@ -2357,26 +2547,9 @@ Select "Create a resource", and search for "preview" in the search box.
 
 TIP: You can access preview features that are specific to the Azure portal itself from https://preview.portal.azure.com/[Microsoft Azure (Preview)].
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+* _AVTD_ - *Portail des previews Azure* : permet aux clients de remonter des besoins à Microsoft, afin que ce dernier puisse développer des produits / fonctionnalités manquantes.
+    ** Via ces previews Azure, les clients peuvent bêta-tester de nouveaux services / fonctionnalités.
+    ** *Pas de SLA* pour ces services en Preview
 
 == Lexique
 
@@ -2390,12 +2563,16 @@ CCM:: Cloud Controls Matrix
 CDN:: A *content delivery network*, or content distribution network (CDN), is a geographically distributed network of proxy servers and their data centers. The goal is to provide high availability and performance by distributing the service spatially relative to end users.
 CORS:: Cross-Origin Resource Sharing
 CSA:: Cloud Security Alliance
+CSP:: Cloud Solution Provider, a Microsoft Partner who helps you build solutions on top of Azure.
+DLP:: Data Loss Prevention
 FedRAMP:: Federal Risk and Authorization Management Program. Microsoft cloud services have undergone independent, third-party FedRAMP Moderate and High Baseline audits. Microsoft cloud services certified according to the FedRAMP standards.
 FQDN:: Fully Qualified Domain Names
 HIPAA:: The Health Insurance Portability and Accountability Act (HIPAA) is a US federal law that regulates patient Protected Health Information (PHI).
 Hosting provider:: un synonyme pour "cloud services provider"
+HUB:: Azure Hybrid Use Benefit
 IAM:: Identity and Access Management
 IOPS:: I/O operations per second
+ISO:: International Organization for Standardization, le plus grand organisme de normalisation au monde, qui demeure une organisation non gouvernementale.
 ISP:: Internet Service Provider
 MFA:: Multi-Factor Authentication
 MTCS:: Multi-Tier Cloud Security
@@ -2406,12 +2583,25 @@ PCI / DSS:: Payment Card Industry (PCI) / Data Security Standard (DSS)
 PHI:: Protected Health Information
 RBAC:: Role-Based Access Control 
 RCA:: Root Cause Analyse for Azure incidents
-SKU:: The Gateway *Stock-Keeping Unit* (SKU) defines the throughput capabilities of the VPN connection.
+SKU:: *Stock-Keeping Unit* (SKU) is a generic inventory term, that allows to represent the different shapes of the product.
 TCO:: Total Cost of Ownership. The Total Cost of Ownership (TCO) Calculator can help you compare the cost of running in the datacenter versus running on Azure.
 UDR:: User-Defined Routing, allows network admins to control the routing tables between subnets, within a subnet as well as between VNets.
 VPN:: Virtual Private Network
 VXC:: Virtual Cross-Connection. Virtual cross connects (VXC) are private, direct connections between a network and a cloud provider, content delivery network, or a carrier through an internet exchange point.
 WAF:: Web Application Firewall is a feature of *Azure Application Gateway* that provides your web applications with centralized, inbound protection against common exploits and vulnerabilities.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
