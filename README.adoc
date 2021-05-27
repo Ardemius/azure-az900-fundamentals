@@ -394,7 +394,7 @@ Azure computing solutions works on the underlying services:
     * *Virtual machines* : +
         Virtual Machines provides *infrastructure as a service (IaaS)* and can be used in different ways. When you need total control over an operating system and environment, VMs are an ideal choice.
     * *Virtual machine scale sets* : +
-        Virtual machine scale sets are an Azure compute resource that you can use to *deploy and manage* a set of *identical VMs*. With all VMs configured the same, virtual machine scale sets are designed to support true autoscale. No pre-provisioning of VMs is required. For this reason, it's easier to build large-scale services targeting big compute, big data, and containerized workloads. As demand goes up, more VM instances can be added. As demand goes down, VM instances can be removed. The process can be manual, automated, or a combination of both.
+        Virtual machine scale sets are an Azure compute resource that you can use to *deploy and manage* a set of *identical VMs*. With all VMs configured the same, virtual machine scale sets are designed to support *true autoscale*. No pre-provisioning of VMs is required. For this reason, it's easier to build large-scale services targeting big compute, big data, and containerized workloads. As demand goes up, more VM instances can be added. As demand goes down, VM instances can be removed. The process can be manual, automated, or a combination of both.
     * *Containers and Kubernetes*
     * *App Service* : +
         App Service is a *platform as a service (PaaS)* offering.
@@ -527,7 +527,7 @@ https://blog.pragmaticworks.com/azure-data-lake-vs-azure-blob-storage-in-data-wa
 
 ==== Azure Files fundamentals
 
-*Azure Files* offers fully managed *file shares* in the cloud that are accessible via the industry standard *Server Message Block (SMB)* and Network File System (preview) protocols.
+*Azure Files* offers fully managed *file shares* in the cloud that are accessible via the industry standard *Server Message Block (SMB)* and *Network File System (NFS)* (preview) protocols.
 
 Azure Files ensures the *data is encrypted at rest*, and the *SMB protocol* ensures the *data is encrypted in transit*.
 
@@ -777,7 +777,7 @@ Here we talk about *DevOps practices* and *develop solutions*.
 
 Microsoft offers tools to enable *source-code management*, *continuous integration and continuous delivery (CI/CD)*, and *automating the creation of testing environments*.
 
-* *Azure DevOps Services* +
+* *Azure DevOps Services* (anciennement Microsoft TFS, _Team Foundation Server_) +
 Azure DevOps Services is a suite of services that address every stage of the *software development lifecycle*.
 
     ** *Azure Repos* is a *centralized source-code repository* where software development, DevOps engineering, and documentation professionals can publish their code for review and collaboration.
@@ -1336,7 +1336,11 @@ A *distributed denial of service* (DDoS) attack attempts to *overwhelm and exhau
 
     * *Standard*
         ** provides additional mitigation capabilities that are tuned specifically to Azure Virtual Network resources. +
-        Protection policies are tuned through dedicated traffic monitoring and *machine learning algorithms*.
+        Protection policies are tuned through dedicated traffic monitoring and *machine learning algorithms*. +
+        Some of the features available for Standard customers: 
+            *** *Attack Mitigation Reports*: Attack Mitigation Reports use aggregated network flow data to provide detailed information about attacks targeted at your resources.
+            *** *Attack Mitigation Flow Logs*: Attack Mitigation Flow Logs allow you to review the dropped traffic, forwarded traffic and other attack data in near real-time during an active DDoS attack.
+            *** *DDoS Rapid Response*: Standard customers now have access to Rapid Response team during an active attack. DRR can help with attack investigation, custom mitigations during an attack and post-attack analysis.
 
 In all cases, the Azure global network is used to distribute and mitigate attack traffic across Azure regions.
 
@@ -1370,6 +1374,12 @@ A network security group can contain as many rules as you need, within Azure sub
 |===
 
 When you create a network security group, Azure creates a series of default rules to provide a baseline level of security. You can't remove the default rules, but you can override them by creating new rules with higher priorities.
+
+[TIP] 
+====
+Un NSG peut être rattaché à un subnet, et dès lors toutes les VMs du Subnet sont protégées. +
+Il est conseillé d'*avoir un NSG par subnet*.
+====
 
 ==== Exercise - Configure network access to a VM by using a network security group
 
@@ -1736,7 +1746,7 @@ image::azure-az900_37.png[]
 
 ==== What are multifactor authentication and Conditional Access?
 
-* *What's multifactor authentication?*
+* *What's multifactor authentication?* (MFA)
 
     ** Multifactor authentication is a process where a user is prompted during the sign-in process for an additional form of identification. Examples include a code on their mobile phone or a fingerprint scan.
     ** Multifactor authentication provides additional security for your identities by *requiring two or more elements to fully authenticate*. +
@@ -1918,6 +1928,8 @@ Azure RBAC is enforced on *any action* that's initiated *against an Azure resour
 You typically access Resource Manager from the Azure portal, Azure Cloud Shell, Azure PowerShell, and the Azure CLI. *Azure RBAC doesn't enforce access permissions at the application or data level*. Application security must be handled by your application.
 
 *RBAC* uses an *allow model*. When you're assigned a role, RBAC allows you to perform certain actions, such as read, write, or delete. If one role assignment grants you read permissions to a resource group and a different role assignment grants you write permissions to the same resource group, you have *both* read and write permissions on that resource group.
+
+NOTE: Azure supports up to 2000 role assignments per subscription
 
 *Who does Azure RBAC apply to?*
 
@@ -2184,6 +2196,14 @@ image:azure-az900_53.png[]
     ** *ISO*: International Organization for Standardization
     ** *NIST*: National Institute of Standards and Technology, est une agence du département du Commerce des États-Unis. Son but est de promouvoir l'économie en développant des technologies, la métrologie et des standards de concert avec l'industrie.
     ** *GDPR*: General Data Protection Regulation
+
+.Azure Service Trust Portal
+[NOTE]
+====
+The *Service Trust Portal* (STP) hosts the Compliance Manager service, and is the Microsoft public site for publishing audit reports and other compliance-related information relevant to Microsoft’s cloud services.
+
+By comparison, the *Compliance Manager* is a workflow-based risk assessment dashboard within the Trust Portal that enables you to track, assign, and verify your organization’s regulatory compliance activities related to Microsoft professional services and Microsoft cloud services such as Office 365, Dynamics 365, and Azure. 
+====
 
 == Azure Fundamentals part 6: Describe Azure cost management and service level agreements
 
@@ -2559,55 +2579,7 @@ TIP: You can access preview features that are specific to the Azure portal itsel
     ** Via ces previews Azure, les clients peuvent bêta-tester de nouveaux services / fonctionnalités.
     ** *Pas de SLA* pour ces services en Preview
 
-== Resources
 
-D'autres sites permettant de préparer la certification :
-
-    * Exam AZ-900: Microsoft Azure Fundamentals — Most Complete Preparation Guide Ever! : https://kyleake.medium.com/exam-az-900-microsoft-azure-fundamentals-most-complete-preparation-guide-ever-76614d31a59c
-    * Java & Moi - Certification Microsoft Azure Fundamentals : https://javaetmoi.com/2020/02/certification-microsoft-azure-fondamentals/
-
-Sites d'examens blancs, questions / réponses pour s'entraîner : 
-
-    * https://www.examtopics.com/exams/microsoft/az-900
-
-== Lexique
-
-[glossary]
-ACU:: *Azure Compute Units*. Ressources de calcul dédiées utilisées pour exécuter des applications déployées dans le plan App Service.
-ARM:: *Azure Resource Manager*. Les modèles Azure Resource Manager sont des fichiers JSON (JavaScript Object Notation) qui définissent l'infrastructure et la configuration de votre projet.
-BGP:: *Border Gateway Protocol*. BGP is used to exchange routes between on-premises networks and resources running in Azure. This protocol enables dynamic routing between your on-premises network and services running in the Microsoft cloud.
-BYOD:: Bring Your Own Device
-CapEx:: *Capital Expenditure*. This is the up front spending of money on physical infrastructure, and then deducting that up front expense over time. The up front cost from CapEx has a value that reduces over time.
-CCM:: Cloud Controls Matrix
-CDN:: A *content delivery network*, or content distribution network (CDN), is a geographically distributed network of proxy servers and their data centers. The goal is to provide high availability and performance by distributing the service spatially relative to end users.
-CORS:: Cross-Origin Resource Sharing
-CSA:: Cloud Security Alliance
-CSP:: Cloud Solution Provider, a Microsoft Partner who helps you build solutions on top of Azure.
-DLP:: Data Loss Prevention
-FedRAMP:: Federal Risk and Authorization Management Program. Microsoft cloud services have undergone independent, third-party FedRAMP Moderate and High Baseline audits. Microsoft cloud services certified according to the FedRAMP standards.
-FQDN:: Fully Qualified Domain Names
-HIPAA:: The Health Insurance Portability and Accountability Act (HIPAA) is a US federal law that regulates patient Protected Health Information (PHI).
-Hosting provider:: un synonyme pour "cloud services provider"
-HUB:: Azure Hybrid Use Benefit
-IAM:: Identity and Access Management
-IOPS:: I/O operations per second
-ISO:: International Organization for Standardization, le plus grand organisme de normalisation au monde, qui demeure une organisation non gouvernementale.
-ISP:: Internet Service Provider
-MFA:: Multi-Factor Authentication
-MTCS:: Multi-Tier Cloud Security
-NIST / CSF:: National Institute of Standards and Technology (NIST) Cybersecurity Framework (CSF) is a voluntary framework that consists of standards, guidelines, and best practices to manage cybersecurity-related risks.
-NSG:: Network Security Group, enables you to *filter network traffic* to and from Azure resources *within an Azure virtual network*. You can think of NSGs *like an internal firewall*.
-OpEx:: This is spending money on services or products now and being billed for them now. You can deduct this expense in the same year you spend it. There is no up front cost, as you pay for a service or product as you use it.
-PCI / DSS:: Payment Card Industry (PCI) / Data Security Standard (DSS)
-PHI:: Protected Health Information
-RBAC:: Role-Based Access Control 
-RCA:: Root Cause Analyse for Azure incidents
-SKU:: *Stock-Keeping Unit* (SKU) is a generic inventory term, that allows to represent the different shapes of the product.
-TCO:: Total Cost of Ownership. The Total Cost of Ownership (TCO) Calculator can help you compare the cost of running in the datacenter versus running on Azure.
-UDR:: User-Defined Routing, allows network admins to control the routing tables between subnets, within a subnet as well as between VNets.
-VPN:: Virtual Private Network
-VXC:: Virtual Cross-Connection. Virtual cross connects (VXC) are private, direct connections between a network and a cloud provider, content delivery network, or a carrier through an internet exchange point.
-WAF:: Web Application Firewall is a feature of *Azure Application Gateway* that provides your web applications with centralized, inbound protection against common exploits and vulnerabilities.
 
 == OLD COURSE CONTENT, BEFORE 2020/11/09
 
@@ -2795,6 +2767,253 @@ With Azure Resource Manager, you can:
 
 Resource Manager templates are *JSON files* that define the resources you need to deploy your solution.
 
+== Ressources
+
+D'autres sites permettant de préparer la certification :
+
+    * Exam AZ-900: Microsoft Azure Fundamentals — Most Complete Preparation Guide Ever! : https://kyleake.medium.com/exam-az-900-microsoft-azure-fundamentals-most-complete-preparation-guide-ever-76614d31a59c
+    * Java & Moi - Certification Microsoft Azure Fundamentals : https://javaetmoi.com/2020/02/certification-microsoft-azure-fondamentals/
+    * https://www.testpreptraining.com/tutorial/microsoft-azure-fundamentals-az-900/
+        ** Ce site contient également une bonne "cheat sheet" (https://www.testpreptraining.com/blog/cheat-sheet-for-az-900-exam/), et une liste de questions / réponses pour s'entraîner (https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test)
+    * Le cours Udemy de Thomas Mitchell : https://www.udemy.com/course/az-900-azure-exam-prep-understanding-cloud-concepts
+
+Sites d'examens blancs (mock exams), questions / réponses pour s'entraîner : 
+
+    * https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test
+    * https://thomasmitchell.net/az-900-mock-exam/
+    * https://www.examtopics.com/exams/microsoft/az-900
+
+== Mock exams
+
+=== Free exam from https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test[testprep training "Microsoft Azure Fundamentals (AZ-900)"]
+
+----
+Q1)
+You have plans to deploy several Azure virtual machines. You are required to ensure that the services running on the virtual machines are available, even if a single data center fails.
+
+Solution: You suggest deploy the virtual machines to two or more scale sets.
+
+Does the suggested solution meet the desired goal?
+
+ ✅ No, the solution does not meet the desired goal
+ ❌ Yes, the solutions meets the desired goal
+
+
+Q2) Jacob is working in an organization. He has been asked to migrate its SQL Database to Azure by ensuring that other users in the organization do not accidentally delete or modify critical resources.
+Which of the following Azure feature should Jacob use to meet the requirement?
+
+ ✅ Azure Resource Manager Locks
+ Azure role-based access control
+ Azure Policy
+ Azure Active Directory
+
+
+Q3)
+Let us suppose you plan to deploy several Azure virtual machines. You are required to ensure that the services running on the virtual machines are available if a single data centre fails.
+
+Solution: You suggest to deploy virtual machines to two or more availability zones.
+
+Does the suggested solution meet the desired goal?
+
+ ✅ Correct
+ Incorrect
+
+
+Q4) Peter is working in company that plans to migrate its website to Azure. The website is being accessed worldwide by users for video streaming services. Peter has been asked to suggest a solution to provide reduced load times and high transfer speeds.
+
+Which of the following Azure service should Peter suggest to meet the requirement?
+
+ ✅ Azure Content Delivery Network
+ Load Balancers
+ Blob Storage
+ Network Security Groups
+
+
+Q5) Which of the following Azure Service would you suggest when you are planning to create an application with an event-based architecture that has the feature to ingest events from Blob storage and create custom topics?
+
+ ✅ Azure Event Grid
+ Azure Logic Apps
+ Azure Functions
+ Azure Machine Learning Studio
+
+
+Q6) A company plans to migrate all of its servers and data to Azure.
+John has been asked to suggest a solution that allows to only use Software-as-a-Service Azure products that will support the planned migration.
+John suggests to deploy Azure virtual machines and Azure SQL Database.
+
+Does the solution suggested by John meet the requirement?
+
+ Yes, it meets the requirement
+ ✅ No, it does not meet the requirement
+
+
+Q7)
+
+Let us suppose you work for ABC Ltd. which has several business units. Each business unit requires 20 different Azure resources for daily operation. All the business units require the same type of Azure resources. Now, you are required to suggest a solution to automate the creation of Azure resources.
+
+Which of the following options would you suggest in this case?
+
+ Virtual machine scale sets
+ The Azure API Management service
+ Management groups
+ ✅ Azure Resource Manager templates
+
+
+Q8) Sam is working in an organization that plans to migrate its applications to Azure. He has been asked to suggest a solution that will maintain virtual machine connectivity to at least one instance with a guaranteed 99.95% uptime.
+Sam suggested to deploy one VM instance in one Availability Set.
+
+Does the suggested solution meet the goal?
+
+ No, it does not meet the goal
+ ✅ Yes, it meets the goal
+
+
+Q9) An organization plans to migrate its docker containers to Azure.
+You have been asked to suggest a solution that offers a set of version control tools to help developers manage the application code.
+
+Which amongst the following will you include in your recommendation?
+
+ Azure Activity log
+ Azure Pipelines
+ ✅ Azure Repos
+ Azure Monitor
+
+
+Q10) ________________ is used to explain the personal data that Microsoft processes, how Microsoft processes it, and for what purposes.
+
+ Microsoft Online Services Level Agreement
+ Microsoft Online Subscription Agreement
+ Microsoft Cloud Agreement (MCA)
+ ✅ Microsoft Privacy Statement
+
+
+Q1)
+Let us suppose ABC Ltd. plans to migrate all its data and resources to Azure. The company’s migration plan states that only platform as a service (PaaS) solutions must be used in Azure. Now you are required to deploy an Azure environment which supports the planned migration.
+
+Solution: In this case, you create an Azure App Service and Azure virtual machines that have Microsoft SQL Server installed.
+
+Does the solution meet the desired goal?
+
+ Yes, the solution meets the desired goal.
+ ✅ No, the solution does not meet the desired goal.
+
+
+Q2) What of the given Azure service permits a user to have a DNS-based traffic load balancer?
+
+ Azure Private Load Balancer
+ Azure Network Interface
+ ✅ Azure Traffic Manager
+ Azure Public Load Balancer
+
+
+Q3) You organization is planning to build a customized solution for uploading weather data to Azure using several million sensors. Which of the given service should the company use to connect, monitor, and control the sensors without managing the infrastructure?
+
+ Azure App Service
+ Azure Virtual Machine
+ ✅ Azure IoT Hub
+ Azure Files
+
+
+Q4) ________________ is used to explain the personal data that Microsoft processes, how Microsoft processes it, and for what purposes.
+
+ Microsoft Online Services Level Agreement
+ Microsoft Online Subscription Agreement
+ Microsoft Cloud Agreement (MCA)
+ ✅ Microsoft Privacy Statement
+
+
+Q5) Let us suppose a company wants to try out some services that are being offered by Azure in Public Preview.
+
+In this case, should the company deploy resources which are part of Public Preview in their production environment?
+
+ ✅ No
+ Yes
+
+Q6) A company plans to migrate its application servers hosted on-premises to Azure.
+Which of the following is the key advantage of using the public cloud for its servers?
+
+ Public cloud is owned by the public and not a private organization or corporation.
+ Public cloud is used exclusively by a single business or organization.
+ Public cloud is a free shared entity that is crowdfunded by the public and is accessible by everyone.
+ ✅ Public cloud is a shared entity operated by a third-party cloud service provider that various corporations can use.
+
+Q7) An organization plans to migrate its application named QuickApp1 to Azure.
+As per the observed pattern QuickApp1 has a low usage during the second and fourth weeks and high usage during the first and third weeks of the month
+Which amongst the following benefit of Azure Cloud Services will support cost management for this kind of usage pattern?
+
+ High availability
+ Fault tolerance
+ Load balancing
+ ✅ Elasticity
+
+Q8) Samuel is working in an organization that requires to secure its web applications from security vulnerabilities like volumetric, protocol, and resource layer attacks. Samuel has been asked to suggest a solution that has the capability of automatically generating post-attack mitigation reports for compliance purposes.
+Which of the following service should he use to satisfy this above requirement?
+
+ Azure Firewall
+ Azure Security Center
+ Azure Advanced Threat Protection
+ ✅ Azure DDoS Protection Standard
+
+Q9) ______________ offers real-time analytics and complex event-processing engine.
+
+ Azure Event Hub
+ Azure Data Lake
+ Azure Logic Apps
+ ✅ Azure Stream Analytics
+
+Q10) Let us suppose a company needs to create around 50 customized Virtual Machines every week. Out of which 20 are Windows-based Virtual machines and the remaining 30 are Ubuntu Machines.
+
+Which of the given options would assist in reducing the administrative effort needed to deploy the machines?
+
+ Azure virtual machine scale sets
+ ✅ Azure DevTest Labs
+ Azure Reserved Virtual Machines (VM) Instances
+ Microsoft Managed Desktop
+
+🔥 I PERSONALLY DO NOT AGREE ON THIS LAST ONE. 🔥
+Azure DevTest Labs ease the management (building, setting up, tearing down) of VMs focusing a LAB environment, which is not specified in the question
+----
+
+== Lexique
+
+[glossary]
+ACU:: *Azure Compute Units*. Ressources de calcul dédiées utilisées pour exécuter des applications déployées dans le plan App Service.
+ARM:: *Azure Resource Manager*. Les modèles Azure Resource Manager sont des fichiers JSON (JavaScript Object Notation) qui définissent l'infrastructure et la configuration de votre projet.
+BGP:: *Border Gateway Protocol*. BGP is used to exchange routes between on-premises networks and resources running in Azure. This protocol enables dynamic routing between your on-premises network and services running in the Microsoft cloud.
+BYOD:: Bring Your Own Device
+CapEx:: *Capital Expenditure*. This is the up front spending of money on physical infrastructure, and then deducting that up front expense over time. The up front cost from CapEx has a value that reduces over time.
+CCM:: Cloud Controls Matrix
+CDN:: A *content delivery network*, or content distribution network (CDN), is a geographically distributed network of proxy servers and their data centers. The goal is to provide high availability and performance by distributing the service spatially relative to end users.
+CORS:: Cross-Origin Resource Sharing
+CSA:: Cloud Security Alliance
+CSP:: Cloud Solution Provider, a Microsoft Partner who helps you build solutions on top of Azure.
+DLP:: Data Loss Prevention
+FedRAMP:: Federal Risk and Authorization Management Program. Microsoft cloud services have undergone independent, third-party FedRAMP Moderate and High Baseline audits. Microsoft cloud services certified according to the FedRAMP standards.
+FQDN:: Fully Qualified Domain Names
+HIPAA:: The Health Insurance Portability and Accountability Act (HIPAA) is a US federal law that regulates patient Protected Health Information (PHI).
+Hosting provider:: un synonyme pour "cloud services provider"
+HUB:: Azure Hybrid Use Benefit
+IAM:: Identity and Access Management
+IOPS:: I/O operations per second
+ISO:: International Organization for Standardization, le plus grand organisme de normalisation au monde, qui demeure une organisation non gouvernementale.
+ISP:: Internet Service Provider
+MFA:: Multi-Factor Authentication
+MTCS:: Multi-Tier Cloud Security
+NFS:: Network File System
+NIST / CSF:: National Institute of Standards and Technology (NIST) Cybersecurity Framework (CSF) is a voluntary framework that consists of standards, guidelines, and best practices to manage cybersecurity-related risks.
+NSG:: Network Security Group, enables you to *filter network traffic* to and from Azure resources *within an Azure virtual network*. You can think of NSGs *like an internal firewall*.
+OpEx:: This is spending money on services or products now and being billed for them now. You can deduct this expense in the same year you spend it. There is no up front cost, as you pay for a service or product as you use it.
+PCI / DSS:: Payment Card Industry (PCI) / Data Security Standard (DSS)
+PHI:: Protected Health Information
+RBAC:: Role-Based Access Control 
+RCA:: Root Cause Analyse for Azure incidents
+SMB:: Server Message Block
+SKU:: *Stock-Keeping Unit* (SKU) is a generic inventory term, that allows to represent the different shapes of the product.
+TCO:: Total Cost of Ownership. The Total Cost of Ownership (TCO) Calculator can help you compare the cost of running in the datacenter versus running on Azure.
+UDR:: User-Defined Routing, allows network admins to control the routing tables between subnets, within a subnet as well as between VNets.
+VPN:: Virtual Private Network
+VXC:: Virtual Cross-Connection. Virtual cross connects (VXC) are private, direct connections between a network and a cloud provider, content delivery network, or a carrier through an internet exchange point.
+WAF:: Web Application Firewall is a feature of *Azure Application Gateway* that provides your web applications with centralized, inbound protection against common exploits and vulnerabilities.
 
 
 
@@ -2806,6 +3025,9 @@ Resource Manager templates are *JSON files* that define the resources you need t
 
 
 
+
+
+Azure Advanced Threat Protection
 
 
 
