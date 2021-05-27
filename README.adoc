@@ -538,7 +538,8 @@ https://blog.pragmaticworks.com/azure-data-lake-vs-azure-blob-storage-in-data-wa
 
 *Azure Files* offers fully managed *file shares* in the cloud that are accessible via the industry standard *Server Message Block (SMB)* and *Network File System (NFS)* (preview) protocols.
 
-Azure Files ensures the *data is encrypted at rest*, and the *SMB protocol* ensures the *data is encrypted in transit*.
+* Azure Files ensures the *data is encrypted at rest*, and the *SMB protocol* ensures the *data is encrypted in transit*.
+* Data contains in Azure Files can be *mounted concurrently* by *cloud* and *on-premises* deployments, using SMB protocol and NFS protocol.
 
 ==== Understanding Blob access tiers
 
@@ -840,7 +841,7 @@ Likewise, practical use case.
 
 * *Azure Advisor*: evaluates your Azure resources and makes recommendations to help improve reliability, security, and performance, achieve operational excellence, and reduce costs.
 
-* *Azure Monitor*: is a platform for collecting, analyzing, visualizing, and potentially taking action *based on the metric and logging data from your entire Azure and on-premises environment*. +
+* *Azure Monitor*: is a platform for *collecting*, *analyzing*, *visualizing*, and potentially *taking action* based on the metric and logging data from your entire *Azure* and *on-premises* environment. +
 image:azure-az900_29.png[]
 
 * *Azure Service Health*: provides a personalized *view of the health of the Azure services, regions, and resources* you rely on. +
@@ -1983,11 +1984,13 @@ Applying the "ReadOnly" lock level  is like restricting all authorized users to 
 *Combine resource locks with Azure Blueprints*: To make the protection process more robust, you can combine resource locks with Azure Blueprints. +
 Azure Blueprints enables you to *define the set of standard Azure resources that your organization requires*. For example, you can define a blueprint that specifies that a certain resource lock must exist.
 
-==== Organize your Azure resources by using tags
+==== Organize your Azure resources by using Azure Tags
 
 One way to organize related resources is to *place them in their own subscriptions*. +
 You can also *use resource groups* to manage related resources. +
 *Resource tags* are another way to organize resources.
+
+Azure Tags are used to logically organized Azure resources, using *name-value pairs*.
 
 *How do I manage resource tags?*
 
@@ -2003,7 +2006,7 @@ image:azure-az900_41.png[]
 ==== Control and audit your resources by using Azure Policy
 
 How do you ensure that your resources stay compliant? How can you be alerted if a resource's configuration has changed? +
-*Azure Policy* is a service in Azure that enables you to *create*, *assign*, and *manage policies that control or audit your resources*. These policies enforce different rules and effects over your resource configurations so that those configurations stay compliant with corporate standards.
+*Azure Policy* is a service in Azure that enables you to *create*, *assign*, and *manage policies that control or audit your resources*. These policies enforce different *rules* and effects over your resource configurations so that those configurations stay compliant with corporate standards.
 
 *How does Azure Policy define policies?*
 
@@ -2583,6 +2586,12 @@ WARNING: Consider how critical high availability is to your requirements before 
 Performance targets above 99.99 percent are very difficult to achieve. An SLA of 99.99 percent *means 1 minute of downtime per week*. It's difficult for humans to respond to failures quickly enough to meet SLA performance targets above 99.99 percent. Instead, your application must be able to self-diagnose and self-heal during an outage.
 ====
 
+.High availability through Azure Load Balancer
+[NOTE]
+====
+*Azure Load Balancer* supports inbound and outbound scenarios and allows you to scale applications and create high availability solutions.
+====
+
 ==== Access preview services and preview features
 
 *What is the service lifecycle?*
@@ -2985,6 +2994,8 @@ Which of the following service should he use to satisfy this above requirement?
 🔥 Azure Advanced Threat Protection est l'ancien nom de Microsoft Defender pour Identity. 🔥
 Une solution de sécurité cloud qui s’appuie sur vos signaux Active Directory locaux pour identifier, détecter et investiguer les menaces avancées, les identités compromises et les actions des utilisateurs internes malveillants dirigées contre votre entreprise.
 
+Cf l'exam blanc de Thomas Mitchell, the Azure Advanced Threat protection is Microsoft's security solution that is used to identify, detect, and investigate advanced threats and compromised IDENTITIES.
+
 
 Q9) ______________ offers real-time analytics and complex event-processing engine.
 
@@ -3048,22 +3059,6 @@ UDR:: User-Defined Routing, allows network admins to control the routing tables 
 VPN:: Virtual Private Network
 VXC:: Virtual Cross-Connection. Virtual cross connects (VXC) are private, direct connections between a network and a cloud provider, content delivery network, or a carrier through an internet exchange point.
 WAF:: Web Application Firewall is a feature of *Azure Application Gateway* that provides your web applications with centralized, inbound protection against common exploits and vulnerabilities.
-
-
-
-
-
-
-
-
-
-
-
-
-
-Azure Advanced Threat Protection
-
-
 
 
 
