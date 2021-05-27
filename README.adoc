@@ -21,6 +21,7 @@ endif::[]
 :toclevels: 4
 // To turn off figure caption labels and numbers
 :figure-caption!:
+:sectnums:
 
 toc::[]
 
@@ -40,8 +41,10 @@ IMPORTANT: Exam was updated on 2020/11/09 with a new plan!
 
 Déroulement de la certification :
 
-    * 40 questions sur 1 heure
+    * 40 à 60 questions sur 1 heure
     * score minimum de 700 / 1000
+
+NOTE: Pour plus d'informations sur la certification AZ-900, voir la description faite par testprep training : https://www.testpreptraining.com/blog/how-to-pass-microsoft-az-900-exam/
 
 .Compétences mesurées par la certification AZ-900
 image:azure-az900_AVTD-part1_01.png[]
@@ -56,6 +59,12 @@ Néanmoins, plusieurs démos y sont présentées, et j'ai ajouté à ce doc les 
 
 Le formateur de Microsoft était Mehdi SEBBANE, Azure Technical Trainer Microsoft. +
 12 ans chez Microsoft, localisé à Vancouver (Canada), PFE Identity and Security.
+====
+
+[NOTE]
+====
+Un grande partie de mes notes vient de la documentation Microsoft Learn, mais pas que 😉 +
+Je me suis également servi de la documentation Microsoft "globale" et de différents sites dont je donne certains dans la section link:#_ressources[Ressources]
 ====
 
 == Azure Fundamentals part 1: Describe core Azure concepts
@@ -1155,6 +1164,22 @@ image:azure-az900_32.png[]
     *Workbooks* can be *run manually* or *automatically* when a rule triggers an alert.
 
 _AVTD_ - *Azure Sentinel* : solution *SIEM* (gestion des informations de sécurité) et *SOAR* (réponse automatisée de sécurité) fournissant des analyses de sécurité sur les menaces à l'échelle de l'entreprise
+
+==== Differences between Azure Security Center vs Azure Sentinel
+
+I found the differences between those 2 services a bit hard to clearly understand, and found this site that explains it very well: +
+https://medium.com/the-cloud-builders-guild/what-is-the-difference-between-azure-security-center-and-azure-sentinel-9d91eb801cd2
+
+In a nutshell, it explains that: 
+
+    * *Azure Security Center* plays a vital role in *"Collect"* and *"Detect"* roles
+    * While *Azure Sentinel* in addition to the first two roles also designed to perform *"Investigate"* and *"Respond"* roles.
+
+image::azure-az900_54.png[]
+
+Azure Sentinel performs more roles including hunting, automated playbooks and incident responses as well as assistance with manual incident investigations. +
+On the other hand, Azure Security Center is a great source of recommendations, alerts and diagnostics that can be utilised by Azure Sentinel to provide even better analytics and incident alerts. +
+Therefore, both products must be used in a well-architectured SOC (Security Operations Center). These products are highly complementary and can be easily enabled thanks to the great out-of-the-box integration.
 
 ==== Store and manage secrets by using Azure Key Vault
 
@@ -2779,8 +2804,8 @@ D'autres sites permettant de préparer la certification :
 
 Sites d'examens blancs (mock exams), questions / réponses pour s'entraîner : 
 
-    * https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test
-    * https://thomasmitchell.net/az-900-mock-exam/
+    * https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test : very good, some challenging, profound questions
+    * https://thomasmitchell.net/az-900-mock-exam/ : a really "like the exam" test
     * https://www.examtopics.com/exams/microsoft/az-900
 
 == Mock exams
@@ -2929,6 +2954,7 @@ In this case, should the company deploy resources which are part of Public Previ
  ✅ No
  Yes
 
+
 Q6) A company plans to migrate its application servers hosted on-premises to Azure.
 Which of the following is the key advantage of using the public cloud for its servers?
 
@@ -2936,6 +2962,7 @@ Which of the following is the key advantage of using the public cloud for its se
  Public cloud is used exclusively by a single business or organization.
  Public cloud is a free shared entity that is crowdfunded by the public and is accessible by everyone.
  ✅ Public cloud is a shared entity operated by a third-party cloud service provider that various corporations can use.
+
 
 Q7) An organization plans to migrate its application named QuickApp1 to Azure.
 As per the observed pattern QuickApp1 has a low usage during the second and fourth weeks and high usage during the first and third weeks of the month
@@ -2946,6 +2973,7 @@ Which amongst the following benefit of Azure Cloud Services will support cost ma
  Load balancing
  ✅ Elasticity
 
+
 Q8) Samuel is working in an organization that requires to secure its web applications from security vulnerabilities like volumetric, protocol, and resource layer attacks. Samuel has been asked to suggest a solution that has the capability of automatically generating post-attack mitigation reports for compliance purposes.
 Which of the following service should he use to satisfy this above requirement?
 
@@ -2954,12 +2982,17 @@ Which of the following service should he use to satisfy this above requirement?
  Azure Advanced Threat Protection
  ✅ Azure DDoS Protection Standard
 
+🔥 Azure Advanced Threat Protection est l'ancien nom de Microsoft Defender pour Identity. 🔥
+Une solution de sécurité cloud qui s’appuie sur vos signaux Active Directory locaux pour identifier, détecter et investiguer les menaces avancées, les identités compromises et les actions des utilisateurs internes malveillants dirigées contre votre entreprise.
+
+
 Q9) ______________ offers real-time analytics and complex event-processing engine.
 
  Azure Event Hub
  Azure Data Lake
  Azure Logic Apps
  ✅ Azure Stream Analytics
+
 
 Q10) Let us suppose a company needs to create around 50 customized Virtual Machines every week. Out of which 20 are Windows-based Virtual machines and the remaining 30 are Ubuntu Machines.
 
@@ -3008,6 +3041,7 @@ PHI:: Protected Health Information
 RBAC:: Role-Based Access Control 
 RCA:: Root Cause Analyse for Azure incidents
 SMB:: Server Message Block
+SOC:: Security Operations Center
 SKU:: *Stock-Keeping Unit* (SKU) is a generic inventory term, that allows to represent the different shapes of the product.
 TCO:: Total Cost of Ownership. The Total Cost of Ownership (TCO) Calculator can help you compare the cost of running in the datacenter versus running on Azure.
 UDR:: User-Defined Routing, allows network admins to control the routing tables between subnets, within a subnet as well as between VNets.
