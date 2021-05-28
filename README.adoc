@@ -378,9 +378,11 @@ The Hyperscale (Citus) deployment option supports *multi-tenant applications*, *
 Microsoft Azure supports a broad range of technologies and services to provide big data and analytic solutions, including:
 
     * *Azure Synapse Analytics* (formerly Azure SQL Data Warehouse)
-        ** brings together enterprise data warehousing and big data analytics
-        ** unified experience to ingest, prepare, manage, and serve data for immediate BI and machine learning needs.
+        ** limitless analytics service that brings together *data integration*, enterprise *data warehousing*, and *big data analytics*.
+        ** gives you the freedom to query data on your terms, using either *serverless* or *dedicated resources—at scale*.
+        ** unified experience to ingest, explore, prepare, manage, and serve data for *immediate BI* and *machine learning* needs.
         ** a good, logical, choice for analyzing large volumes of data
+        ** See Microsoft documentation: https://azure.microsoft.com/en-us/services/synapse-analytics/    
 
     * *Azure HDInsight* ("Hadoop and Distributed Insight")
         ** fully managed, open-source analytics service for enterprises
@@ -395,6 +397,18 @@ Microsoft Azure supports a broad range of technologies and services to provide b
         ** on-demand analytics job service that simplifies big data.
         ** Instead of deploying, configuring, and tuning hardware, you write queries to transform your data and extract valuable insights.
         ** You only pay for your job when it's running, making it more cost-effective.
+
+    * *Azure Event Grid*
+        ** allows reliable *event delivery* at massive scale
+        ** Simplify your *event-based apps* with Event Grid, a single service for managing routing of all events from any source to any destination. +
+        Designed for high availability, consistent performance, and dynamic scale, Event Grid lets you focus on your app logic rather than infrastructure.
+        ** For example, use Event Grid to instantly trigger a serverless function to run image analysis each time a new photo is added to a blob storage container.
+        ** Event Grid can distribute events from different sources like Azure Blob Storage or Azure Media Services to different handlers like Azure Function (Event Grid trigger function) or Webhook. +
+        It is a *pub-sub* model (underlying concept of topics and subscriptions): 
++
+image:azure-az900_55.png[]
+        ** For additional resources, check Microsoft documentation: https://azure.microsoft.com/en-us/services/event-grid/ and this excellent article https://www.serverless360.com/blog/building-reactive-solution-with-azure-event-grid[How To Build A Reactive Solution With Azure Event Grid]
+            *** This last article also present Azure Service Bus and explains the differences between Event Grid and Service Bus.
 
 === Explore Azure compute services
 
@@ -1970,7 +1984,7 @@ image:azure-az900_40.png[]
 
 ==== Prevent accidental changes by using resource locks
 
-A *resource lock* prevents resources from being accidentally deleted or changed. +
+A *resource lock* (or Resource Manager lock) prevents resources from being accidentally deleted or changed. +
 Even with Azure role-based access control (Azure RBAC) policies in place, there's still a risk that people with the right level of access could delete critical cloud resources. Think of a resource lock as a *warning system* that *reminds you that a resource should not be deleted or changed*.
 
 You can manage resource locks from the Azure portal, PowerShell, the Azure CLI, or from an Azure Resource Manager template. +
@@ -2805,11 +2819,11 @@ Resource Manager templates are *JSON files* that define the resources you need t
 
 D'autres sites permettant de préparer la certification :
 
+    * https://www.testpreptraining.com/tutorial/microsoft-azure-fundamentals-az-900/
+        ** Ce site contient également une *très bonne "cheat sheet"* (https://www.testpreptraining.com/blog/cheat-sheet-for-az-900-exam/), et une liste de questions / réponses pour s'entraîner (https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test)
     * Exam AZ-900: Microsoft Azure Fundamentals — Most Complete Preparation Guide Ever! : https://kyleake.medium.com/exam-az-900-microsoft-azure-fundamentals-most-complete-preparation-guide-ever-76614d31a59c
     * Java & Moi - Certification Microsoft Azure Fundamentals : https://javaetmoi.com/2020/02/certification-microsoft-azure-fondamentals/
-    * https://www.testpreptraining.com/tutorial/microsoft-azure-fundamentals-az-900/
-        ** Ce site contient également une bonne "cheat sheet" (https://www.testpreptraining.com/blog/cheat-sheet-for-az-900-exam/), et une liste de questions / réponses pour s'entraîner (https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test)
-    * Le cours Udemy de Thomas Mitchell : https://www.udemy.com/course/az-900-azure-exam-prep-understanding-cloud-concepts
+    * Le cours Udemy de Thomas Mitchell (payant) : https://www.udemy.com/course/az-900-azure-exam-prep-understanding-cloud-concepts
 
 Sites d'examens blancs (mock exams), questions / réponses pour s'entraîner : 
 
