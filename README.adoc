@@ -67,6 +67,16 @@ Un grande partie de mes notes vient de la documentation Microsoft Learn, mais pa
 Je me suis également servi de la documentation Microsoft "globale" et de différents sites dont je donne certains dans la section link:#_ressources[Ressources]
 ====
 
+.Mes retours sur l'examen (certification obtenue le 04/06/2021)
+[WARNING]
+====
+* 1ere remarque, les Azure Virtual Training Days sont loin d'être suffisants pour passer l'examen
+* Les questions posées ressemblent beaucoup plus à celles du https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test[practice test de testprep training] qu'à celles du Mock Exam de Thomas Mitchell (qui sont plus simples).
+    ** Je conseille donc *fortement* de payer les 11.99$ permettant d'accéder au https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-practice-exam[Practice Exam complet de testprep training].
+    ** Autre possibilité, s'entraîner avec le site https://www.examtopics.com/exams/microsoft/az-900, qui, malgré son interface spartiate, propose de vraies questions de l'examen, avec leurs réponses commentées par la communauté 👍
+* Plusieurs questions ne sont pas abordées le parcours Microsoft Learn, et nécessitent donc de passer par un "bachotage en règle" via des examens blancs de préparation. (un exemple https://www.examtopics.com/discussions/microsoft/view/21088-exam-az-900-topic-1-question-226-discussion/[ici])
+====
+
 == Azure Fundamentals part 1: Describe core Azure concepts
 
 https://docs.microsoft.com/en-us/learn/paths/az-900-describe-cloud-concepts/
@@ -1178,7 +1188,7 @@ image:azure-az900_32.png[]
     ** The workbook continues to run after it receives a response from the admins. +
     *Workbooks* can be *run manually* or *automatically* when a rule triggers an alert.
 
-_AVTD_ - *Azure Sentinel* : solution *SIEM* (gestion des informations de sécurité) et *SOAR* (réponse automatisée de sécurité) fournissant des analyses de sécurité sur les menaces à l'échelle de l'entreprise
+_AVTD_ - *Azure Sentinel* : solution *SIEM* (gestion des informations de sécurité, security information event management) et *SOAR* (réponse automatisée de sécurité, security orchestration automated response) fournissant des analyses de sécurité sur les menaces à l'échelle de l'entreprise
 
 ==== Differences between Azure Security Center vs Azure Sentinel
 
@@ -1347,7 +1357,7 @@ Azure Firewall provides many features, including:
 
     * Built-in high availability.
     * Unrestricted cloud scalability.
-    * Inbound and outbound filtering rules.
+    * Inbound and outbound filtering *rules*.
     * Inbound Destination Network Address Translation (DNAT) support.
     * Azure Monitor logging.
 
@@ -2392,6 +2402,40 @@ Different regions can have different associated prices. Because geographic regio
 *Billing zones* are a factor in determining the cost of some Azure services. +
 https://azure.microsoft.com/pricing/details/bandwidth[Bandwidth] refers to *data moving in and out of Azure datacenters*. Some *inbound data transfers* (data going into Azure datacenters) are *free*. For outbound data transfers (data leaving Azure datacenters), data transfer pricing is based on zones.
 
+==== Understand Azure support plans
+
+Microsoft offers 4 paid Azure support plans and 1 free for customers who require technical and operational support.
+
+image::azure-az900_56.png[]
+
+* *Basic*: free support plan included for all Azure customers
+
+* *DEVELOPER*: For trial, testing and development.
+    ** If you're using Azure in a nonproduction environment or just trying it out, choose the Developer plan to get an initial response to your Azure technical support requests within one business day.
+    ** The Azure Developer offering is appropriate for companies or individuals using Microsoft Azure in a non-production environment or for trial and evaluation.
+    ** -> 29$ / month
+
+* *STANDARD*: Production workloads
+    ** When you’re running a production workload on Azure, get Azure technical support initial response times between one hour and one business day, based on case severity, with the Standard plan.
+    ** The Azure Standard offering is a good choice for small or mid-size companies with minimal business critical dependence on Microsoft Azure.
+    ** -> 100$ / month
+
+* *PROFESSIONAL DIRECT* ("ProDirect"): Business-critical functions
+    ** If you need faster response times, advisory services, and high-severity incident escalation management from a collaborative management pool, choose Professional Direct (ProDirect) support.
+    ** The Azure ProDirect offering is most appropriate for mid-size to large companies with substantial business critical utilization of Microsoft Azure.
+    ** -> 1000$ / month
+
+* *enterprise support*: Comprehensive Microsoft technology support
+    ** If you need company-wide support across Azure and other Microsoft technologies, consider enterprise support.
+
+[NOTE]
+====
+For more details, check: 
+
+    * https://azure.microsoft.com/en-us/support/options/
+    * Compare support plans: https://azure.microsoft.com/en-us/support/plans/
+====
+
 ==== Azure Pricing Calculator
 
 The https://azure.microsoft.com/en-us/pricing/calculator/[Azure Pricing calculator] helps you in the process of taking all factors into account to get an accurate cost estimate. +
@@ -2829,7 +2873,7 @@ Sites d'examens blancs (mock exams), questions / réponses pour s'entraîner :
 
     * https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test : very good, some challenging, profound questions
     * https://thomasmitchell.net/az-900-mock-exam/ : a really "like the exam" test
-    * https://www.examtopics.com/exams/microsoft/az-900
+    * https://www.examtopics.com/exams/microsoft/az-900 : malgré l'interface un rien "spartiate", ce sont de *vraies* questions de l'AZ-900, avec des *réponses commentées* par la communauté. Donc une très bonne ressource.
 
 == Mock exams
 
@@ -3005,7 +3049,7 @@ Which of the following service should he use to satisfy this above requirement?
  Azure Advanced Threat Protection
  ✅ Azure DDoS Protection Standard
 
-🔥 Azure Advanced Threat Protection est l'ancien nom de Microsoft Defender pour Identity. 🔥
+🔥 Azure Advanced Threat Protection (Azure ATP) est l'ancien nom de Microsoft Defender for Identity. 🔥
 Une solution de sécurité cloud qui s’appuie sur vos signaux Active Directory locaux pour identifier, détecter et investiguer les menaces avancées, les identités compromises et les actions des utilisateurs internes malveillants dirigées contre votre entreprise.
 
 Cf l'exam blanc de Thomas Mitchell, the Azure Advanced Threat protection is Microsoft's security solution that is used to identify, detect, and investigate advanced threats and compromised IDENTITIES.
@@ -3065,7 +3109,9 @@ PCI / DSS:: Payment Card Industry (PCI) / Data Security Standard (DSS)
 PHI:: Protected Health Information
 RBAC:: Role-Based Access Control 
 RCA:: Root Cause Analyse for Azure incidents
+SIEM:: Security Information Event Management
 SMB:: Server Message Block
+SOAR:: Security Orchestration Automated Response
 SOC:: Security Operations Center
 SKU:: *Stock-Keeping Unit* (SKU) is a generic inventory term, that allows to represent the different shapes of the product.
 TCO:: Total Cost of Ownership. The Total Cost of Ownership (TCO) Calculator can help you compare the cost of running in the datacenter versus running on Azure.
