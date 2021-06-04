@@ -81,7 +81,7 @@ Je me suis également servi de la documentation Microsoft "globale" et de diffé
 Which statement accurately describes the Modern Lifecycle Policy for Azure services?
 
 A. Microsoft provides mainstream support for a service for five years.
-B. Microsoft provides a minimum of 12 monthsג€™ notice before ending support for a service.
+B. Microsoft provides a minimum of 12 months notice before ending support for a service.
 C. After a service is made generally available, Microsoft provides support for the service for a minimum of four years.
 D. When a service is retired, you can purchase extended support for the service for up to five years.
 ----
