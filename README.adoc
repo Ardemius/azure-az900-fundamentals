@@ -70,11 +70,24 @@ Je me suis également servi de la documentation Microsoft "globale" et de diffé
 .Mes retours sur l'examen (certification obtenue le 04/06/2021)
 [WARNING]
 ====
-* 1ere remarque, les Azure Virtual Training Days sont loin d'être suffisants pour passer l'examen
-* Les questions posées ressemblent beaucoup plus à celles du https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test[practice test de testprep training] qu'à celles du Mock Exam de Thomas Mitchell (qui sont plus simples).
+* 1ere remarque, *les Azure Virtual Training Days sont loin d'être suffisants pour passer l'examen*
+* Les questions posées ressemblent beaucoup plus à celles du https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test[practice test de testprep training] qu'à celles du https://thomasmitchell.net/az-900-mock-exam/[Mock Exam de Thomas Mitchell] (qui sont plus simples).
     ** Je conseille donc *fortement* de payer les 11.99$ permettant d'accéder au https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-practice-exam[Practice Exam complet de testprep training].
     ** Autre possibilité, s'entraîner avec le site https://www.examtopics.com/exams/microsoft/az-900, qui, malgré son interface spartiate, propose de vraies questions de l'examen, avec leurs réponses commentées par la communauté 👍
-* Plusieurs questions ne sont pas abordées le parcours Microsoft Learn, et nécessitent donc de passer par un "bachotage en règle" via des examens blancs de préparation. (un exemple https://www.examtopics.com/discussions/microsoft/view/21088-exam-az-900-topic-1-question-226-discussion/[ici])
+* Plusieurs questions ne sont pas abordées dans le parcours Microsoft Learn, et nécessitent donc un "bachotage en règle" via des examens blancs de préparation. 
+    ** En voici un exemple :
++
+----
+Which statement accurately describes the Modern Lifecycle Policy for Azure services?
+
+A. Microsoft provides mainstream support for a service for five years.
+B. Microsoft provides a minimum of 12 monthsג€™ notice before ending support for a service.
+C. After a service is made generally available, Microsoft provides support for the service for a minimum of four years.
+D. When a service is retired, you can purchase extended support for the service for up to five years.
+----
+
+    ** La bonne réponse est la "B" (plus de détails https://www.examtopics.com/discussions/microsoft/view/21088-exam-az-900-topic-1-question-226-discussion/[ici]), et vous me dites si vous trouvez l'information là où elle aurait du être, à savoir là : https://docs.microsoft.com/en-us/learn/modules/choose-azure-services-sla-lifecycle/5-access-preview-services. +
+    Personnellement, je ne l'y vois pas 😅
 ====
 
 == Azure Fundamentals part 1: Describe core Azure concepts
@@ -2872,7 +2885,7 @@ D'autres sites permettant de préparer la certification :
 Sites d'examens blancs (mock exams), questions / réponses pour s'entraîner : 
 
     * https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test : very good, some challenging, profound questions
-    * https://thomasmitchell.net/az-900-mock-exam/ : a really "like the exam" test
+    * https://thomasmitchell.net/az-900-mock-exam/ : après avoir passé la certification, les questions de ce mock exam me semblent plus simples que celles de la vraie certification.
     * https://www.examtopics.com/exams/microsoft/az-900 : malgré l'interface un rien "spartiate", ce sont de *vraies* questions de l'AZ-900, avec des *réponses commentées* par la communauté. Donc une très bonne ressource.
 
 == Mock exams
