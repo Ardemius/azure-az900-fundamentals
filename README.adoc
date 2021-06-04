@@ -341,6 +341,15 @@ The core data model of Cosmos DB is natively accessible from dynamically typed p
 
 * Azure SQL Database is a relational database based on the latest stable version of the Microsoft SQL Server database engine.
 * It is a *platform as a service* (PaaS) database engine.
++
+[IMPORTANT]
+====
+Oui, Azure SQL Database est bien considérée comme du *PaaS* et non du SaaS. +
+Un certain nombre de questions de l'AZ-900 reposent sur cela.
+
+La raison de ce PaaS et non SaaS semble être qu'Azure SQL Database propose plus d'options de gestion / configuration (High Availability, Disaster Recovery, etc.) qu'une solution SaaS. +
+Plus de détails sur ce sujet peuvent être trouvés https://docs.microsoft.com/en-us/answers/questions/243089/azure-sql-managed-instance-paas-or-saas.html[ici].
+====
 * It provides 99,99% availability ("four nines")
 * Microsoft explains that the newest capabilities of SQL Server are released first to SQL Database, and then to SQL Server itself.
 * You can migrate your existing SQL Server databases with minimal downtime by using the *Azure Database Migration Service*.
