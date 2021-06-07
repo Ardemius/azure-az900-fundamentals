@@ -19,9 +19,14 @@ endif::[]
 // check https://github.com/Ardemius/personal-wiki/wiki/AsciiDoctor-tips for tips on table of content in GitHub
 :toc: macro
 :toclevels: 4
+// To number the sections of the table of contents
+:sectnums:
 // To turn off figure caption labels and numbers
 :figure-caption!:
-:sectnums:
+// Same for examples
+//:example-caption!:
+// To turn off ALL captions
+// :caption:
 
 toc::[]
 
@@ -2899,7 +2904,7 @@ Sites d'examens blancs (mock exams), questions / réponses pour s'entraîner :
 
 == Mock exams
 
-=== Free exam from https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test[testprep training "Microsoft Azure Fundamentals (AZ-900)"]
+=== Sample exam questions from https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test[testprep training "Microsoft Azure Fundamentals (AZ-900)"]
 
 ----
 Q1)
