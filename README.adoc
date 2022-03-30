@@ -78,6 +78,7 @@ Je me suis également servi de la documentation Microsoft "globale" et de diffé
 * 1ere remarque, *les Azure Virtual Training Days sont loin d'être suffisants pour passer l'examen*
 * Les questions posées ressemblent beaucoup plus à celles du https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test[practice test de testprep training] qu'à celles du https://thomasmitchell.net/az-900-mock-exam/[Mock Exam de Thomas Mitchell] (qui sont plus simples).
     ** Je conseille donc *fortement* de payer les 11.99$ permettant d'accéder au https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-practice-exam[Practice Exam complet de testprep training].
+    ** Autre possibilité, s'entraîner avec le site https://www.examtopics.com/exams/microsoft/az-900, qui, malgré son interface spartiate, propose de vraies questions de l'examen, avec leurs réponses commentées par la communauté 👍
 * Plusieurs questions ne sont pas abordées dans le parcours Microsoft Learn, et nécessitent donc un "bachotage en règle" via des examens blancs de préparation. 
     ** En voici un exemple :
 +
@@ -90,7 +91,7 @@ C. After a service is made generally available, Microsoft provides support for t
 D. When a service is retired, you can purchase extended support for the service for up to five years.
 ----
 
-    ** La bonne réponse est la "B" (plus de détails https://docs.microsoft.com/en-us/lifecycle/policies/modern#continuity-and-migration[ici]), et vous me dites si vous trouvez l'information là où elle aurait du être, à savoir là : https://docs.microsoft.com/en-us/learn/modules/choose-azure-services-sla-lifecycle/5-access-preview-services. +
+    ** La bonne réponse est la "B" (plus de détails https://docs.microsoft.com/en-us/lifecycle/policies/modern#continuity-and-migration[ici] et https://www.examtopics.com/discussions/microsoft/view/21088-exam-az-900-topic-1-question-226-discussion/[là]), et vous me dites si vous trouvez l'information là où elle aurait du être, à savoir là : https://docs.microsoft.com/en-us/learn/modules/choose-azure-services-sla-lifecycle/5-access-preview-services. +
     Personnellement, je ne l'y vois pas 😅
 ====
 
@@ -132,6 +133,13 @@ image:azure-az900_AVTD-part1_04.png[]
 
 .levels of responsibility betweee a cloud provider and a cloud tenant
 image::azure-az900_10.png[]
+
+* *What is PaaS?* : 
+    ** Cloud platform services, also known as Platform as a Service (PaaS), provide cloud components to certain software while being used mainly for applications. *PaaS delivers a framework for developers* that they can build upon and use to *create customized applications*. +
+    All servers, storage, and networking can be managed by the enterprise or a third-party provider while the developers can maintain management of the applications. +
+    PaaS provides a platform for software creation.
+    ** Examples of PaaS: AWS Elastic Beanstalk, Windows Azure, Heroku, Force.com, Google App Engine, OpenShift
+    ** See https://azure.microsoft.com/en-gb/overview/what-is-paas/ or https://www.bmc.com/blogs/saas-vs-paas-vs-iaas-whats-the-difference-and-how-to-choose/
 
 *Serverless computing*: With serverless applications, the cloud service provider automatically provisions, scales, and manages the infrastructure required to run the code. Serverless architectures are highly scalable and *event-driven*. They use resources only when a specific function or trigger occurs.
 
@@ -470,6 +478,11 @@ When you-re ready to run a job, Batch does the following:
     ** identifies failures
     ** requeues work
     ** scales down the pool as work completes
+
+.Azure Virtual Machines sizes and descriptions
+image:azure-az900_57.png[]
+
+More for details, see https://docs.microsoft.com/en-us/azure/virtual-machines/sizes
 
 ==== When to use Azure Container Instances or Azure Kubernetes Service
 
@@ -2899,6 +2912,7 @@ Sites d'examens blancs (mock exams), questions / réponses pour s'entraîner :
 
     * https://www.testpreptraining.com/microsoft-azure-fundamentals-az-900-free-practice-test : very good, some challenging, profound questions
     * https://thomasmitchell.net/az-900-mock-exam/ : après avoir passé la certification, les questions de ce mock exam me semblent plus simples que celles de la vraie certification.
+    * https://www.examtopics.com/exams/microsoft/az-900 : malgré l'interface un rien "spartiate", ce sont de *vraies* questions de l'AZ-900, avec des *réponses commentées* par la communauté. Donc une très bonne ressource.
 
 == Mock exams
 
@@ -2923,6 +2937,182 @@ Which of the following Azure feature should Jacob use to meet the requirement?
  Azure role-based access control
  Azure Policy
  Azure Active Directory
+
+
+Q3)
+Let us suppose you plan to deploy several Azure virtual machines. You are required to ensure that the services running on the virtual machines are available if a single data centre fails.
+
+Solution: You suggest to deploy virtual machines to two or more availability zones.
+
+Does the suggested solution meet the desired goal?
+
+ ✅ Correct
+ Incorrect
+
+
+Q4) Peter is working in company that plans to migrate its website to Azure. The website is being accessed worldwide by users for video streaming services. Peter has been asked to suggest a solution to provide reduced load times and high transfer speeds.
+
+Which of the following Azure service should Peter suggest to meet the requirement?
+
+ ✅ Azure Content Delivery Network
+ Load Balancers
+ Blob Storage
+ Network Security Groups
+
+
+Q5) Which of the following Azure Service would you suggest when you are planning to create an application with an event-based architecture that has the feature to ingest events from Blob storage and create custom topics?
+
+ ✅ Azure Event Grid
+ Azure Logic Apps
+ Azure Functions
+ Azure Machine Learning Studio
+
+
+Q6) A company plans to migrate all of its servers and data to Azure.
+John has been asked to suggest a solution that allows to only use Software-as-a-Service Azure products that will support the planned migration.
+John suggests to deploy Azure virtual machines and Azure SQL Database.
+
+Does the solution suggested by John meet the requirement?
+
+ Yes, it meets the requirement
+ ✅ No, it does not meet the requirement
+
+
+Q7)
+
+Let us suppose you work for ABC Ltd. which has several business units. Each business unit requires 20 different Azure resources for daily operation. All the business units require the same type of Azure resources. Now, you are required to suggest a solution to automate the creation of Azure resources.
+
+Which of the following options would you suggest in this case?
+
+ Virtual machine scale sets
+ The Azure API Management service
+ Management groups
+ ✅ Azure Resource Manager templates
+
+
+Q8) Sam is working in an organization that plans to migrate its applications to Azure. He has been asked to suggest a solution that will maintain virtual machine connectivity to at least one instance with a guaranteed 99.95% uptime.
+Sam suggested to deploy one VM instance in one Availability Set.
+
+Does the suggested solution meet the goal?
+
+ No, it does not meet the goal
+ ✅ Yes, it meets the goal
+
+
+Q9) An organization plans to migrate its docker containers to Azure.
+You have been asked to suggest a solution that offers a set of version control tools to help developers manage the application code.
+
+Which amongst the following will you include in your recommendation?
+
+ Azure Activity log
+ Azure Pipelines
+ ✅ Azure Repos
+ Azure Monitor
+
+
+Q10) ________________ is used to explain the personal data that Microsoft processes, how Microsoft processes it, and for what purposes.
+
+ Microsoft Online Services Level Agreement
+ Microsoft Online Subscription Agreement
+ Microsoft Cloud Agreement (MCA)
+ ✅ Microsoft Privacy Statement
+
+
+Q1)
+Let us suppose ABC Ltd. plans to migrate all its data and resources to Azure. The company’s migration plan states that only platform as a service (PaaS) solutions must be used in Azure. Now you are required to deploy an Azure environment which supports the planned migration.
+
+Solution: In this case, you create an Azure App Service and Azure virtual machines that have Microsoft SQL Server installed.
+
+Does the solution meet the desired goal?
+
+ Yes, the solution meets the desired goal.
+ ✅ No, the solution does not meet the desired goal.
+
+
+Q2) What of the given Azure service permits a user to have a DNS-based traffic load balancer?
+
+ Azure Private Load Balancer
+ Azure Network Interface
+ ✅ Azure Traffic Manager
+ Azure Public Load Balancer
+
+
+Q3) You organization is planning to build a customized solution for uploading weather data to Azure using several million sensors. Which of the given service should the company use to connect, monitor, and control the sensors without managing the infrastructure?
+
+ Azure App Service
+ Azure Virtual Machine
+ ✅ Azure IoT Hub
+ Azure Files
+
+
+Q4) ________________ is used to explain the personal data that Microsoft processes, how Microsoft processes it, and for what purposes.
+
+ Microsoft Online Services Level Agreement
+ Microsoft Online Subscription Agreement
+ Microsoft Cloud Agreement (MCA)
+ ✅ Microsoft Privacy Statement
+
+
+Q5) Let us suppose a company wants to try out some services that are being offered by Azure in Public Preview.
+
+In this case, should the company deploy resources which are part of Public Preview in their production environment?
+
+ ✅ No
+ Yes
+
+
+Q6) A company plans to migrate its application servers hosted on-premises to Azure.
+Which of the following is the key advantage of using the public cloud for its servers?
+
+ Public cloud is owned by the public and not a private organization or corporation.
+ Public cloud is used exclusively by a single business or organization.
+ Public cloud is a free shared entity that is crowdfunded by the public and is accessible by everyone.
+ ✅ Public cloud is a shared entity operated by a third-party cloud service provider that various corporations can use.
+
+
+Q7) An organization plans to migrate its application named QuickApp1 to Azure.
+As per the observed pattern QuickApp1 has a low usage during the second and fourth weeks and high usage during the first and third weeks of the month
+Which amongst the following benefit of Azure Cloud Services will support cost management for this kind of usage pattern?
+
+ High availability
+ Fault tolerance
+ Load balancing
+ ✅ Elasticity
+
+
+Q8) Samuel is working in an organization that requires to secure its web applications from security vulnerabilities like volumetric, protocol, and resource layer attacks. Samuel has been asked to suggest a solution that has the capability of automatically generating post-attack mitigation reports for compliance purposes.
+Which of the following service should he use to satisfy this above requirement?
+
+ Azure Firewall
+ Azure Security Center
+ Azure Advanced Threat Protection
+ ✅ Azure DDoS Protection Standard
+
+🔥 Azure Advanced Threat Protection (Azure ATP) est l'ancien nom de Microsoft Defender for Identity. 🔥
+Une solution de sécurité cloud qui s’appuie sur vos signaux Active Directory locaux pour identifier, détecter et investiguer les menaces avancées, les identités compromises et les actions des utilisateurs internes malveillants dirigées contre votre entreprise.
+
+Cf l'exam blanc de Thomas Mitchell, the Azure Advanced Threat protection is Microsoft's security solution that is used to identify, detect, and investigate advanced threats and compromised IDENTITIES.
+
+
+Q9) ______________ offers real-time analytics and complex event-processing engine.
+
+ Azure Event Hub
+ Azure Data Lake
+ Azure Logic Apps
+ ✅ Azure Stream Analytics
+
+
+Q10) Let us suppose a company needs to create around 50 customized Virtual Machines every week. Out of which 20 are Windows-based Virtual machines and the remaining 30 are Ubuntu Machines.
+
+Which of the given options would assist in reducing the administrative effort needed to deploy the machines?
+
+ Azure virtual machine scale sets
+ ✅ Azure DevTest Labs
+ Azure Reserved Virtual Machines (VM) Instances
+ Microsoft Managed Desktop
+
+🔥 I PERSONALLY DO NOT AGREE ON THIS LAST ONE. 🔥
+Azure DevTest Labs ease the management (building, setting up, tearing down) of VMs focusing a LAB environment, which is not specified in the question
 ----
 
 == Lexique
