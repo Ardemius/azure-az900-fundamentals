@@ -1,6 +1,5 @@
 = Microsoft Azure fundamentals AZ-900
 Thomas SCHWENDER <https://github.com/ardemius[@ardemius]>
-// Handling GitHub admonition blocks icons
 ifndef::env-github[:icons: font]
 ifdef::env-github[]
 :status:
